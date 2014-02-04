@@ -1,4 +1,4 @@
-package Interface;
+package interfaceSlk;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -41,6 +41,12 @@ class Main extends StateBasedGame{
 		return toSender;
 	}
 
+	@Override
+	public void initStatesList(GameContainer arg0) throws SlickException {
+		addState( new MainMenu());
+		
+		
+	}
 	//Defaults to false!
 	private static boolean truthiness(String bool){
 		return bool.equals("true")||bool.equals("True")||bool.equals("TRUE")||bool.equals("1");
@@ -48,12 +54,6 @@ class Main extends StateBasedGame{
 	
 	private static int quantity(String number){
 		return Integer.parseInt(number);
-	}
-	
-	@Override
-	public void initStatesList(GameContainer arg0) throws SlickException {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
