@@ -1,15 +1,21 @@
 package interfaceSlk;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Rectangle;
-
+/**
+ * A state-based button. Extend it to add graphics and such.
+ * 
+ * @author Eamonn
+ *
+ */
 public abstract class AbstractButton extends Interactive{
 
 	Rectangle pos;
 	/*
 	 * state:
 	 * 0: No hover
-	 * 1: Held into
+	 * 1: Held-into (holding mouse down before moving into button)
 	 * 2: 
 	 */
 	private int state;
@@ -33,6 +39,7 @@ public abstract class AbstractButton extends Interactive{
 					 */
 					state = mouseState ? 1 : 2;
 				}
+				break;
 			}
 			case 1:{
 				if(pos.contains(mousePos)){
@@ -42,39 +49,44 @@ public abstract class AbstractButton extends Interactive{
 				} else {
 					state = 0;
 				}
+				break;
 			}
 			case 2:{
 				if(pos.contains(mousePos)){
-					if(mouseState){
+					if(mouseState){ //If the mouse is pressed
 						state = 3;
 					}
 				} else {
 					state = 0;
 				}
+				break;
 			}
 			case 3:{	
 				if(pos.contains(mousePos)){
-					if(!mouseState){
+					if(!mouseState){ //ie If the mouse is released
 						state = 0;
+						doAction();
 					}
 				} else {
 					state = 0;
 				}
+				break;
 			}
 		}
 	}
 
 	@Override
-	public void render() {
+	public void render(Graphics g) {
 		switch(state){
-		case 0: renderNormal();
-		case 2: renderNormal();
-		case 3: renderMouseOver();
-		case 4: renderMouseDown();
+			case 0:{ renderNormal(g); break;}
+			case 1:{ renderNormal(g); break;}
+			case 2:{ renderMouseOver(g); break;}
+			case 3:{ renderMouseDown(g); break;}
 		}
 	}
 
-	protected abstract void renderMouseDown();
-	protected abstract void renderMouseOver();
-	protected abstract void renderNormal();
+	protected abstract void doAction();
+	protected abstract void renderMouseDown(Graphics g);
+	protected abstract void renderMouseOver(Graphics g);
+	protected abstract void renderNormal(Graphics g);
 }
