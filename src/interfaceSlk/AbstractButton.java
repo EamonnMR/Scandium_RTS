@@ -79,7 +79,7 @@ public abstract class AbstractButton extends Interactive{
 	public void render(Graphics g) {
 		switch(state){
 			case 0:{ renderNormal(g); break;}
-			case 1:{ renderNormal(g); break;}
+			case 1:{ renderMouseOver(g); break;}
 			case 2:{ renderMouseOver(g); break;}
 			case 3:{ renderMouseDown(g); break;}
 		}
