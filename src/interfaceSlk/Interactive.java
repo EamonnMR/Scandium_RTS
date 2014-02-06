@@ -1,13 +1,9 @@
 package interfaceSlk;
 
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Point;
 
 public abstract class Interactive {
-	public abstract Rectangle getBox();
+	public abstract void update(Point mousePos, boolean mouseState);
 	
-	public abstract void MouseDown(int mx, int my);
-	
-	public abstract void MouseUp(int mx, int my);
-	
-	public abstract void KeyPress(int key);
+	public abstract void render();
 }
