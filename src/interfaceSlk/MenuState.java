@@ -22,11 +22,11 @@ public abstract class MenuState extends BasicGameState {
 	boolean mouseState;
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
+	public void render(GameContainer game, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		g.clear();
 		for(Interactive i : interactives){
-			i.render(g);
+			i.render(game, g);
 		}
 		if(mousePos == null){
 			mousePos = new Point(0,0);

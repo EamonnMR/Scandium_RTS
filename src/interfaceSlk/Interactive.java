@@ -1,5 +1,6 @@
 package interfaceSlk;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Point;
 
@@ -11,5 +12,5 @@ import org.newdawn.slick.geom.Point;
 public abstract class Interactive {
 	public abstract void update(Point mousePos, boolean mouseState);
 	
-	public abstract void render(Graphics g);
+	public abstract void render(GameContainer game, Graphics g);
 }

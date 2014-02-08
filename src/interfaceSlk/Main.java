@@ -44,8 +44,8 @@ class Main extends StateBasedGame{
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		addState( new MainMenu());
-		
-		
+		addState( new HostMenu());
+		addState( new JoinMenu());
 	}
 	//Defaults to false!
 	private static boolean truthiness(String bool){
