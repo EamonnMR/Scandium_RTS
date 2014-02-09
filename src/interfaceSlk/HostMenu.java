@@ -11,7 +11,7 @@ public class HostMenu extends MenuState {
 	public void init(GameContainer arg0, final StateBasedGame game)
 			throws SlickException {
 		interactives = new Interactive[] {
-			new TextButton(new Rectangle(200, 200, 50, 20), "Ok" ){
+			new TextButton(new Rectangle(200, 200, 50, 20), "Host" ){
 				protected void doAction() {
 					//
 				}
