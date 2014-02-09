@@ -5,6 +5,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import Server.Repeater;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
@@ -17,6 +19,10 @@ class Main extends StateBasedGame{
 	
 	
 	public static void main(String args[]) throws FileNotFoundException, IOException, SlickException{
+		if(args.length > 0){
+			Repeater me = new Repeater(args);
+		}
+		
 		AppGameContainer game = new AppGameContainer(new Main());
 		
 		//Apply prefs
