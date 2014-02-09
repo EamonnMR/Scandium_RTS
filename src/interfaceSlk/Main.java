@@ -19,10 +19,7 @@ class Main extends StateBasedGame{
 	
 	
 	public static void main(String args[]) throws FileNotFoundException, IOException, SlickException{
-		if(args.length > 0){
-			Repeater me = new Repeater(args);
-		}
-		
+
 		AppGameContainer game = new AppGameContainer(new Main());
 		
 		//Apply prefs
