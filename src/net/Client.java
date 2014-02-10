@@ -1,4 +1,4 @@
-package tcpNetwork;
+package net;
 
 public class Client {
 

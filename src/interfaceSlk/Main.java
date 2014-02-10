@@ -1,11 +1,11 @@
 package interfaceSlk;
 
+import net.Repeater;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
-import Server.Repeater;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

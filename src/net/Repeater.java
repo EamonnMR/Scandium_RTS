@@ -1,4 +1,4 @@
-package Server;
+package net;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -27,7 +27,7 @@ public class Repeater {
 	public void makeConnections(){
 		for(int i = 0; i < ports.length; i++){
 			try (ServerSocket serverSocket = new ServerSocket(i)) { 
-				threads[i] = new ConThread(serverSocket.accept(), i);
+				threads[i] = new ConThread(serverSocket.accept(), i, ports.length);
 				threads[i].start();
 			} catch (IOException e) {
 				System.err.println("Could not listen on port " + i);
@@ -53,7 +53,7 @@ public class Repeater {
 		
 		while(true){
 			for(ConThread i : threads){
-				
+				i.pushMsg(messages);
 			}
 		}
 	}
@@ -76,6 +76,8 @@ public class Repeater {
 			);
 		}
 		Repeater me = new Repeater(ports);
+		me.makeConnections();
+		me.updateLoop();
 	}
 	
 }
