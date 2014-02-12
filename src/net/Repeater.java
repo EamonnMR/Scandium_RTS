@@ -54,6 +54,8 @@ public class Repeater {
 		
 		String message = processMsgs(messages);
 		
+		System.out.println("Sending: " + message);
+		
 		while(true){
 			for(ConThread i : threads){
 				i.pushMsg(message);
@@ -89,6 +91,7 @@ public class Repeater {
 		}
 		Repeater me = new Repeater(ports);
 		me.makeConnections();
+		System.out.println("Connection Est.");
 		me.updateLoop();
 	}
 }
