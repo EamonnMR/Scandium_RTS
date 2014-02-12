@@ -39,11 +39,12 @@ public class ConThread extends Thread{
 				while(sock.getInputStream().available() > 0){
 					msg += Byte.toString((byte) sock.getInputStream().read());
 				}
+				System.out.println(msg);
+				owner.rcvMsg(msg,index);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			owner.rcvMsg(msg,index);
 		}
 	}
 }
