@@ -41,6 +41,8 @@ class Main extends StateBasedGame{
 		addState( new JoinMenu());
 		addState( new HostLobby());
 		addState( new JoinLobby());
+		addState( new PreStartScreen());
+		addState( game.PlayState.i());
 	}
 	//Defaults to false!
 	private static boolean truthiness(String bool){
