@@ -21,7 +21,12 @@ public class MainMenu extends MenuState{
 					game.enterState(2);
 				}
 			},
-			new TextButton(new Rectangle(200, 400, 50, 20), "Quit" ){
+			new TextButton(new Rectangle(200, 400, 50, 20), "Test" ){
+				protected void doAction() {
+					game.enterState(5);
+				}
+			},
+			new TextButton(new Rectangle(200, 500, 50, 20), "Quit" ){
 				protected void doAction() {
 					System.exit(0);
 				}
