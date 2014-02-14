@@ -480,7 +480,7 @@
   </data>
  </layer>
  <objectgroup name="Object Layer 1" width="50" height="50">
-  <object name="Player 0 Start" x="1027" y="195"/>
-  <object name="Player 1 Start" x="859" y="1776"/>
+  <object name="Player 0 Start" x="1030" y="197" width="79" height="53"/>
+  <object name="Player 1 Start" x="863" y="1774" width="110" height="77"/>
  </objectgroup>
 </map>

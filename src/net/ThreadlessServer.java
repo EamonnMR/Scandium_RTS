@@ -63,6 +63,7 @@ public class ThreadlessServer {
 		public int port;
 		PrintWriter out;
 		BufferedReader in; 
+		@SuppressWarnings("resource")
 		public Connection(int port) throws IOException{
 			//FIXME: Put this into a thread
 			this.port = port;
