@@ -26,7 +26,8 @@ public class JoinMenu extends MenuState {
 		for(int i = 0; i < ports.size(); i++){
 			String sPort = ports.getProperty(Integer.toString(i));
 			final int iPort = Integer.parseInt(sPort);
-			interactives[i] = new TextButton(new Rectangle(200, 100, 50, 20), sPort ){
+
+			interactives[i] = new TextButton(new Rectangle(200, 100 * (i+2), 50, 20), sPort ){
 				final int port = iPort;
 				final String lhost = host;
 				protected void doAction() {
