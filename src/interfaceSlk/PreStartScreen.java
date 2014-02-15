@@ -1,5 +1,7 @@
 package interfaceSlk;
 
+import game.PathGrid;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -18,7 +20,8 @@ public class PreStartScreen extends MenuState {
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		game.PlayState.i().sendInfo(new game.Model(), new TiledMap("res/RageValley.tmx"));
+		TiledMap t = new TiledMap("res/RageValley.tmx");
+		game.PlayState.i().sendInfo(new game.Model(), t, new PathGrid(t));
 		System.out.println("Map loaded successfully");
 		arg1.enterState(6);
 	}

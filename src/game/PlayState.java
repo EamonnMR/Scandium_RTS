@@ -29,6 +29,7 @@ public class PlayState extends BasicGameState{
 	private int screenX;
 	private int screenY;
 	private final double SCROLL_SPEED = 1;
+	private PathGrid pg;
 	
 	
 	public static PlayState i(){
@@ -49,7 +50,20 @@ public class PlayState extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		map.render(camX, camY);
+		drawMapMeta(g);
 		g.draw(new Rectangle(Mouse.i().x, Mouse.i().y, 5,5));
+	}
+
+	private void drawMapMeta(Graphics g) {
+		for(int i = 0; i < pg.p.length; i ++){
+			for(int j = 0; j < pg.p[i].length; j++){
+				if(pg.p[i][j]){
+					g.draw(new Rectangle(camX + (40 * i) + 10,
+										camY + (40 * j) + 10,
+										20, 20));
+				}
+			}
+		}
 	}
 
 	@Override
@@ -77,9 +91,10 @@ public class PlayState extends BasicGameState{
 		return 6;
 	}
 
-	public void sendInfo(Model m, TiledMap t){
+	public void sendInfo(Model m, TiledMap t, PathGrid pg){
 		this.m = m;
 		this.map = t;
+		this.pg = pg;
 	}
 	public void setScreenSize(int x, int y){
 		this.screenX = x;
