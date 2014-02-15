@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import game.PlayState;
 class Main extends StateBasedGame{
 
 	public Main() {
@@ -24,11 +25,18 @@ class Main extends StateBasedGame{
 		data.Mgr.i().loadInis();
 		Properties cfg = data.Mgr.i().cfg;//loadProps();
 		
+        int screenX, screenY;
+        screenX = quantity((String) cfg.get("width"));
+        screenY = quantity((String) cfg.get("height"));
+        PlayState.i().setScreenSize(screenX, screenY);
+
+		
 	    game.setMouseGrabbed(truthiness((String) cfg.get("mouseGrabbed")));
-        game.setDisplayMode(quantity((String) cfg.get(   "width")),
-        					quantity((String) cfg.get(   "height")),
+        game.setDisplayMode(screenX,
+        					screenY,
         					truthiness((String) cfg.get( "fullscreen")));
         game.setShowFPS(truthiness((String) cfg.get(     "showFPS")));
+        
         
         //Start game
         game.start();
