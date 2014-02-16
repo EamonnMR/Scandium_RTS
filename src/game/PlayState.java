@@ -8,6 +8,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+/**
+ * This mainly deals with the human interface to the game-viewing the map, etc.
+ * @author Eamonn
+ *
+ */
 public class PlayState extends BasicGameState{
 	
 	@Override
@@ -26,10 +31,13 @@ public class PlayState extends BasicGameState{
 	TiledMap t;
 	private TiledMap map;
 	int camX, camY;
+	int maxCamX;
+	int maxCamY;
 	private int screenX;
 	private int screenY;
 	private final double SCROLL_SPEED = 1;
 	private PathGrid pg;
+	private int mouseMode;
 	
 	
 	public static PlayState i(){
@@ -50,10 +58,11 @@ public class PlayState extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		map.render(camX, camY);
-		drawMapMeta(g);
 		g.draw(new Rectangle(Mouse.i().x, Mouse.i().y, 5,5));
 	}
 
+	/**  Show the passability grid
+	 */
 	private void drawMapMeta(Graphics g) {
 		for(int i = 0; i < pg.p.length; i ++){
 			for(int j = 0; j < pg.p[i].length; j++){
@@ -83,6 +92,29 @@ public class PlayState extends BasicGameState{
 		}
 		//FIXME: Add corner scrolling - currently it scrolls twice as
 		//fast as side scrolling
+		
+		if(camX < maxCamX){
+			camX = maxCamX;
+		} else if(camX > 0){
+			camX = 0;
+		}
+		if(camY < maxCamY){
+			camY = maxCamY;
+		} else if(camY > 0){
+			camY = 0;
+		}
+	}
+	public void sendInfo(Model m, TiledMap t, PathGrid pg){
+		this.m = m;
+		this.map = t;
+		this.pg = pg;
+		
+		maxCamX = (t.getWidth() * -t.getTileWidth()) + screenX;
+		maxCamY = (t.getHeight() * -t.getTileHeight()) + screenY;
+	}
+	public void setScreenSize(int x, int y){
+		this.screenX = x;
+		this.screenY = y;
 	}
 
 	@Override
@@ -91,13 +123,4 @@ public class PlayState extends BasicGameState{
 		return 6;
 	}
 
-	public void sendInfo(Model m, TiledMap t, PathGrid pg){
-		this.m = m;
-		this.map = t;
-		this.pg = pg;
-	}
-	public void setScreenSize(int x, int y){
-		this.screenX = x;
-		this.screenY = y;
-	}
 }

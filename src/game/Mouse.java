@@ -1,14 +1,14 @@
 package game;
 
 /**
- * Singleton for handling pointer input.
+ * Singleton for handling mouse input.
  * @author Eamonn
  *
  */
 public class Mouse {
 	static int NUM_MOUSE_BUTTONS = 5; //FIXME: What's this actual number?!!?
 	
-	int x, y;
+	int x, y, maxX, maxY;
 	boolean[] buttons;
 	private static Mouse instance;
 	
@@ -25,9 +25,19 @@ public class Mouse {
 		return instance;
 	}
 	
-	public void updatePos(int x, int y){
-		this.x += x;
-		this.y += y;
+	public void updatePos(int nx, int ny){
+		x += nx;
+		if(x < 0){
+			x =0;
+		} else if(x > maxX){
+			x = maxX;
+		}
+		y += ny;
+		if(y < 0){
+			y = 0;
+		} else if(y > maxY){
+			y = maxY;
+		}
 	}
 	
 	public void mouseUp(int button){
@@ -35,5 +45,10 @@ public class Mouse {
 	}
 	public void mouseDown(int button){
 		buttons[button] = true;
+	}
+	
+	public void setScreenSize(int maxX, int maxY){
+		this.maxX = maxX;
+		this.maxY = maxY;
 	}
 }
