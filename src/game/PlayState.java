@@ -30,7 +30,6 @@ public class PlayState extends BasicGameState{
 
 	Model m;
 	static PlayState instance;
-	TiledMap t;
 	private TiledMap map;
 	int camX, camY;
 	int maxCamX;
@@ -41,6 +40,7 @@ public class PlayState extends BasicGameState{
 	private final double SCROLL_SPEED_CORNER = Math.sqrt(2) * SCROLL_SPEED;
 	private PathGrid pg;
 	private Sprite mouseSpr;
+	int mouseState;
 	
 	public static PlayState i(){
 		if(instance == null){
@@ -60,7 +60,11 @@ public class PlayState extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		map.render(camX, camY);
-		g.draw(new Rectangle(Mouse.i().x, Mouse.i().y, 5,5));
+		drawMouse();
+	}
+
+	private void drawMouse() {
+		mouseSpr.draw(13, Mouse.i().x, Mouse.i().y);
 	}
 
 	/**  Show the passability grid
@@ -81,20 +85,33 @@ public class PlayState extends BasicGameState{
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
 			throws SlickException {
-		//The following implements mouse scrolling
+		//What edges the mouse is (or is not) touching.
+		boolean l, r, t, b;
+		l = r = t = b = false;
+		
 		if(Mouse.i().x <= 0){
-			camX += (int) Math.round(dt * SCROLL_SPEED);
+			l = true;
 		} else if(Mouse.i().x >= screenX){
-			camX -= (int) Math.round(dt * SCROLL_SPEED);
+			r = true;
 		}
 		
 		if(Mouse.i().y <= 0){
-			camY += (int) Math.round(dt * SCROLL_SPEED);
+			t = true;
 		} else if(Mouse.i().y >= screenY){
-			camY -= (int) Math.round(dt * SCROLL_SPEED);
+			b = true;
 		}
-		//FIXME: Add corner scrolling - currently it scrolls twice as
-		//fast as side scrolling
+		
+		//Logic to implement the scrolling.
+		if(l || r){
+			camX += (int) (r ? -1 : 1) * Math.round(dt * ((t || b) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+		}
+		if(t || b){
+			camY += (int) (b ? -1 : 1) * Math.round(dt * ((l || r) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+		}
+		
+		/* Independant (similar) logic to determine what mouse sprite to use */
+		
+		mouseState = calcMouseState(l,r,t,b);
 		
 		if(camX < maxCamX){
 			camX = maxCamX;
@@ -107,6 +124,36 @@ public class PlayState extends BasicGameState{
 			camY = 0;
 		}
 	}
+	
+	/*
+	 * Based on left/right/top/bottom, figure out what mouse frame to use.
+	 */
+	private int calcMouseState(boolean l, boolean r, boolean t, boolean b) {
+		if(l){
+			if(b){
+				return 3;
+			} else if(t){
+				return 5;
+			} else {
+				return 4;
+			}
+		} else if(r) {
+			if(b){
+				return 1;
+			} else if(t){
+				return 7;
+			} else {
+				return 0;
+			}
+		} else if(b){
+			return 2;
+		} else if(t){
+			return 6;
+		} else {
+			return 0;
+		}
+	}
+
 	public void sendInfo(Model m, TiledMap t, PathGrid pg, Sprite mouseSpr){
 		this.m = m;
 		this.map = t;
