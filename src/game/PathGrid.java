@@ -1,7 +1,13 @@
 package game;
 
 import org.newdawn.slick.tiled.TiledMap;
-
+/**
+ * Creates and holds data for building location acceptability and pathfinding.
+ * It uses data stored in the tileset to determine if a given tile can be traversed,
+ * and if so, can it be built upon.
+ * @author Eamonn
+ *
+ */
 public class PathGrid {
 	public boolean [][] p; //Pathable grid
 	public boolean [][] b; //buildable grid
