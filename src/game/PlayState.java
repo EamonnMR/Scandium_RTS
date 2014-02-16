@@ -8,6 +8,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import data.Sprite;
+
 /**
  * This mainly deals with the human interface to the game-viewing the map, etc.
  * @author Eamonn
@@ -36,9 +38,9 @@ public class PlayState extends BasicGameState{
 	private int screenX;
 	private int screenY;
 	private final double SCROLL_SPEED = 1;
+	private final double SCROLL_SPEED_CORNER = Math.sqrt(2) * SCROLL_SPEED;
 	private PathGrid pg;
-	private int mouseMode;
-	
+	private Sprite mouseSpr;
 	
 	public static PlayState i(){
 		if(instance == null){
@@ -63,6 +65,7 @@ public class PlayState extends BasicGameState{
 
 	/**  Show the passability grid
 	 */
+	@SuppressWarnings("unused")
 	private void drawMapMeta(Graphics g) {
 		for(int i = 0; i < pg.p.length; i ++){
 			for(int j = 0; j < pg.p[i].length; j++){
@@ -104,14 +107,17 @@ public class PlayState extends BasicGameState{
 			camY = 0;
 		}
 	}
-	public void sendInfo(Model m, TiledMap t, PathGrid pg){
+	public void sendInfo(Model m, TiledMap t, PathGrid pg, Sprite mouseSpr){
 		this.m = m;
 		this.map = t;
 		this.pg = pg;
 		
 		maxCamX = (t.getWidth() * -t.getTileWidth()) + screenX;
 		maxCamY = (t.getHeight() * -t.getTileHeight()) + screenY;
+		
+		this.mouseSpr = mouseSpr;
 	}
+	
 	public void setScreenSize(int x, int y){
 		this.screenX = x;
 		this.screenY = y;
