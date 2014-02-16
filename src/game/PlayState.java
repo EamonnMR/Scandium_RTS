@@ -60,11 +60,45 @@ public class PlayState extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		map.render(camX, camY);
-		drawMouse();
+		drawMouse(g);
 	}
 
-	private void drawMouse() {
-		mouseSpr.draw(13, Mouse.i().x, Mouse.i().y);
+	private void drawMouse(Graphics g) {
+		int x = Mouse.i().x;
+		int y = Mouse.i().y;
+		
+		switch(mouseState){
+		 case(0):{
+			x = screenX - 40;
+			break;
+		}case(1):{
+			x = screenX - 40;
+			y = screenY - 40;
+			break;
+		}case(2):{
+			y = screenY - 40;
+			break;
+		}case(3):{
+			x = 0;
+			y = screenY - 40;
+			break;
+		}case(4):{
+			x = 0;
+			break;
+		}case(5):{
+			x = 0;
+			y = 0;
+			break;
+		}case(6):{
+			y = 0;
+			break;
+		}case(7):{
+			x = screenX - 40;
+			y = 0;
+			break;
+		}
+		}
+		mouseSpr.draw(mouseState, x, y);
 	}
 
 	/**  Show the passability grid
@@ -150,7 +184,7 @@ public class PlayState extends BasicGameState{
 		} else if(t){
 			return 6;
 		} else {
-			return 0;
+			return 12;
 		}
 	}
 
