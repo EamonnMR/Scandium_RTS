@@ -3,26 +3,24 @@ package data;
 import org.newdawn.slick.Image;
 
 public class Sprite {
-	private Image img;
-	private int xSize;
-	private int ySize;
-	private int xFrames;
-	private int yFrames;
 	private int xOffset;
 	private int yOffset;
+	private Image[] frames;
 
 	public Sprite (Image img, int xSize, int ySize, int xFrames, int yFrames, int xOffset, int yOffset){
-		this.img = img;
-		this.xSize = xSize;
-		this.ySize = ySize;
-		this.xFrames = xFrames; 
-		this.yFrames = yFrames;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
+		
+		frames = new Image[xFrames * yFrames];
+		for(int i = 0; i < yFrames; i++){
+			for(int j = 0; j < xFrames; j++){
+				frames[i * yFrames + j] = img.getSubImage(
+						j * xSize, i * ySize, xSize, ySize);
+			}
+		}
 	}
 	
 	public void draw(int frame, int x, int y){
-		int yLine = frame % yFrames;
-		img.draw(x - xOffset, y - yOffset,xSize * ((frame - yLine) % xFrames), yLine * ySize, xSize, ySize);
+		frames[frame].draw(xOffset + x, yOffset + y);
 	}
 }
