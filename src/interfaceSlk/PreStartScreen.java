@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import game.PathGrid;
+import game.Unit;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -27,10 +28,23 @@ public class PreStartScreen extends MenuState {
 			throws SlickException{
 		// TODO Auto-generated method stub
 		TiledMap t = new TiledMap("res/RageValley.tmx");
-		try {
-			game.PlayState.i().sendInfo(new game.Model(), t, new PathGrid(t), new Sprite(
+		PathGrid pg = new PathGrid(t);
+		game.Model m = new game.Model(t, pg);
+		/*try {*/
+			game.PlayState.i().sendInfo(m, t, pg, /*new Sprite(
 					new Image( new FileInputStream("res/graphics/danC/mouse.png"), "0", false),
-					40, 40, 14, 1, 0, 0));
+					40, 40, 14, 1, 0, 0)*/ null);
+		/*} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		try {
+			m.addUnit(new Unit(
+					new Sprite(
+							new Image( new FileInputStream("res/graphics/danC/tank.png"), "0", false),
+							48, 56, 8, 1, 24, 27)
+							, 0, 1000, 160)
+					);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
