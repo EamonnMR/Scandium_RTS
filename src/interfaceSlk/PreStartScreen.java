@@ -1,8 +1,5 @@
 package interfaceSlk;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import game.PathGrid;
 import game.Unit;
 
@@ -30,25 +27,17 @@ public class PreStartScreen extends MenuState {
 		TiledMap t = new TiledMap("res/RageValley.tmx");
 		PathGrid pg = new PathGrid(t);
 		game.Model m = new game.Model(t, pg);
-		/*try {*/
-			game.PlayState.i().sendInfo(m, t, pg, /*new Sprite(
-					new Image( new FileInputStream("res/graphics/danC/mouse.png"), "0", false),
-					40, 40, 14, 1, 0, 0)*/ null);
-		/*} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		try {
-			m.addUnit(new Unit(
+		
+		game.PlayState.i().sendInfo(m, t, pg, new Sprite(
+				new Image("res/graphics/danC/mouse.png"),
+				40, 40, 14, 1, 0, 0));
+		
+		m.addUnit(new Unit(
 					new Sprite(
-							new Image( new FileInputStream("res/graphics/danC/tank.png"), "0", false),
-							48, 56, 8, 1, 24, 27)
-							, 0, 1000, 160)
-					);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+					new Image("res/graphics/danC/tank.png"),
+					48, 56, 8, 1, 24, 27)
+					, 0, 1000, 160)
+				);
 		System.out.println("Map loaded successfully");
 		arg1.enterState(6);
 	}
