@@ -61,7 +61,7 @@ public class PlayState extends BasicGameState{
 			throws SlickException {
 		map.render(camX, camY);
 		m.draw(camX, camY);
-		//drawMouse(g);
+		drawMouse(g);
 	}
 
 	private void drawMouse(Graphics g) {
