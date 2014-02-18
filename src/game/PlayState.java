@@ -59,9 +59,7 @@ public class PlayState extends BasicGameState{
 	}
 
 	private void drawSelectionBox(Graphics g) {
-		if(isDragging){
-			Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
-			selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
+		if(isDragging && selectBox != null){
 			g.draw(selectBox);
 		}
 	}
@@ -123,9 +121,14 @@ public class PlayState extends BasicGameState{
 	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
 			throws SlickException {
 		
-		if(isDragging && !(Mouse.i().buttons[0])){
+		if(isDragging){
+			Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
+			selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
+			if(!Mouse.i().buttons[0]){
 			//FIXME: Mouse released from selection: querey the model for units inside the selection box
-			isDragging = false;
+				isDragging = false;
+				selectBox = null;
+			}
 		} else if(Mouse.i().buttons[0] && !isDragging){
 			isDragging = true;
 			selectionX = Mouse.i().x;
