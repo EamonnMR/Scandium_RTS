@@ -3,6 +3,7 @@ package game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -16,18 +17,6 @@ import data.Sprite;
  *
  */
 public class PlayState extends BasicGameState{
-	
-	@Override
-	public void mouseDragged(int oldx, int oldy, int newx, int newy) {
-		Mouse.i().updatePos(newx, newy);
-	}
-
-	@Override
-	public void mouseMoved(int oldx, int oldy, int newx, int newy) {
-		// TODO Auto-generated method stub
-		Mouse.i().updatePos(newx, newy);
-	}
-
 	Model m;
 	static PlayState instance;
 	private TiledMap map;
@@ -41,6 +30,10 @@ public class PlayState extends BasicGameState{
 	private PathGrid pg;
 	private Sprite mouseSpr;
 	int mouseState;
+	int selectionX, selectionY;
+	boolean isDragging;
+	Rectangle selectBox;
+	
 	
 	public static PlayState i(){
 		if(instance == null){
@@ -61,7 +54,16 @@ public class PlayState extends BasicGameState{
 			throws SlickException {
 		map.render(camX, camY);
 		m.draw(camX, camY);
+		drawSelectionBox(g);
 		drawMouse(g);
+	}
+
+	private void drawSelectionBox(Graphics g) {
+		if(isDragging){
+			Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
+			selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
+			g.draw(selectBox);
+		}
 	}
 
 	private void drawMouse(Graphics g) {
@@ -120,6 +122,17 @@ public class PlayState extends BasicGameState{
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
 			throws SlickException {
+		
+		if(isDragging && !(Mouse.i().buttons[0])){
+			//FIXME: Mouse released from selection: querey the model for units inside the selection box
+			isDragging = false;
+		} else if(Mouse.i().buttons[0] && !isDragging){
+			isDragging = true;
+			selectionX = Mouse.i().x;
+			selectionY = Mouse.i().y;
+		}
+		
+
 		//What edges the mouse is (or is not) touching.
 		boolean l, r, t, b;
 		l = r = t = b = false;
@@ -135,18 +148,20 @@ public class PlayState extends BasicGameState{
 		} else if(Mouse.i().y >= screenY){
 			b = true;
 		}
-		
 		//Logic to implement the scrolling.
-		if(l || r){
-			camX += (int) (r ? -1 : 1) * Math.round(dt * ((t || b) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+		if(!isDragging){
+			if(l || r){
+				camX += (int) (r ? -1 : 1) * Math.round(dt * ((t || b) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+			}
+			if(t || b){
+				camY += (int) (b ? -1 : 1) * Math.round(dt * ((l || r) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+			}
 		}
-		if(t || b){
-			camY += (int) (b ? -1 : 1) * Math.round(dt * ((l || r) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
-		}
-		
 		/* Independant (similar) logic to determine what mouse sprite to use */
 		
 		mouseState = calcMouseState(l,r,t,b);
+		
+		//Limit the camera to the edges of the map
 		
 		if(camX < maxCamX){
 			camX = maxCamX;
@@ -207,8 +222,27 @@ public class PlayState extends BasicGameState{
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return 6;
+	}
+	
+	@Override
+	public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+		Mouse.i().updatePos(newx, newy);
+	}
+
+	@Override
+	public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+		Mouse.i().updatePos(newx, newy);
+	}
+
+	@Override
+	public void mousePressed(int button, int x, int y) {
+		Mouse.i().mouseDown(button);
+	}
+
+	@Override
+	public void mouseReleased(int button, int x, int y) {
+		Mouse.i().mouseUp(button);
 	}
 
 }
