@@ -21,6 +21,7 @@ public class Model {
 	public int addUnit(Unit unit) {
 		int uid = unitCap;
 		units.put(uid, unit);
+		unit.insert(uid);
 		unitCap++;
 		return uid;
 	}

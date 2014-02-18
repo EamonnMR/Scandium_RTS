@@ -6,6 +6,12 @@ public class Unit {
 	Sprite s;
 	int facing;
 	int x, y;
+	int uid;
+	boolean selected;
+	
+	public void insert(int uid){
+		this.uid = uid;
+	}
 	
 	public Unit(Sprite s, int facing, int x, int y) {
 		this.s = s;
