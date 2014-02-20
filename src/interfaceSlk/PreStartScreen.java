@@ -30,7 +30,9 @@ public class PreStartScreen extends MenuState {
 		
 		game.PlayState.i().sendInfo(m, t, pg, new Sprite(
 				new Image("res/graphics/danC/mouse.png"),
-				40, 40, 14, 1, 0, 0));
+				40, 40, 14, 1, 0, 0), 
+				null, null
+				);
 		
 		m.addUnit(new Unit(
 					new Sprite(
