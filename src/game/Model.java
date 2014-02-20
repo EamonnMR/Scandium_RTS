@@ -9,6 +9,8 @@ import java.util.Map;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
+import commands.Command;
+
 public class Model {
 
 	private TiledMap m;
@@ -29,7 +31,7 @@ public class Model {
 		unitCap++;
 		return uid;
 	}
-	public void tickUpdate(int dt){
+	public void tickUpdate(int dt, List<Command> cmds){
 		for(Integer i : units.keySet()){
 			units.get(i).updateTick(this);
 		}

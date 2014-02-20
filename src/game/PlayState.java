@@ -17,6 +17,7 @@ import data.Sprite;
  *
  */
 public class PlayState extends BasicGameState{
+	private static final int UPDATE_TIME = 1000;
 	Model m;
 	static PlayState instance;
 	private TiledMap map;
@@ -33,6 +34,8 @@ public class PlayState extends BasicGameState{
 	int selectionX, selectionY;
 	boolean isDragging;
 	Rectangle selectBox;
+	private CmdSender sndr;
+	private Reciever rcv;
 	
 	
 	public static PlayState i(){
@@ -117,10 +120,9 @@ public class PlayState extends BasicGameState{
 		}
 	}
 
-	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
-			throws SlickException {
-		
+	private void freeUpdate(int dt){
+
+		//Handle mouse box dragging
 		if(isDragging){
 			Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
 			selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
@@ -178,6 +180,20 @@ public class PlayState extends BasicGameState{
 		}
 	}
 	
+	private void fixedUpdate(){
+		//Recieve and interpret incoming commands
+		//this is where communication will block if it blocks at all.
+		m.tickUpdate(UPDATE_TIME, rcv.getLatestCommands());
+		sndr.updateTick();
+		
+	}
+	
+	@Override
+	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
+			throws SlickException {
+		freeUpdate(dt);
+	}
+	
 	/*
 	 * Based on left/right/top/bottom, figure out what mouse frame to use.
 	 */
@@ -207,10 +223,12 @@ public class PlayState extends BasicGameState{
 		}
 	}
 
-	public void sendInfo(Model m, TiledMap t, PathGrid pg, Sprite mouseSpr){
+	public void sendInfo(Model m, TiledMap t, PathGrid pg, Sprite mouseSpr, CmdSender sndr, Reciever rcv){
 		this.m = m;
 		this.map = t;
 		this.pg = pg;
+		this.sndr = sndr;
+		this.rcv = rcv;
 		
 		maxCamX = (t.getWidth() * -t.getTileWidth()) + screenX;
 		maxCamY = (t.getHeight() * -t.getTileHeight()) + screenY;
