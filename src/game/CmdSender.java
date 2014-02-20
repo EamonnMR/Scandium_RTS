@@ -5,6 +5,13 @@ import java.util.List;
 
 import commands.Command;
 
+/**
+ * This is where commands are sent to be transmitted to the server.
+ * Commands can be added at any time, but they will only be sent during
+ * updateTick.
+ * @author Eamonn
+ *
+ */
 public abstract class CmdSender {
 	private List<Command> cmds;
 	
