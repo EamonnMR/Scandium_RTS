@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import commands.Command;
@@ -46,10 +45,10 @@ public class Model {
 	/**
 	 * Returns a collection of all units inside the selected area.
 	 */
-	public Collection<Unit> areaQuerey(Rectangle area){
+	public Collection<Unit> areaQuerey(org.newdawn.slick.geom.Rectangle selectBox){
 		List<Unit> toSender = new ArrayList<Unit>();
 		for(Unit i : units.values()){
-			if(area.contains(i.x, i.y)){
+			if(selectBox.contains(i.x, i.y)){
 				toSender.add(i);
 			}
 		}

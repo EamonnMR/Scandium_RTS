@@ -1,8 +1,12 @@
 package game;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
@@ -37,7 +41,11 @@ public class PlayState extends BasicGameState{
 	private CmdSender sndr;
 	private Reciever rcv;
 	int timer;
+	private Collection<Unit> selectedUnits;
 	
+	public PlayState(){
+		selectedUnits = new LinkedList<Unit>();
+	}
 	
 	public static PlayState i(){
 		if(instance == null){
@@ -56,10 +64,18 @@ public class PlayState extends BasicGameState{
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
+		g.setLineWidth(2);
 		map.render(camX, camY);
+		drawHilights(g);
 		m.draw(camX, camY);
 		drawSelectionBox(g);
 		drawMouse(g);
+	}
+
+	private void drawHilights(Graphics g) {
+		for(Unit i : selectedUnits){
+			g.draw(new Circle(i.x + camX, i.y + camY, 20));
+		}
 	}
 
 	private void drawSelectionBox(Graphics g) {
@@ -121,6 +137,25 @@ public class PlayState extends BasicGameState{
 		}
 	}
 
+	
+	private void fixedUpdate(){
+		//Recieve and interpret incoming commands
+		//this is where communication will block if it blocks at all.
+		m.tickUpdate(UPDATE_TIME, rcv.getLatestCommands());
+		sndr.updateTick();
+	}
+	
+	@Override
+	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
+			throws SlickException {
+		timer += dt;
+		if(timer > UPDATE_TIME){
+			fixedUpdate();
+			timer = 0;
+		}
+		freeUpdate(dt);
+	}
+	
 	private void freeUpdate(int dt){
 
 		//Handle mouse box dragging
@@ -130,6 +165,9 @@ public class PlayState extends BasicGameState{
 			if(!Mouse.i().buttons[0]){
 			//FIXME: Mouse released from selection: querey the model for units inside the selection box
 				isDragging = false;
+				
+				
+				selectedUnits = m.areaQuerey(new Rectangle(selectBox.getX() - camX, selectBox.getY() - camY, selectBox.getWidth(), selectBox.getHeight()));
 				selectBox = null;
 			}
 		} else if(Mouse.i().buttons[0] && !isDragging){
@@ -180,26 +218,6 @@ public class PlayState extends BasicGameState{
 			camY = 0;
 		}
 	}
-	
-	private void fixedUpdate(){
-		//Recieve and interpret incoming commands
-		//this is where communication will block if it blocks at all.
-		m.tickUpdate(UPDATE_TIME, rcv.getLatestCommands());
-		sndr.updateTick();
-		System.out.println();
-	}
-	
-	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
-			throws SlickException {
-		timer += dt;
-		if(timer > UPDATE_TIME){
-			fixedUpdate();
-			timer = 0;
-		}
-		freeUpdate(dt);
-	}
-	
 	/*
 	 * Based on left/right/top/bottom, figure out what mouse frame to use.
 	 */
