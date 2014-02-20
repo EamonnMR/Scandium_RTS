@@ -41,7 +41,7 @@ public class PreStartScreen extends MenuState {
 		m.addUnit(new Unit(
 					new Sprite(
 					new Image("res/graphics/danC/tank.png"),
-					48, 56, 8, 1, 24, 27)
+					48, 56, 8, 1, -24, -27)
 					, 0, 1000, 160)
 				);
 		System.out.println("Map loaded successfully");
