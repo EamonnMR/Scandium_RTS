@@ -1,5 +1,7 @@
 package interfaceSlk;
 
+import game.LocalCmd;
+import game.LocalRcv;
 import game.PathGrid;
 import game.Unit;
 
@@ -27,11 +29,13 @@ public class PreStartScreen extends MenuState {
 		TiledMap t = new TiledMap("res/RageValley.tmx");
 		PathGrid pg = new PathGrid(t);
 		game.Model m = new game.Model(t, pg);
+		LocalRcv dummyR = new LocalRcv();
+		
 		
 		game.PlayState.i().sendInfo(m, t, pg, new Sprite(
 				new Image("res/graphics/danC/mouse.png"),
 				40, 40, 14, 1, 0, 0), 
-				null, null
+				new LocalCmd(dummyR), dummyR
 				);
 		
 		m.addUnit(new Unit(
