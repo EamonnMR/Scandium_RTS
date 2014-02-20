@@ -17,7 +17,7 @@ import data.Sprite;
  *
  */
 public class PlayState extends BasicGameState{
-	private static final int UPDATE_TIME = 1000;
+	private static final int UPDATE_TIME = 100;
 	Model m;
 	static PlayState instance;
 	private TiledMap map;
@@ -36,6 +36,7 @@ public class PlayState extends BasicGameState{
 	Rectangle selectBox;
 	private CmdSender sndr;
 	private Reciever rcv;
+	int timer;
 	
 	
 	public static PlayState i(){
@@ -185,12 +186,17 @@ public class PlayState extends BasicGameState{
 		//this is where communication will block if it blocks at all.
 		m.tickUpdate(UPDATE_TIME, rcv.getLatestCommands());
 		sndr.updateTick();
-		
+		System.out.println();
 	}
 	
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int dt)
 			throws SlickException {
+		timer += dt;
+		if(timer > UPDATE_TIME){
+			fixedUpdate();
+			timer = 0;
+		}
 		freeUpdate(dt);
 	}
 	
