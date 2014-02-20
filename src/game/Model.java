@@ -1,8 +1,12 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Model {
@@ -25,7 +29,6 @@ public class Model {
 		unitCap++;
 		return uid;
 	}
-	
 	public void tickUpdate(int dt){
 		for(Integer i : units.keySet()){
 			units.get(i).updateTick(this);
@@ -36,5 +39,18 @@ public class Model {
 		for(Integer i : units.keySet()){
 			units.get(i).draw(camX, camY);
 		}
+	}
+	
+	/**
+	 * Returns a collection of all units inside the selected area.
+	 */
+	public Collection<Unit> areaQuerey(Rectangle area){
+		List<Unit> toSender = new ArrayList<Unit>();
+		for(Unit i : units.values()){
+			if(area.contains(i.x, i.y)){
+				toSender.add(i);
+			}
+		}
+		return toSender;
 	}
 }

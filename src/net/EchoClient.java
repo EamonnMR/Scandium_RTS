@@ -14,7 +14,7 @@ public class EchoClient {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		data.Mgr.i().loadInis();
-		int portNumber = Integer.parseInt((String) data.Mgr.i().ports.get("1w"));
+		int portNumber = Integer.parseInt((String) data.Mgr.i().ports.get("0"));
 		String hostName = "localhost";
 		
 		
