@@ -1,0 +1,265 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x000000000bbdd7e3, pid=2484, tid=8136
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_45-b18) (build 1.7.0_45-b18)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.45-b08 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# C  [ig7icd64.dll+0x1d7e3]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000001bce000):  JavaThread "main" [_thread_in_native, id=8136, stack(0x0000000002390000,0x0000000002490000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000000000068
+
+Registers:
+RAX=0x0000000002ff03ff, RBX=0x0000000000000060, RCX=0x0000000006080000, RDX=0x0000000000000788
+RSP=0x000000000248ee10, RBP=0x00000000000002ff, RSI=0x00000000000003ff, RDI=0x000000000d2000a8
+R8 =0x0000000000000000, R9 =0x0000000000000180, R10=0x000000000bbc0000, R11=0x0000000000034010
+R12=0x000000000026fb80, R13=0x0000000000000000, R14=0x00000000001ec880, R15=0x0000000001bce000
+RIP=0x000000000bbdd7e3, EFLAGS=0x0000000000010202
+
+Top of Stack: (sp=0x000000000248ee10)
+0x000000000248ee10:   000000000d2000a8 0000000000000400
+0x000000000248ee20:   0000000000000000 0000000000000000
+0x000000000248ee30:   0000018478140001 0000000000000000
+0x000000000248ee40:   0000000079000002 0000000002ff03ff
+0x000000000248ee50:   0002000007000001 0000000000000000
+0x000000000248ee60:   000f000e000d000c 0000000300000000
+0x000000000248ee70:   0000000000000000 00000000001a0000
+0x000000000248ee80:   0003401078080003 0000000000000000
+0x000000000248ee90:   0403400000000000 0000000000000000
+0x000000000248eea0:   0803400000000000 0000000000000000
+0x000000000248eeb0:   0c03400000000000 0000000000000000
+0x000000000248eec0:   1003400000000000 0000000000000000
+0x000000000248eed0:   1403400000000000 0000000000000000
+0x000000000248eee0:   1803400000000000 0000000000000000
+0x000000000248eef0:   1c03400000000000 0000000000000000
+0x000000000248ef00:   2003400000000000 0000000000000000 
+
+Instructions: (pc=0x000000000bbdd7e3)
+0x000000000bbdd7c3:   66 89 6c 24 3a 49 8b 00 48 89 04 11 49 8b 40 08
+0x000000000bbdd7d3:   48 89 44 11 08 83 87 ec d1 05 00 10 4d 8b 04 24
+0x000000000bbdd7e3:   41 80 78 68 00 74 06 4d 8b 40 60 eb 04 4d 8b 40
+0x000000000bbdd7f3:   58 48 8b 87 b0 d1 05 00 48 8d 54 24 30 48 ff c0 
+
+
+Register to memory mapping:
+
+RAX=0x0000000002ff03ff is an unknown value
+RBX=0x0000000000000060 is an unknown value
+RCX=0x0000000006080000 is an unknown value
+RDX=0x0000000000000788 is an unknown value
+RSP=0x000000000248ee10 is pointing into the stack for thread: 0x0000000001bce000
+RBP=0x00000000000002ff is an unknown value
+RSI=0x00000000000003ff is an unknown value
+RDI=0x000000000d2000a8 is an unknown value
+R8 =0x0000000000000000 is an unknown value
+R9 =0x0000000000000180 is an unknown value
+R10=0x000000000bbc0000 is an unknown value
+R11=0x0000000000034010 is an unknown value
+R12=0x000000000026fb80 is an unknown value
+R13=0x0000000000000000 is an unknown value
+R14=0x00000000001ec880 is an unknown value
+R15=0x0000000001bce000 is a thread
+
+
+Stack: [0x0000000002390000,0x0000000002490000],  sp=0x000000000248ee10,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [ig7icd64.dll+0x1d7e3]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J  org.lwjgl.opengl.GL11.nglClear(IJ)V
+J  org.newdawn.slick.GameContainer.updateAndRender(I)V
+j  org.newdawn.slick.AppGameContainer.gameLoop()V+33
+J  org.newdawn.slick.AppGameContainer.start()V
+j  interfaceSlk.Main.main([Ljava/lang/String;)V+125
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000000b3a8800 JavaThread "Thread-2" daemon [_thread_in_native, id=4244, stack(0x000000000fd30000,0x000000000fe30000)]
+  0x0000000009875800 JavaThread "Service Thread" daemon [_thread_blocked, id=872, stack(0x000000000b130000,0x000000000b230000)]
+  0x0000000009874800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=5068, stack(0x000000000ae90000,0x000000000af90000)]
+  0x000000000986f800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=3984, stack(0x000000000a720000,0x000000000a820000)]
+  0x000000000986e000 JavaThread "Attach Listener" daemon [_thread_blocked, id=7800, stack(0x000000000acf0000,0x000000000adf0000)]
+  0x0000000009867000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=7320, stack(0x000000000abb0000,0x000000000acb0000)]
+  0x0000000009812000 JavaThread "Finalizer" daemon [_thread_blocked, id=1688, stack(0x000000000a980000,0x000000000aa80000)]
+  0x000000000980b000 JavaThread "Reference Handler" daemon [_thread_blocked, id=5232, stack(0x000000000a830000,0x000000000a930000)]
+=>0x0000000001bce000 JavaThread "main" [_thread_in_native, id=8136, stack(0x0000000002390000,0x0000000002490000)]
+
+Other Threads:
+  0x0000000009807800 VMThread [stack: 0x000000000a5a0000,0x000000000a6a0000] [id=4208]
+  0x000000000b230800 WatcherThread [stack: 0x000000000b680000,0x000000000b780000] [id=7464]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 28672K, used 24317K [0x00000000e0800000, 0x00000000e2780000, 0x0000000100000000)
+  eden space 25088K, 96% used [0x00000000e0800000,0x00000000e1fbf778,0x00000000e2080000)
+  from space 3584K, 0% used [0x00000000e2400000,0x00000000e2400000,0x00000000e2780000)
+  to   space 3584K, 0% used [0x00000000e2080000,0x00000000e2080000,0x00000000e2400000)
+ ParOldGen       total 64512K, used 0K [0x00000000a1800000, 0x00000000a5700000, 0x00000000e0800000)
+  object space 64512K, 0% used [0x00000000a1800000,0x00000000a1800000,0x00000000a5700000)
+ PSPermGen       total 21504K, used 7275K [0x000000009c600000, 0x000000009db00000, 0x00000000a1800000)
+  object space 21504K, 33% used [0x000000009c600000,0x000000009cd1ad18,0x000000009db00000)
+
+Card table byte_map: [0x0000000005490000,0x00000000057b0000] byte_map_base: 0x0000000004fad000
+
+Polling page: 0x0000000001b50000
+
+Code Cache  [0x0000000002490000, 0x0000000002700000, 0x0000000005490000)
+ total_blobs=699 nmethods=316 adapters=335 free_code_cache=47987Kb largest_free_block=49105088
+
+Compilation events (10 events):
+Event: 13.383 Thread 0x000000000986f800 nmethod 313 0x00000000025a37d0 code [0x00000000025a3900, 0x00000000025a39b8]
+Event: 13.422 Thread 0x0000000009874800 nmethod 311 0x00000000025b85d0 code [0x00000000025b8940, 0x00000000025ba090]
+Event: 14.476 Thread 0x000000000986f800  314             org.newdawn.slick.geom.Vector2f::<init> (5 bytes)
+Event: 14.476 Thread 0x000000000986f800 nmethod 314 0x00000000025adf10 code [0x00000000025ae060, 0x00000000025ae0c8]
+Event: 14.477 Thread 0x000000000986f800  315             org.newdawn.slick.geom.Vector2f::set (14 bytes)
+Event: 14.477 Thread 0x000000000986f800 nmethod 315 0x00000000025adcd0 code [0x00000000025ade00, 0x00000000025ade78]
+Event: 14.477 Thread 0x000000000986f800  316             org.newdawn.slick.geom.Vector2f::set (12 bytes)
+Event: 14.477 Thread 0x000000000986f800 nmethod 316 0x00000000025adad0 code [0x00000000025adc00, 0x00000000025adc58]
+Event: 15.106 Thread 0x000000000986f800  317 % !         org.newdawn.slick.AppGameContainer::start @ 9 (49 bytes)
+Event: 15.108 Thread 0x000000000986f800 nmethod 317% 0x00000000025ad690 code [0x00000000025ad800, 0x00000000025ad930]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (9 events):
+Event: 2.862 Thread 0x0000000001bce000 Uncommon trap: reason=null_check action=make_not_entrant pc=0x00000000025074cc method=java.lang.String.equals(Ljava/lang/Object;)Z @ 8
+Event: 5.140 Thread 0x0000000001bce000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000252dfdc method=java.util.zip.InflaterInputStream.read([BII)I @ 100
+Event: 5.141 Thread 0x0000000001bce000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000252dfdc method=java.util.zip.InflaterInputStream.read([BII)I @ 100
+Event: 5.142 Thread 0x0000000001bce000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00000000025207d8 method=org.newdawn.slick.geom.Shape.checkPoints()V @ 16
+Event: 5.143 Thread 0x0000000001bce000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00000000025207d8 method=org.newdawn.slick.geom.Shape.checkPoints()V @ 16
+Event: 5.144 Thread 0x0000000001bce000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00000000025207d8 method=org.newdawn.slick.geom.Shape.checkPoints()V @ 16
+Event: 5.145 Thread 0x0000000001bce000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00000000025207d8 method=org.newdawn.slick.geom.Shape.checkPoints()V @ 16
+Event: 23.197 Thread 0x0000000001bce000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000252dfdc method=java.util.zip.InflaterInputStream.read([BII)I @ 100
+Event: 24.811 Thread 0x0000000001bce000 Uncommon trap: reason=unloaded action=reinterpret pc=0x00000000025aa778 method=org.newdawn.slick.AppGameContainer.gameLoop()V @ 21
+
+Internal exceptions (10 events):
+Event: 3.034 Thread 0x0000000001bce000 Threw 0x00000000e129bde0 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 3.053 Thread 0x0000000001bce000 Threw 0x00000000e12bb808 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 3.054 Thread 0x0000000001bce000 Threw 0x00000000e12c06c8 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 3.055 Thread 0x0000000001bce000 Threw 0x00000000e12c54b8 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 3.065 Thread 0x0000000001bce000 Threw 0x00000000e12d9a18 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 3.065 Thread 0x0000000001bce000 Threw 0x00000000e12dbb28 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 3.069 Thread 0x0000000001bce000 Threw 0x00000000e12e6b58 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 5.140 Thread 0x0000000001bce000 Threw 0x00000000e1436708 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 5.141 Thread 0x0000000001bce000 Threw 0x00000000e143db80 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+Event: 23.197 Thread 0x0000000001bce000 Threw 0x00000000e1f34d98 at C:\re\jdk7u45\229\hotspot\src\share\vm\prims\jvm.cpp:1244
+
+Events (10 events):
+Event: 5.582 loading class 0x000000000213bc50 done
+Event: 9.450 Thread 0x000000000986f800 flushing nmethod 0x0000000002507190
+Event: 23.197 loading class 0x000000000b3d55f0
+Event: 23.197 loading class 0x000000000b3d55f0 done
+Event: 23.197 Thread 0x0000000001bce000 Uncommon trap: trap_request=0xffffffde fr.pc=0x000000000252dfdc
+Event: 23.197 Thread 0x0000000001bce000 DEOPT PACKING pc=0x000000000252dfdc sp=0x000000000248c800
+Event: 23.197 Thread 0x0000000001bce000 DEOPT UNPACKING pc=0x00000000024c75a4 sp=0x000000000248c7e8 mode 2
+Event: 24.811 Thread 0x0000000001bce000 Uncommon trap: trap_request=0x00000156 fr.pc=0x00000000025aa778
+Event: 24.811 Thread 0x0000000001bce000 DEOPT PACKING pc=0x00000000025aa778 sp=0x000000000248f350
+Event: 24.811 Thread 0x0000000001bce000 DEOPT UNPACKING pc=0x00000000024c75a4 sp=0x000000000248f308 mode 2
+
+
+Dynamic libraries:
+0x000000013f5e0000 - 0x000000013f613000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x0000000077a60000 - 0x0000000077c09000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000077940000 - 0x0000000077a5f000 	C:\Windows\system32\kernel32.dll
+0x000007fefd8c0000 - 0x000007fefd92b000 	C:\Windows\system32\KERNELBASE.dll
+0x000007feff990000 - 0x000007feffa6b000 	C:\Windows\system32\ADVAPI32.dll
+0x000007feff8f0000 - 0x000007feff98f000 	C:\Windows\system32\msvcrt.dll
+0x000007feff8a0000 - 0x000007feff8bf000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007fefe3f0000 - 0x000007fefe51d000 	C:\Windows\system32\RPCRT4.dll
+0x0000000077840000 - 0x000000007793a000 	C:\Windows\system32\USER32.dll
+0x000007feff830000 - 0x000007feff897000 	C:\Windows\system32\GDI32.dll
+0x000007feff430000 - 0x000007feff43e000 	C:\Windows\system32\LPK.dll
+0x000007feff510000 - 0x000007feff5d9000 	C:\Windows\system32\USP10.dll
+0x000007fefb9f0000 - 0x000007fefbbe4000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_fa396087175ac9ac\COMCTL32.dll
+0x000007fefde50000 - 0x000007fefdec1000 	C:\Windows\system32\SHLWAPI.dll
+0x000007feff8c0000 - 0x000007feff8ee000 	C:\Windows\system32\IMM32.DLL
+0x000007fefded0000 - 0x000007fefdfd9000 	C:\Windows\system32\MSCTF.dll
+0x0000000057880000 - 0x0000000057952000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x00000000500f0000 - 0x00000000508b9000 	C:\Program Files\Java\jre7\bin\server\jvm.dll
+0x000007fef8f70000 - 0x000007fef8f79000 	C:\Windows\system32\WSOCK32.dll
+0x000007feff4c0000 - 0x000007feff50d000 	C:\Windows\system32\WS2_32.dll
+0x000007feff640000 - 0x000007feff648000 	C:\Windows\system32\NSI.dll
+0x000007fefb900000 - 0x000007fefb93b000 	C:\Windows\system32\WINMM.dll
+0x0000000077c20000 - 0x0000000077c27000 	C:\Windows\system32\PSAPI.DLL
+0x0000000059760000 - 0x000000005976f000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x0000000057a10000 - 0x0000000057a38000 	C:\Program Files\Java\jre7\bin\java.dll
+0x00000000579f0000 - 0x0000000057a05000 	C:\Program Files\Java\jre7\bin\zip.dll
+0x0000000180000000 - 0x0000000180050000 	C:\Users\Eamonn\Desktop\senior Project\Scandium\ScandiumSlk\lib\lwjgl64.dll
+0x000007feecb50000 - 0x000007feecc6d000 	C:\Windows\system32\OPENGL32.dll
+0x000007fef2320000 - 0x000007fef234d000 	C:\Windows\system32\GLU32.dll
+0x000007feeca50000 - 0x000007feecb41000 	C:\Windows\system32\DDRAW.dll
+0x000007fef4f00000 - 0x000007fef4f08000 	C:\Windows\system32\DCIMAN32.dll
+0x000007feff650000 - 0x000007feff827000 	C:\Windows\system32\SETUPAPI.dll
+0x000007fefdbd0000 - 0x000007fefdc06000 	C:\Windows\system32\CFGMGR32.dll
+0x000007feff350000 - 0x000007feff427000 	C:\Windows\system32\OLEAUT32.dll
+0x000007fefdc40000 - 0x000007fefde43000 	C:\Windows\system32\ole32.dll
+0x000007fefdc20000 - 0x000007fefdc3a000 	C:\Windows\system32\DEVOBJ.dll
+0x000007fefb2b0000 - 0x000007fefb2c8000 	C:\Windows\system32\dwmapi.dll
+0x000007fefc920000 - 0x000007fefc92c000 	C:\Windows\system32\VERSION.dll
+0x00000000579d0000 - 0x00000000579e9000 	C:\Program Files\Java\jre7\bin\net.dll
+0x000007fefd080000 - 0x000007fefd0d5000 	C:\Windows\system32\mswsock.dll
+0x000007fefd070000 - 0x000007fefd077000 	C:\Windows\System32\wship6.dll
+0x00000000579b0000 - 0x00000000579c1000 	C:\Program Files\Java\jre7\bin\nio.dll
+0x000007fefb940000 - 0x000007fefb996000 	C:\Windows\system32\uxtheme.dll
+0x000000000bbc0000 - 0x000000000cc40000 	C:\Windows\system32\ig7icd64.dll
+0x000007fefd740000 - 0x000007fefd74f000 	C:\Windows\system32\CRYPTBASE.dll
+0x000007feebf60000 - 0x000007feebffc000 	C:\Windows\system32\mscms.dll
+0x000007fefcb00000 - 0x000007fefcb1e000 	C:\Windows\system32\USERENV.dll
+0x000007fefd810000 - 0x000007fefd81f000 	C:\Windows\system32\profapi.dll
+0x000007feebf10000 - 0x000007feebf52000 	C:\Windows\system32\icm32.dll
+0x000000006c380000 - 0x000000006c515000 	C:\Program Files\Java\jre7\bin\awt.dll
+0x0000000005e40000 - 0x0000000005e56000 	C:\Users\Eamonn\Desktop\senior Project\Scandium\ScandiumSlk\lib\jinput-dx8_64.dll
+0x000007fef47a0000 - 0x000007fef47dc000 	C:\Windows\system32\DINPUT8.dll
+0x000007fefb2d0000 - 0x000007fefb2db000 	C:\Windows\system32\HID.DLL
+0x000007fefd960000 - 0x000007fefd99a000 	C:\Windows\system32\WINTRUST.dll
+0x000007fefd9a0000 - 0x000007fefdb0c000 	C:\Windows\system32\CRYPT32.dll
+0x000007fefd8b0000 - 0x000007fefd8bf000 	C:\Windows\system32\MSASN1.dll
+0x000000000a6a0000 - 0x000000000a6b4000 	C:\Users\Eamonn\Desktop\senior Project\Scandium\ScandiumSlk\lib\jinput-raw_64.dll
+0x000007feeb760000 - 0x000007feeb885000 	C:\Windows\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Djava.library.path=C:\Users\Eamonn\Desktop\senior Project\Scandium\ScandiumSlk\lib -Dfile.encoding=Cp1252 
+java_command: interfaceSlk.Main
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.7.0_45
+CLASSPATH=.;C:\Program Files (x86)\Java\jre7\lib\ext\QTJava.zip;C:\libraries\antlr-4.1-complete.jar;.
+PATH=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Haskell\bin;C:\Program Files (x86)\Haskell Platform\2013.2.0.0\lib\extralibs\bin;C:\Program Files (x86)\Haskell Platform\2013.2.0.0\bin;C:\Program Files (x86)\Java\jre7\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\TortoiseHg\;C:\Program Files\TortoiseSVN\bin;C:\libraries\python33;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\Haskell Platform\2013.2.0.0\mingw\bin;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Users\Eamonn\AppData\Roaming\cabal\bin
+USERNAME=Eamonn
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, erms, ht, tsc, tscinvbit, tscinv
+
+Memory: 4k page, physical 6191468k(2628380k free), swap 12381072k(8032132k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.45-b08) for windows-amd64 JRE (1.7.0_45-b18), built on Oct  8 2013 05:47:22 by "java_re" with unknown MS VC++:1600
+
+time: Thu Feb 20 00:48:29 2014
+elapsed time: 382 seconds
+
