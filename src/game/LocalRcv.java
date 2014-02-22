@@ -21,7 +21,8 @@ public class LocalRcv extends Reciever {
 
 	public void pushCmds(List<Command> cmds) {
 		this.cmds = cmds;
-		
+		if(cmds == null);
+			cmds = new LinkedList<Command>();
 	}
 
 }

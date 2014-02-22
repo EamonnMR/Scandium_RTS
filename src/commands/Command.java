@@ -49,4 +49,11 @@ public class Command {
 		toSender += ":";
 		return toSender +inst.toCode() + ";";
 	}
+	
+	public int[] getUnits(){
+		return orderedUnits;
+	}
+	public Instruction getInstruction() {
+		return inst;
+	}
 }

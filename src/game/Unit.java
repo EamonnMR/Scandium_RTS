@@ -1,5 +1,7 @@
 package game;
 
+import commands.Instruction;
+
 import data.Sprite;
 
 public class Unit {
@@ -30,8 +32,14 @@ public class Unit {
 	}
 
 	public int getUid() {
-		// TODO Auto-generated method stub
 		return uid;
+	}
+
+	public void giveInst(Instruction inst) {
+		// TODO This is obviously wrong, only for testing.
+		commands.Move move = (commands.Move) inst;
+		this.x = move.getX();
+		this.y = move.getY();
 	}
 	
 }

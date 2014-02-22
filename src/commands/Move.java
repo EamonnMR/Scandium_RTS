@@ -15,4 +15,12 @@ public class Move extends Instruction {
 		return "move" + x + y;
 	}
 
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+
 }
