@@ -6,7 +6,7 @@ public class Unit {
 	Sprite s;
 	int facing;
 	int x, y;
-	int uid;
+	private int uid;
 	boolean selected;
 	
 	public void insert(int uid){
@@ -27,6 +27,11 @@ public class Unit {
 	}
 	public void draw(int camX, int camY){
 		s.draw(facing, x + camX, y + camY);
+	}
+
+	public int getUid() {
+		// TODO Auto-generated method stub
+		return uid;
 	}
 	
 }

@@ -42,6 +42,7 @@ public class PlayState extends BasicGameState{
 	private Reciever rcv;
 	int timer;
 	private Collection<Unit> selectedUnits;
+	private boolean mouseRight;
 	
 	public PlayState(){
 		selectedUnits = new LinkedList<Unit>();
@@ -176,6 +177,18 @@ public class PlayState extends BasicGameState{
 			selectionY = Mouse.i().y;
 		}
 		
+		//Handle right click
+		if(mouseRight){
+		//FIXME: Is the right mouse button actually button 1?
+			mouseRight = Mouse.i().buttons[1];
+		} else if(Mouse.i().buttons[1]){
+			mouseRight = true;
+			if(!selectedUnits.isEmpty()){
+				sndr.rcv(new commands.Command(getSelectedUnits(),
+						new commands.Move(Mouse.i().x - camX , Mouse.i().y - camY))
+				);
+		}
+		
 
 		//What edges the mouse is (or is not) touching.
 		boolean l, r, t, b;
@@ -218,6 +231,16 @@ public class PlayState extends BasicGameState{
 			camY = 0;
 		}
 	}
+	private int[] getSelectedUnits() {
+		int[] toSender = new int[selectedUnits.size()];
+		int i = 0;
+		for(Unit u : selectedUnits){
+			toSender[i] = u.getUid();
+			i++;
+		}
+		return toSender;
+	}
+
 	/*
 	 * Based on left/right/top/bottom, figure out what mouse frame to use.
 	 */
