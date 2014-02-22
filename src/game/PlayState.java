@@ -247,6 +247,16 @@ public class PlayState extends BasicGameState{
 		}
 	}
 
+	/**
+	 * Files being loaded before the game starts should be sent to PlayState through this function.
+	 * 
+	 * @param m Pre-setup game model
+	 * @param t Current tile map
+	 * @param pg Pre-setup path grid
+	 * @param mouseSpr Sprite to use for the mouse
+	 * @param sndr Command sender with open connection
+	 * @param rcv  Command Reciever with open connection
+	 */
 	public void sendInfo(Model m, TiledMap t, PathGrid pg, Sprite mouseSpr, CmdSender sndr, Reciever rcv){
 		this.m = m;
 		this.map = t;
