@@ -185,8 +185,9 @@ public class PlayState extends BasicGameState{
 			mouseRight = true;
 			if(!selectedUnits.isEmpty()){
 				sndr.rcv(new commands.Command(getSelectedUnits(),
-						new commands.Move(Mouse.i().x - camX , Mouse.i().y - camY))
-				);
+						new commands.Move(Mouse.i().x - camX , Mouse.i().y - camY)
+				));
+			}
 		}
 		
 
@@ -214,8 +215,8 @@ public class PlayState extends BasicGameState{
 				camY += (int) (b ? -1 : 1) * Math.round(dt * ((l || r) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
 			}
 		}
-		/* Independant (similar) logic to determine what mouse sprite to use */
 		
+		/* Independant (similar) logic to determine what mouse sprite to use */
 		mouseState = calcMouseState(l,r,t,b);
 		
 		//Limit the camera to the edges of the map
@@ -231,6 +232,11 @@ public class PlayState extends BasicGameState{
 			camY = 0;
 		}
 	}
+	
+	/**
+	 * Comverts selectedUnits into an int[] of UIDs.
+	 * @return
+	 */
 	private int[] getSelectedUnits() {
 		int[] toSender = new int[selectedUnits.size()];
 		int i = 0;
@@ -241,7 +247,7 @@ public class PlayState extends BasicGameState{
 		return toSender;
 	}
 
-	/*
+	/**
 	 * Based on left/right/top/bottom, figure out what mouse frame to use.
 	 */
 	private int calcMouseState(boolean l, boolean r, boolean t, boolean b) {
