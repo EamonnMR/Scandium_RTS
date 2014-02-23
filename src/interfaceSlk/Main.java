@@ -53,7 +53,7 @@ class Main extends StateBasedGame{
 				new JoinMenu(),
 				new HostLobby(),
 				new JoinLobby(),
-				new PreStartScreen(),
+				new TestScreen(),
 				game.PlayState.i()
 		}){
 			addState(state);

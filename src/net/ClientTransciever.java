@@ -1,12 +1,8 @@
 package net;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,20 +11,12 @@ import commands.Command;
 
 public class ClientTransciever extends game.CmdSender implements game.Reciever{
 
-	Socket sock;
 	Scanner getter;
 	OutputStream giver;
 	
-	public ClientTransciever (int port, String host) throws IOException{
-		try{
-			sock = new Socket(host, port);
-			getter = new Scanner(sock.getInputStream());
-			giver = sock.getOutputStream();
-		}
-		catch(UnknownHostException e){
-			System.out.println("Could not connect to " + host);
-			e.printStackTrace();
-		}
+	public ClientTransciever (Socket sock) throws IOException{
+		getter = new Scanner(sock.getInputStream());
+		giver = sock.getOutputStream();
 	}
 	
 	@Override
@@ -49,6 +37,6 @@ public class ClientTransciever extends game.CmdSender implements game.Reciever{
 		for(Command cmd : cmds){
 			message += cmd.toCode();
 		}
-		giver.write(message.getBytes());
+		giver.write((message + "\n").getBytes());
 	}
 }

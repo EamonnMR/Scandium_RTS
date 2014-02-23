@@ -14,7 +14,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import data.Sprite;
 
-public class PreStartScreen extends MenuState {
+public class TestScreen extends MenuState {
 
 	@Override
 	public void render(GameContainer game, StateBasedGame arg1, Graphics g)
