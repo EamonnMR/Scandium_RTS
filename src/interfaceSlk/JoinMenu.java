@@ -1,11 +1,23 @@
 package interfaceSlk;
 
+import game.PathGrid;
+import game.Unit;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Properties;
 
+import net.ClientTransciever;
+
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
+
+import data.Sprite;
 
 public class JoinMenu extends MenuState {
 
@@ -31,15 +43,71 @@ public class JoinMenu extends MenuState {
 				final int port = iPort;
 				final String lhost = host;
 				protected void doAction() {
-					startClientCon(port, lhost);
+					try {
+						startClientCon(port, lhost);
+					} catch (SlickException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					game.enterState(6);
 				}
 			};
 		}
 		
 	}
 
-	private void startClientCon(int port, String host){
-		//lol this does not exist yet.
+	private void startClientCon(int port, String host) throws SlickException{
+		//I'll go back and clean up the exceptions at a later date...
+		//probably when I refactor the entire thing to use the dataman to load things.
+		
+		
+		Socket sock = null;
+		try {
+			sock = new Socket(host, port);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+		
+		ClientTransciever ct = null;
+		try {
+			ct = new ClientTransciever(sock);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		TiledMap t = null;
+		try {
+			t = new TiledMap("res/RageValley.tmx");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PathGrid pg = new PathGrid(t);
+		game.Model m = new game.Model(t, pg);
+		
+		
+		try {
+			game.PlayState.i().sendInfo(m, t, pg, new Sprite(
+					new Image("res/graphics/danC/mouse.png"),
+					40, 40, 14, 1, 0, 0), 
+					ct, ct
+					);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		m.addUnit(new Unit(
+					new Sprite(
+					new Image("res/graphics/danC/tank.png"),
+					48, 56, 8, 1, -24, -27)
+					, 0, 1000, 160)
+				);
+		System.out.println("Map loaded successfully");
 	}
 		
 	@Override

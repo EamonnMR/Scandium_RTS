@@ -42,6 +42,11 @@ public class ThreadlessServer {
 				System.out.println("Cannot connect to client on port " + ports.get(Integer.toString(i)));
 			}
 		}
+		//FIXME: Does this un-screwup the code?
+		for(Connection i: con){
+			i.sendMsgs("");
+		}
+		
 		while(true){
 			msg = "";
 			for(Connection i : con){

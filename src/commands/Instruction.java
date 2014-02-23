@@ -8,7 +8,7 @@ package commands;
 public abstract class Instruction {
 	abstract String toCode();
 	public static Instruction fromCode(String code) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(code);
+		return new Teleport(code);
 	}
 }

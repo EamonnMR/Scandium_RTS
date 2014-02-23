@@ -13,16 +13,18 @@ public class Teleport extends Instruction {
 		String c = "";
 		String num = "";
 		while(!c.equals(",")){
+			num += c;
 			c = code.substring(0,1);
 			code = code.substring(1);
-			num += c;
 		}
+		c = "";
 		x = Integer.parseInt(num);
+		System.out.println("" + x + code);
 		num = "";
-		while(c.length() > 0){
+		while(!c.equals(";")){
+			num += c;
 			c = code.substring(0,1);
 			code = code.substring(1);
-			num += c;
 		}
 		y = Integer.parseInt(num);
 	}
@@ -30,7 +32,7 @@ public class Teleport extends Instruction {
 	@Override
 	String toCode() {
 		// TODO Auto-generated method stub
-		return "tp" + x + "," + y;
+		return /*"tp"*/ "0" + x + ",0" + y;
 	}
 
 	public int getX() {

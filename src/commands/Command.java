@@ -34,7 +34,8 @@ public class Command {
 		inst = Instruction.fromCode(code);
 		
 		//Turn it into an int array
-		int[] orderedUnits = new int[unitl.size()];
+		orderedUnits = new int[unitl.size()];
+		System.out.println(unitl.size());
 		for(int i = 0; i > unitl.size(); i ++){
 			orderedUnits[i] = unitl.get(i);
 		}
@@ -46,7 +47,7 @@ public class Command {
 		for(int i : orderedUnits){
 			toSender += Integer.toString(i)+",";
 		}
-		return toSender +inst.toCode() + ";";
+		return toSender + ":" + inst.toCode() + ";";
 	}
 	
 	public int[] getUnits(){

@@ -60,8 +60,11 @@ public class Model {
 	private void test_move_cmds(List<Command> cmds) {
 		if(cmds != null){
 			for(Command cmd : cmds){
-				for(int i : cmd.getUnits()){
-					units.get(i).giveInst(cmd.getInstruction());
+				int[] unitz = cmd.getUnits();
+				if(unitz!= null){
+					for(int i :unitz){
+						units.get(i).giveInst(cmd.getInstruction());
+					}
 				}
 			}
 		}
