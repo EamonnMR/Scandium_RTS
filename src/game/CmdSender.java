@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,13 +30,14 @@ public abstract class CmdSender {
 	public void rcv(Command c){
 		cmds.add(c);
 	}
-	public void updateTick(){
+	public void updateTick() throws IOException{
 		pushToServer(cmds);
 		emptyCmds();
 	}
 	
 	/**
 	 * Push any commands to the server; otherwise send a keepalive signal.
+	 * @throws IOException 
 	 */
-	public abstract void pushToServer(List<Command> cmds);
+	public abstract void pushToServer(List<Command> cmds) throws IOException;
 }

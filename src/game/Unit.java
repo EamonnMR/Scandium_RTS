@@ -37,7 +37,7 @@ public class Unit {
 
 	public void giveInst(Instruction inst) {
 		// TODO This is obviously wrong, only for testing.
-		commands.Move move = (commands.Move) inst;
+		commands.Teleport move = (commands.Teleport) inst;
 		this.x = move.getX();
 		this.y = move.getY();
 	}

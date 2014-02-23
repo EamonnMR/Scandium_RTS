@@ -46,7 +46,6 @@ public class Command {
 		for(int i : orderedUnits){
 			toSender += Integer.toString(i)+",";
 		}
-		toSender += ":";
 		return toSender +inst.toCode() + ";";
 	}
 	
