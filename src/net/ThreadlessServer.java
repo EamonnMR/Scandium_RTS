@@ -55,7 +55,7 @@ public class ThreadlessServer {
 	}
 	
 	private static void processMsg(String inp, Connection i) {
-		msg += "" + i.port + ":" + inp + "/";
+		msg += inp;
 	}
 
 	private static class Connection{

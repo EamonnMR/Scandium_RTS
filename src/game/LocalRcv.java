@@ -5,7 +5,7 @@ import java.util.List;
 
 import commands.Command;
 
-public class LocalRcv extends Reciever {
+public class LocalRcv implements Reciever {
 
 	List<Command> cmds;
 	
@@ -14,7 +14,7 @@ public class LocalRcv extends Reciever {
 	}
 	
 	@Override
-	List<Command> getLatestCommands() {
+	public List<Command> getLatestCommands() {
 		// TODO Auto-generated method stub
 		return cmds;
 	}

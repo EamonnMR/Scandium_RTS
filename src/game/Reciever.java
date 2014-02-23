@@ -8,6 +8,6 @@ import java.util.List;
  * @author Eamonn
  *
  */
-public abstract class Reciever {
-	abstract List<commands.Command>getLatestCommands();
+public interface Reciever {
+	public abstract List<commands.Command>getLatestCommands();
 }

@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -139,7 +140,7 @@ public class PlayState extends BasicGameState{
 	}
 
 	
-	private void fixedUpdate(){
+	private void fixedUpdate() throws IOException{
 		//Recieve and interpret incoming commands
 		//this is where communication will block if it blocks at all.
 		m.tickUpdate(UPDATE_TIME, rcv.getLatestCommands());
@@ -151,7 +152,12 @@ public class PlayState extends BasicGameState{
 			throws SlickException {
 		timer += dt;
 		if(timer > UPDATE_TIME){
-			fixedUpdate();
+			try {
+				fixedUpdate();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			timer = 0;
 		}
 		freeUpdate(dt);
@@ -185,7 +191,7 @@ public class PlayState extends BasicGameState{
 			mouseRight = true;
 			if(!selectedUnits.isEmpty()){
 				sndr.rcv(new commands.Command(getSelectedUnits(),
-						new commands.Move(Mouse.i().x - camX , Mouse.i().y - camY)
+						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
 				));
 			}
 		}

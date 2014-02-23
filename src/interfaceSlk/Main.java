@@ -3,6 +3,7 @@ package interfaceSlk;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import java.io.FileNotFoundException;
@@ -46,14 +47,20 @@ class Main extends StateBasedGame{
 
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
-		addState( new MainMenu());
-		addState( new HostMenu());
-		addState( new JoinMenu());
-		addState( new HostLobby());
-		addState( new JoinLobby());
-		addState( new PreStartScreen());
-		addState( game.PlayState.i());
+		for(BasicGameState state : new BasicGameState[]{
+				new MainMenu(),
+				new HostMenu(),
+				new JoinMenu(),
+				new HostLobby(),
+				new JoinLobby(),
+				new PreStartScreen(),
+				game.PlayState.i()
+		}){
+			addState(state);
+		}
+		
 	}
+	
 	//Defaults to false!
 	private static boolean truthiness(String bool){
 		return bool.equals("true")||bool.equals("True")||bool.equals("TRUE")||bool.equals("1");
