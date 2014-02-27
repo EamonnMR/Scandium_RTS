@@ -16,11 +16,15 @@ public class Model {
 	private PathGrid p;
 	private Map<Integer, Unit> units;
 	int unitCap = 0;
+	Player[] players;
+	int currentPlayer;
 	
-	public Model(TiledMap m, PathGrid p) {
+	public Model(TiledMap m, PathGrid p, int numplayers, int currentPlayer) {
 		this.m = m;
 		this.p = p;
 		units = new HashMap<Integer, Unit>();
+		players = new Player[numplayers];
+		this.currentPlayer = currentPlayer;
 	}
 
 	public int addUnit(Unit unit) {

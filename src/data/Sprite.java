@@ -8,7 +8,7 @@ public class Sprite {
 	private Image[] frames;
 	private Image img;
 
-	public Sprite (Image srcimg, int xSize, int ySize, int xFrames, int yFrames, int xOffset, int yOffset){
+	public Sprite (Image srcimg, int xSize, int ySize, int xFrames, int yFrames, int xOffset, int yOffset, int downshift){
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
 		
@@ -18,7 +18,7 @@ public class Sprite {
 		for(int i = 0; i < yFrames; i++){
 			for(int j = 0; j < xFrames; j++){
 				frames[i * yFrames + j] = img.getSubImage(
-						j * xSize, i * ySize, xSize, ySize);
+						j * xSize, i * ySize + yFrames * ySize * downshift, xSize, ySize);
 			}
 		}
 	}
