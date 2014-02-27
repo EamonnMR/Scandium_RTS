@@ -28,20 +28,20 @@ public class TestScreen extends MenuState {
 		// TODO Auto-generated method stub
 		TiledMap t = new TiledMap("res/RageValley.tmx");
 		PathGrid pg = new PathGrid(t);
-		game.Model m = new game.Model(t, pg);
+		game.Model m = new game.Model(t, pg, 2, 0);
 		LocalRcv dummyR = new LocalRcv();
 		
 		
 		game.PlayState.i().sendInfo(m, t, pg, new Sprite(
 				new Image("res/graphics/danC/mouse.png"),
-				40, 40, 14, 1, 0, 0), 
+				40, 40, 14, 1, 0, 0, 0), 
 				new LocalCmd(dummyR), dummyR
 				);
 		
 		m.addUnit(new Unit(
 					new Sprite(
 					new Image("res/graphics/danC/tank.png"),
-					48, 56, 8, 1, -24, -27)
+					48, 56, 8, 1, -24, -27, 0)
 					, 0, 1000, 160)
 				);
 		System.out.println("Map loaded successfully");
