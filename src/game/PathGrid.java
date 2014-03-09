@@ -2,6 +2,7 @@ package game;
 
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.util.pathfinding.AStarPathFinder;
+import org.newdawn.slick.util.pathfinding.Mover;
 import org.newdawn.slick.util.pathfinding.Path;
 import org.newdawn.slick.util.pathfinding.PathFindingContext;
 import org.newdawn.slick.util.pathfinding.TileBasedMap;
@@ -14,7 +15,7 @@ import org.newdawn.slick.util.pathfinding.TileBasedMap;
  */
 public class PathGrid implements TileBasedMap{
 	
-	private static int MAX_LEN = 500;
+	private static int MAX_LEN = 1000;
 	
 	public boolean [][] p; //Pathable grid
 	public boolean [][] b; //buildable grid
@@ -41,12 +42,12 @@ public class PathGrid implements TileBasedMap{
 	}
 	
 	public Path getPath(int startX, int startY, int goalx, int goaly){
-		return a.findPath(null, startX, startY, goalx, goaly );
+		return a.findPath(new Mover(){}, startX, startY, goalx, goaly );
 	}
 	
 	@Override
 	public boolean blocked(PathFindingContext arg0, int x, int y) {
-		return p[x][y];
+		return !p[x][y];
 	}
 	@Override
 	public float getCost(PathFindingContext arg0, int arg1, int arg2) {
