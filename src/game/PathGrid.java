@@ -28,7 +28,7 @@ public class PathGrid implements TileBasedMap{
 		p = new boolean[t.getWidth()][t.getHeight()];
 		b = new boolean[t.getWidth()][t.getHeight()];
 		
-		a = new AStarPathFinder(this, MAX_LEN, false); //Right now we're not allowing diagonal mvmnt
+		a = new AStarPathFinder(this, MAX_LEN, true); //Right now we're not allowing diagonal mvmnt
 		
 		for(int i = 0; i < t.getWidth(); i ++){
 			for(int j = 0; j < t.getHeight(); j ++){

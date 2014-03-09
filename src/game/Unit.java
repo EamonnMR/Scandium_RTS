@@ -1,7 +1,7 @@
 package game;
 
 import commands.Instruction;
-
+import behavior.UnitState;
 import data.Sprite;
 
 public class Unit {
@@ -10,6 +10,7 @@ public class Unit {
 	int x, y;
 	private int uid;
 	boolean selected;
+	UnitState state;
 	
 	public void insert(int uid){
 		this.uid = uid;
@@ -20,12 +21,13 @@ public class Unit {
 		this.facing = facing;
 		this.x = x;
 		this.y = y;
+		this.state = new behavior.Idle();
 	}
 	public void updateTick(Model parent){
-		
+		state.update(parent, this);
 	}
-	public void updateIntermediate(){
-		
+	public void updateIntermediate(Model parent, int dt){
+		state.updateInterm(parent, this, dt);
 	}
 	public void draw(int camX, int camY){
 		s.draw(facing, x + camX, y + camY);
