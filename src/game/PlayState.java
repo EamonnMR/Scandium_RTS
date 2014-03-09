@@ -13,6 +13,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.util.pathfinding.Path;
 
 import data.Sprite;
 
@@ -45,8 +46,11 @@ public class PlayState extends BasicGameState{
 	private Collection<Unit> selectedUnits;
 	private boolean mouseRight;
 	
+	private Path path;
+	
 	public PlayState(){
 		selectedUnits = new LinkedList<Unit>();
+		path = null;
 	}
 	
 	public static PlayState i(){
@@ -70,9 +74,12 @@ public class PlayState extends BasicGameState{
 		map.render(camX, camY);
 		drawHilights(g);
 		m.draw(camX, camY);
+		if(path != null){
+			Devgog.drawPath(g, path, camX, camY);
+		}
 		drawSelectionBox(g);
 		drawMouse(g);
-		//drawMapMeta(g);
+		
 	}
 
 	private void drawHilights(Graphics g) {
@@ -124,22 +131,6 @@ public class PlayState extends BasicGameState{
 		}
 		mouseSpr.draw(mouseState, x, y);
 	}
-
-	/**  Show the passability grid
-	 */
-	@SuppressWarnings("unused")
-	private void drawMapMeta(Graphics g) {
-		for(int i = 0; i < pg.p.length; i ++){
-			for(int j = 0; j < pg.p[i].length; j++){
-				if(pg.p[i][j]){
-					g.draw(new Rectangle(camX + (40 * i) + 10,
-										camY + (40 * j) + 10,
-										20, 20));
-				}
-			}
-		}
-	}
-
 	
 	private void fixedUpdate() throws IOException{
 		//Recieve and interpret incoming commands
@@ -191,9 +182,17 @@ public class PlayState extends BasicGameState{
 		} else if(Mouse.i().buttons[1]){
 			mouseRight = true;
 			if(!selectedUnits.isEmpty()){
-				sndr.rcv(new commands.Command(getSelectedUnits(),
+				//FIXME: Hack (the for loop at least)
+				for(Unit i : selectedUnits){
+					path = pg.getPath(i.x / 40, i.y / 40, 
+							(Mouse.i().x - camX) / 40, 
+							(Mouse.i().y - camY) / 40);
+					System.out.println("Tried to make a path " +( path == null ? "failed": "succeeded"));
+				}
+				
+				/*sndr.rcv(new commands.Command(getSelectedUnits(),
 						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
-				));
+				));*/
 			}
 		}
 		
