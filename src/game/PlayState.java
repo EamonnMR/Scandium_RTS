@@ -72,7 +72,7 @@ public class PlayState extends BasicGameState{
 		m.draw(camX, camY);
 		drawSelectionBox(g);
 		drawMouse(g);
-		drawMapMeta(g);
+		//drawMapMeta(g);
 	}
 
 	private void drawHilights(Graphics g) {
