@@ -25,7 +25,7 @@ public class FollowPath extends UnitState{
 	}
 	@Override
 	public UnitState update(Model m, Unit u) {
-		progress += speed;
+		/*progress += speed;
 		if(progress >= curDist){
 			if(currentMove < p.getLength() - 2){
 				currentMove ++;
@@ -34,7 +34,14 @@ public class FollowPath extends UnitState{
 				return new Idle();
 			}
 		}
+		*/
 		u.setFacing(getFacing());
+		//Test: take one step per frame
+		u.setPos(40 * p.getX(currentMove), 40 * p.getY(currentMove));
+		currentMove++;
+		if(currentMove >=p.getLength() - 1){
+			return new Idle();
+		}
 		return this;
 	}
 	@Override
@@ -75,13 +82,12 @@ public class FollowPath extends UnitState{
 			}
 		} else {
 			if(y > 0){
-				return 5;
+				return 3;
 			} else if(y == 0){
 				return 4;
 			} else {
-				return 3;
+				return 5;
 			}
 		}
-		
 	}
 }
