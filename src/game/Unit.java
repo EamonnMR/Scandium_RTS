@@ -16,6 +16,10 @@ public class Unit {
 		this.uid = uid;
 	}
 	
+	public void setFacing(int facing){
+		this.facing = facing;
+	}
+	
 	public Unit(Sprite s, int facing, int x, int y) {
 		this.s = s;
 		this.facing = facing;
