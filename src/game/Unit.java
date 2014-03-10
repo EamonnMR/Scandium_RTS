@@ -28,7 +28,7 @@ public class Unit {
 		this.state = new behavior.Idle();
 	}
 	public void updateTick(Model parent){
-		state.update(parent, this);
+		state = state.update(parent, this);
 	}
 	public void updateIntermediate(Model parent, int dt){
 		state.updateInterm(parent, this, dt);
@@ -41,11 +41,15 @@ public class Unit {
 		return uid;
 	}
 
-	public void giveInst(Instruction inst) {
+	public void giveInst(Instruction inst, Model m, PathGrid pg) {
 		// TODO This is obviously wrong, only for testing.
 		commands.Teleport move = (commands.Teleport) inst;
-		this.x = move.getX();
-		this.y = move.getY();
+		this.state = new behavior.FollowPath(pg.getPath((int)(x / 40), (int)(y/40), (int)(move.getX() / 40), (int)(move.getY()/40)), 1);
+	}
+
+	public void setPos(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 	
 }

@@ -183,16 +183,16 @@ public class PlayState extends BasicGameState{
 			mouseRight = true;
 			if(!selectedUnits.isEmpty()){
 				//FIXME: Hack (the for loop at least)
-				for(Unit i : selectedUnits){
+				/*for(Unit i : selectedUnits){
 					path = pg.getPath(i.x / 40, i.y / 40, 
 							(Mouse.i().x - camX) / 40, 
 							(Mouse.i().y - camY) / 40);
 					System.out.println("Tried to make a path " +( path == null ? "failed": "succeeded"));
-				}
+				}*/
 				
-				/*sndr.rcv(new commands.Command(getSelectedUnits(),
+				sndr.rcv(new commands.Command(getSelectedUnits(),
 						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
-				));*/
+				));
 			}
 		}
 		

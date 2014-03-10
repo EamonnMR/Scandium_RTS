@@ -67,7 +67,7 @@ public class Model {
 				int[] unitz = cmd.getUnits();
 				if(unitz!= null){
 					for(int i :unitz){
-						units.get(i).giveInst(cmd.getInstruction());
+						units.get(i).giveInst(cmd.getInstruction(),this, p);
 					}
 				}
 			}
