@@ -44,7 +44,7 @@ public class Unit {
 	public void giveInst(Instruction inst, Model m, PathGrid pg) {
 		// TODO This is obviously wrong, only for testing.
 		commands.Teleport move = (commands.Teleport) inst;
-		this.state = new behavior.FollowPath(pg.getPath((int)(x / 40), (int)(y/40), (int)(move.getX() / 40), (int)(move.getY()/40)), 1);
+		this.state = new behavior.FollowPath(pg.getPath((int)(x / 40), (int)(y/40), (int)(move.getX() / 40), (int)(move.getY()/40)), 2f);
 	}
 
 	public void setPos(int x, int y) {
