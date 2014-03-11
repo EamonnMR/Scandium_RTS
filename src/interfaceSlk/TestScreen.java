@@ -12,6 +12,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import commands.CommandCard;
+import commands.GroundCombatUnitC;
 import data.Sprite;
 
 public class TestScreen extends MenuState {
@@ -42,7 +44,8 @@ public class TestScreen extends MenuState {
 					new Sprite(
 					new Image("res/graphics/danC/tank.png"),
 					48, 56, 8, 1, -24, -27, 0)
-					, 0, 1000, 160)
+					, 0, 1000, 160,
+					new GroundCombatUnitC())
 				);
 		System.out.println("Map loaded successfully");
 		arg1.enterState(6);

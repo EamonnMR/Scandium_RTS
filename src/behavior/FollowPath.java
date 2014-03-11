@@ -11,10 +11,10 @@ public class FollowPath extends UnitState{
 	float speed;
 	int currentMove;
 	float progress;
-	int curDist;
+	float curDist;
 	
-	private static final int TILE_DIST = 20;
-	private static final int DIAGONAL_DIST = 28;
+	private static final float TILE_DIST = 40;
+	private static final float DIAGONAL_DIST =56.5685f;
 	
 	/*
 	 * Vectors that point in different directions.
@@ -91,7 +91,7 @@ public class FollowPath extends UnitState{
 		//Nothing here yet
 	}
 
-	private int getDist() {
+	private float getDist() {
 		return ((p.getX(currentMove) != p.getX(currentMove + 1)) &&
 				(p.getX(currentMove) != p.getY(currentMove + 1))) 
 				? DIAGONAL_DIST : TILE_DIST;

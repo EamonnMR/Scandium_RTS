@@ -3,6 +3,7 @@ package game;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -183,14 +184,20 @@ public class PlayState extends BasicGameState{
 			mouseRight = true;
 			if(!selectedUnits.isEmpty()){
 				//FIXME: Hack (the for loop at least)
-				/*for(Unit i : selectedUnits){
-					path = pg.getPath(i.x / 40, i.y / 40, 
-							(Mouse.i().x - camX) / 40, 
-							(Mouse.i().y - camY) / 40);
-					System.out.println("Tried to make a path " +( path == null ? "failed": "succeeded"));
-				}*/
 				
-				sndr.rcv(new commands.Command(getSelectedUnits(),
+				List<Unit> directPathUnits = new LinkedList<Unit>();
+				int destX = (Mouse.i().x - camX) / 40;
+				int destY = (Mouse.i().y - camY) / 40;
+				for(Unit i : selectedUnits){
+					path = pg.getPath(i.x / 40, i.y / 40, 
+							destX, 
+							destY);
+					if(path != null){
+						directPathUnits.add(i);
+					}
+				}
+				
+				sndr.rcv(new commands.Command(unitListToUIDArray(directPathUnits),
 						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
 				));
 			}
@@ -239,11 +246,7 @@ public class PlayState extends BasicGameState{
 		}
 	}
 	
-	/**
-	 * Comverts selectedUnits into an int[] of UIDs.
-	 * @return
-	 */
-	private int[] getSelectedUnits() {
+	private int[] unitListToUIDArray(Collection<Unit> selectedUnits) {
 		int[] toSender = new int[selectedUnits.size()];
 		int i = 0;
 		for(Unit u : selectedUnits){
@@ -251,6 +254,13 @@ public class PlayState extends BasicGameState{
 			i++;
 		}
 		return toSender;
+	}
+
+	/**
+	 * Comverts selectedUnits into an int[] of UIDs.
+	 */
+	private int[] getSelectedUnits() {
+		return unitListToUIDArray(selectedUnits);
 	}
 
 	/**
