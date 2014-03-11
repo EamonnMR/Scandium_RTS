@@ -16,8 +16,6 @@ public class FollowPath extends UnitState{
 	private static final int TILE_DIST = 20;
 	private static final int DIAGONAL_DIST = 28;
 	
-	private static final int TILE_MIDDLE = 20;
-	
 	/*
 	 * Vectors that point in different directions.
 	 * They're multiplied by progress to find the correct offset
@@ -39,15 +37,18 @@ public class FollowPath extends UnitState{
 	private static final Vector2f UP = new Vector2f(0,-1);
 	private static final Vector2f UP_RIGHT = new Vector2f(SQRT2,-SQRT2);
 	
-	public FollowPath(Path p, float speed){
+	public FollowPath(Path p, float speed, float progress){
 		this.p = p;
 		this.speed = speed;
 		currentMove = 0;
-		progress = 0;
+		//Implicit: 
+		//Progress should never exceed curDist. Ensure that you never pass
+		//a number that high; or if you do, account for it somehow.
+		this.progress = progress;
 		curDist = getDist();
 	}
 	@Override
-	public UnitState update(Model m, Unit u) {
+	public void update(Model m, Unit u) {
 		if(curDist == 0){
 			curDist = getDist();
 		}
@@ -58,7 +59,7 @@ public class FollowPath extends UnitState{
 				currentMove ++;
 				curDist = getDist();
 			} else {
-				return new Idle();
+				u.nextState();
 			}
 		}
 		int facing = getFacing();
@@ -66,15 +67,9 @@ public class FollowPath extends UnitState{
 		
 		Vector2f dir = getDirVec(facing);
 		
-		//Test: take one step per frame
 		u.setPos((40 * p.getX(currentMove)) + 20 + (int)(dir.x * progress),
 				( 40 * p.getY(currentMove)) + 20 + (int)(dir.y * progress)
 				);
-		/*currentMove++;
-		if(currentMove >=p.getLength() - 1){
-			return new Idle();
-		}*/
-		return this;
 	}
 	private Vector2f getDirVec(int facing) {
 		switch(facing){
