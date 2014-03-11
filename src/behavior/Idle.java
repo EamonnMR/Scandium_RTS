@@ -12,8 +12,8 @@ import game.Unit;
 public class Idle extends UnitState {
 
 	@Override
-	public UnitState update(Model m, Unit u) {
-		return this;
+	public void update(Model m, Unit u) {
+		//nothing
 	}
 
 	@Override
