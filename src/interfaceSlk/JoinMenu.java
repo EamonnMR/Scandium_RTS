@@ -105,7 +105,10 @@ public class JoinMenu extends MenuState {
 					new Sprite(
 					new Image("res/graphics/danC/tank.png"),
 					48, 56, 8, 1, -24, -27, 0)
-					, 0, 1000, 160)
+					, 0, 1000, 160,
+					new commands.CommandCard(){
+						
+					})
 				);
 		System.out.println("Map loaded successfully");
 	}

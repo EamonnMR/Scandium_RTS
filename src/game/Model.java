@@ -13,7 +13,7 @@ import commands.Command;
 public class Model {
 
 	private TiledMap m;
-	private PathGrid p;
+	public PathGrid p;
 	private Map<Integer, Unit> units;
 	int unitCap = 0;
 	Player[] players;
@@ -67,7 +67,7 @@ public class Model {
 				int[] unitz = cmd.getUnits();
 				if(unitz!= null){
 					for(int i :unitz){
-						units.get(i).giveInst(cmd.getInstruction(),this, p);
+						units.get(i).giveInst(cmd.getInstruction(),this);
 					}
 				}
 			}

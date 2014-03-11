@@ -1,7 +1,9 @@
 package game;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
+import commands.CommandCard;
 import commands.Instruction;
 import behavior.UnitState;
 import data.Sprite;
@@ -9,11 +11,14 @@ import data.Sprite;
 public class Unit {
 	Sprite s;
 	int facing;
-	int x, y;
+	//Yes, x and y outght to be private...
+	public int x;
+	public int y;
 	private int uid;
 	boolean selected;
 	UnitState state;
 	Queue<UnitState> stateQue;
+	private CommandCard cc;
 	
 	public void insert(int uid){
 		this.uid = uid;
@@ -30,16 +35,22 @@ public class Unit {
 		stateQue.offer(s);
 	}
 	
+	public void enterState(UnitState state){
+		this.state = state;
+	}
+	
 	public void setFacing(int facing){
 		this.facing = facing;
 	}
 	
-	public Unit(Sprite s, int facing, int x, int y) {
+	public Unit(Sprite s, int facing, int x, int y, CommandCard cc) {
 		this.s = s;
 		this.facing = facing;
 		this.x = x;
 		this.y = y;
 		this.state = new behavior.Idle();
+		this.cc = cc;
+		stateQue = new LinkedList<UnitState>();
 	}
 	public void updateTick(Model parent){
 		state.update(parent, this);
@@ -55,10 +66,8 @@ public class Unit {
 		return uid;
 	}
 
-	public void giveInst(Instruction inst, Model m, PathGrid pg) {
-		// TODO This is obviously wrong, only for testing.
-		commands.Teleport move = (commands.Teleport) inst;
-		this.state = new behavior.FollowPath(pg.getPath(Math.round((x + 20) / 40), Math.round((y + 20 )/40), (int)(move.getX() / 40), (int)(move.getY()/40)), 2f, 0f);
+	public void giveInst(Instruction inst, Model m) {
+		cc.actuate(inst, this, m);
 	}
 
 	public void setPos(int x, int y) {
