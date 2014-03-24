@@ -1,5 +1,6 @@
 package interfaceSlk;
 
+import game.Hud;
 import game.LocalCmd;
 import game.LocalRcv;
 import game.PathGrid;
@@ -36,7 +37,8 @@ public class TestScreen extends MenuState {
 		game.PlayState.i().sendInfo(m, t, pg, new Sprite(
 				new Image("res/graphics/danC/mouse.png"),
 				40, 40, 14, 1, 0, 0, 0), 
-				new LocalCmd(dummyR), dummyR
+				new LocalCmd(dummyR), dummyR,
+				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540)
 				);
 		
 		m.addUnit(new Unit(

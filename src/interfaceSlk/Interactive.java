@@ -12,5 +12,7 @@ import org.newdawn.slick.geom.Point;
 public abstract class Interactive {
 	public abstract void update(Point mousePos, boolean mouseState);
 	
+	//FIXME: game should not need to be an argument here;
+	//we might be able to get away with removing TextBox altogether.
 	public abstract void render(GameContainer game, Graphics g);
 }

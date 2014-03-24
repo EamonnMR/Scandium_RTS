@@ -30,6 +30,7 @@ public class PlayState extends BasicGameState{
 	private CmdSender sndr;
 	private Reciever rcv;
 	int timer;
+	private Hud h;
 	
 	PlayerMouse playerAgent;
 	
@@ -60,6 +61,8 @@ public class PlayState extends BasicGameState{
 		map.render(camX, camY);
 		playerAgent.drawHilights(g, camX, camY);
 		m.draw(camX, camY);
+		//Ok, so the button needs to *not* depend on the game I guess...
+		h.render(null, g);
 		playerAgent.draw(g);
 		
 	}
@@ -99,12 +102,13 @@ public class PlayState extends BasicGameState{
 	 * @param sndr Command sender with open connection
 	 * @param rcv  Command Reciever with open connection
 	 */
-	public void sendInfo(Model m, TiledMap t, PathGrid pg, Sprite mouseSpr, CmdSender sndr, Reciever rcv){
+	public void sendInfo(Model m, TiledMap t, PathGrid pg, Sprite mouseSpr, CmdSender sndr, Reciever rcv, Hud h){
 		this.m = m;
 		this.map = t;
 		this.pg = pg;
 		this.sndr = sndr;
 		this.rcv = rcv;
+		this.h = h;
 		
 		maxCamX = (t.getWidth() * -t.getTileWidth()) + screenX;
 		maxCamY = (t.getHeight() * -t.getTileHeight()) + screenY;

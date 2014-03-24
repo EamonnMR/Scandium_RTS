@@ -8,7 +8,6 @@ package commands;
 public abstract class Instruction {
 	abstract String toCode();
 	public static Instruction fromCode(String code) {
-		System.out.println(code);
 		return new Teleport(code);
 	}
 }
