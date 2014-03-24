@@ -35,7 +35,6 @@ public class Command {
 		
 		//Turn it into an int array
 		orderedUnits = new int[unitl.size()];
-		System.out.println(unitl.size());
 		for(int i = 0; i > unitl.size(); i ++){
 			orderedUnits[i] = unitl.get(i);
 		}

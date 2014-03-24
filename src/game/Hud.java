@@ -7,6 +7,8 @@ import java.util.Collection;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Point;
+import org.newdawn.slick.geom.Vector2f;
 
 public class Hud {
 	
@@ -25,7 +27,12 @@ public class Hud {
 	}
 	
 	public void freeUpdate(Model m, int mouseX, int mouseY){
-		
+		for(AbstractButton b : buttons){
+			b.update(new Point(Mouse.i().y,
+					Mouse.i().x),
+					Mouse.i().buttons[0]
+					);
+		}
 	}
 	
 	public void changeSelection(Collection<Unit> selection){
@@ -53,7 +60,9 @@ public class Hud {
 	public void render(GameContainer game, Graphics g){
 		background.draw(xPos, yPos);
 		for(AbstractButton button : buttons){
-			button.render(game, g);
+			if(button != null){
+				button.render(game, g);
+			}
 		}
 		//FIXME: Somehow represent the set of selected units, draw a portrait, draw a minimap
 	}

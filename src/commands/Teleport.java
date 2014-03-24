@@ -19,7 +19,6 @@ public class Teleport extends Instruction {
 		}
 		c = "";
 		x = Integer.parseInt(num);
-		System.out.println("" + x + code);
 		num = "";
 		while(!c.equals(";")){
 			num += c;

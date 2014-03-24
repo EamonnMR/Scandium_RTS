@@ -1,5 +1,6 @@
 package interfaceSlk;
 
+import game.Hud;
 import game.PathGrid;
 import game.Unit;
 
@@ -94,7 +95,8 @@ public class JoinMenu extends MenuState {
 			game.PlayState.i().sendInfo(m, t, pg, new Sprite(
 					new Image("res/graphics/danC/mouse.png"),
 					40, 40, 14, 1, 0, 0, 0), 
-					ct, ct
+					ct, ct,
+					new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540)
 					);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
