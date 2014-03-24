@@ -1,5 +1,6 @@
 package commands;
 
+import interfaceSlk.AbstractButton;
 import game.Model;
 import game.Unit;
 
@@ -38,5 +39,9 @@ public class CommandCard {
 	
 	public void actuate(commands.Instruction cmd, Unit u, Model m){
 		
+	}
+	
+	public AbstractButton getButton(int i){
+		return null;
 	}
 }
