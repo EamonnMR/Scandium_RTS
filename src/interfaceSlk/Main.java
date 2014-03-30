@@ -40,7 +40,6 @@ class Main extends StateBasedGame{
         					truthiness((String) cfg.get( "fullscreen")));
         game.setShowFPS(truthiness((String) cfg.get(     "showFPS")));
         
-        
         //Start game
         game.start();
 	}

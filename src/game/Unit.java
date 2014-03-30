@@ -5,7 +5,7 @@ import interfaceSlk.AbstractButton;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import commands.CommandCard;
+import cards.CommandCard;
 import commands.Instruction;
 import behavior.UnitState;
 import data.Sprite;
