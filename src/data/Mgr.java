@@ -52,8 +52,11 @@ public class Mgr {
 	public void faux_load_data() throws SlickException{
 		sprites = new Sprite[2][];
 		sprites[0] = loadMultiSpr(
-			"res/graphics/danC/tank.png",
-			48, 56, 8, 1, -24, -27, 3);
+				"res/graphics/danC/tank.png",
+				48, 56, 8, 1, -24, -27, 3);
+		sprites[1] = loadMultiSpr(
+				"res/graphics/danC/factory.png",
+				80, 82, 15, 1, -2, -4, 3);
 	}
 	
 	public Sprite getSpr(int index, int sub){
