@@ -8,7 +8,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Point;
-import org.newdawn.slick.geom.Vector2f;
+
+import data.Sprite;
 
 public class Hud {
 	
@@ -65,5 +66,19 @@ public class Hud {
 			}
 		}
 		//FIXME: Somehow represent the set of selected units, draw a portrait, draw a minimap
+	}
+	
+	public abstract static class Button{
+		public Sprite spr; //The three-frame sprite to use for the button
+		
+		/* Philosophy of what's exposed to the button class:
+		 * Pressing a button alone is NOT allowed to affect the game model. It can only
+		 * change the GUI, change the mouse, or send a command.
+		 */
+		public abstract void pressed(Hud h, PlayerMouse p, CmdSender c);
+		
+		public Button(Sprite spr){
+			this.spr = spr;
+		}
 	}
 }

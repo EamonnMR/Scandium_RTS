@@ -1,4 +1,6 @@
-package commands;
+package cards;
+
+import commands.Instruction;
 
 import interfaceSlk.AbstractButton;
 import game.Model;

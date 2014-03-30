@@ -31,7 +31,7 @@ public class Teleport extends Instruction {
 	@Override
 	String toCode() {
 		// TODO Auto-generated method stub
-		return /*"tp"*/ "0" + x + ",0" + y;
+		return /*"tp"*/x + "," +  y;
 	}
 
 	public int getX() {

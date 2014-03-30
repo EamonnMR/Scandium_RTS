@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-import commands.GroundCombatUnitC;
+import cards.GroundCombatUnitC;
 import data.Sprite;
 
 public class TestScreen extends MenuState {
@@ -33,6 +33,7 @@ public class TestScreen extends MenuState {
 		game.Model m = new game.Model(t, pg, 2, 0);
 		LocalRcv dummyR = new LocalRcv();
 		
+		data.Mgr.i().faux_load_data();
 		
 		game.PlayState.i().sendInfo(m, t, pg, new Sprite(
 				new Image("res/graphics/danC/mouse.png"),
@@ -42,10 +43,8 @@ public class TestScreen extends MenuState {
 				);
 		
 		m.addUnit(new Unit(
-					new Sprite(
-					new Image("res/graphics/danC/tank.png"),
-					48, 56, 8, 1, -24, -27, 0)
-					, 0, 1000, 160,
+					data.Mgr.i().getSpr(0, 2),
+					0, 1000, 160,
 					new GroundCombatUnitC())
 				);
 		System.out.println("Map loaded successfully");
