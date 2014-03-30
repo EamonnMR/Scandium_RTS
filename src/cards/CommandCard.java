@@ -1,7 +1,5 @@
 package cards;
 
-import commands.Instruction;
-
 import interfaceSlk.AbstractButton;
 import game.Model;
 import game.Unit;
