@@ -31,7 +31,7 @@ public class Teleport extends Instruction {
 	@Override
 	String toCode() {
 		// TODO Auto-generated method stub
-		return /*"tp"*/x + "," +  y;
+		return 0 + ":" + x + "," +  y; //Should I add a ';' at the end of this?
 	}
 
 	public int getX() {

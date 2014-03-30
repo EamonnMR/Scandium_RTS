@@ -8,6 +8,16 @@ package commands;
 public abstract class Instruction {
 	abstract String toCode();
 	public static Instruction fromCode(String code) {
-		return new Teleport(code);
+		switch(Integer.parseInt(code.substring(0,3))){
+		case 0:{
+			return new Teleport(code.substring(3));
+		}
+		case 1:{
+			return new RequisitionUnit(code.substring(3));
+		}
+		default:
+			System.out.println("Passed bad instr" + code.substring(0,3));
+			return null;
+		}
 	}
 }
