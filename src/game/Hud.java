@@ -33,8 +33,8 @@ public class Hud {
 	public void freeUpdate(Model m, int mouseX, int mouseY){
 		for(AbstractButton b : buttons){
 			if(b != null){
-				b.update(new Point(Mouse.i().y,
-						Mouse.i().x),
+				b.update(new Point(Mouse.i().x,
+						Mouse.i().y),
 						Mouse.i().buttons[0]
 						);
 			}
@@ -43,6 +43,7 @@ public class Hud {
 	
 	public void changeSelection(Collection<Unit> selection){
 		this.selection = selection;
+		//FIXME: This needs to be reworked until it actually works.
 		/*if(selection.size() > 0){
 			boolean first = true; //Jumping through hoops to use Collection;
 			//FIXME: This is kinda dumb
