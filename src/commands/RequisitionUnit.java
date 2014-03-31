@@ -3,6 +3,10 @@ package commands;
 public class RequisitionUnit extends Instruction{
 	public int unitToProduce;
 
+	public RequisitionUnit(int unitToProduce){
+		this.unitToProduce = unitToProduce;
+	}
+	
 	public RequisitionUnit(String code) {
 		String c, num;
 		c = "";

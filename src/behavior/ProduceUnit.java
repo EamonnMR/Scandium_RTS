@@ -10,14 +10,13 @@ public class ProduceUnit extends UnitState{
 	}
 	@Override
 	public void update(Model m, Unit u) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("ProduceUnit update'd");
+		m.addUnit(data.Mgr.i().getUnit(u.x, u.y, 90, unitType, u.owner));
+		u.nextState();
 	}
 	@Override
 	public void updateInterm(Model m, Unit u, int dt) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	//FIXME: Once the dataman's unit creation abilities are a thing, make this actually spawn a unit.
 }
