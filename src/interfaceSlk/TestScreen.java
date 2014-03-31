@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-import cards.GroundCombatUnitC;
+import cards.GroundCombatUnit;
 import data.Sprite;
 
 public class TestScreen extends MenuState {
@@ -42,11 +42,7 @@ public class TestScreen extends MenuState {
 				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540)
 				);
 		
-		m.addUnit(new Unit(
-					data.Mgr.i().getSpr(0, 2),
-					0, 1000, 160,
-					new GroundCombatUnitC())
-				);
+		m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 1, 1));
 		System.out.println("Map loaded successfully");
 		arg1.enterState(6);
 	}
