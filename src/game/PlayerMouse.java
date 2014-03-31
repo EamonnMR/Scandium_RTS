@@ -53,51 +53,12 @@ public class PlayerMouse {
 	public void freeUpdate(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr, PlayState pls){
 
 		//Handle mouse box dragging
-		if(isDragging){
-			Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
-			selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
-			if(!Mouse.i().buttons[0]){
-			//FIXME: Mouse released from selection: querey the model for units inside the selection box
-				isDragging = false;
-				
-				
-				selectedUnits = m.areaQuerey(new Rectangle(selectBox.getX() - camX, selectBox.getY() - camY, selectBox.getWidth(), selectBox.getHeight()));
-				selectBox = null;
-				hd.changeSelection(selectedUnits);
-			}
-		} else if(Mouse.i().buttons[0] && !isDragging){
-			isDragging = true;
-			selectionX = Mouse.i().x;
-			selectionY = Mouse.i().y;
-		}
 		
-		//Handle right click
-		if(mouseRight){
-			mouseRight = Mouse.i().buttons[1];
-		} else if(Mouse.i().buttons[1]){
-			mouseRight = true;
-			if(!selectedUnits.isEmpty()){
-				//FIXME: Hack (the for loop at least)
-				
-				List<Unit> directPathUnits = new LinkedList<Unit>();
-				int destX = (Mouse.i().x - camX) / 40;
-				int destY = (Mouse.i().y - camY) / 40;
-				Path path;
-				for(Unit i : selectedUnits){
-					path = pg.getPath(i.x / 40, i.y / 40, 
-							destX, 
-							destY);
-					if(path != null){
-						directPathUnits.add(i);
-					}
-				}
-				
-				sndr.rcv(new commands.Command(Util.unitListToUIDArray(directPathUnits),
-						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
-				));
-			}
+		if(Mouse.i().y <= hd.getMaxY()){
+			handleMouseOnGameScreen(m, camX, camY, pg, sndr);
+		} else {
+			isDragging = false;
 		}
-		
 
 		//What edges the mouse is (or is not) touching.
 		boolean l, r, t, b;
@@ -144,6 +105,54 @@ public class PlayerMouse {
 	}
 
 	
+	private void handleMouseOnGameScreen(Model m, int camX, int camY, PathGrid pg, CmdSender sndr) {
+		if(isDragging){
+			Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
+			selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
+			if(!Mouse.i().buttons[0]){
+			//FIXME: Mouse released from selection: querey the model for units inside the selection box
+				isDragging = false;
+				
+				
+				selectedUnits = m.areaQuerey(new Rectangle(selectBox.getX() - camX, selectBox.getY() - camY, selectBox.getWidth(), selectBox.getHeight()));
+				selectBox = null;
+				hd.changeSelection(selectedUnits);
+			}
+		} else if(Mouse.i().buttons[0] && !isDragging){
+			isDragging = true;
+			selectionX = Mouse.i().x;
+			selectionY = Mouse.i().y;
+		} 
+		
+		//Handle right click
+		if(mouseRight){
+			mouseRight = Mouse.i().buttons[1];
+		} else if(Mouse.i().buttons[1]){
+			mouseRight = true;
+			if(!selectedUnits.isEmpty()){
+				//FIXME: Hack (the for loop at least)
+				
+				List<Unit> directPathUnits = new LinkedList<Unit>();
+				int destX = (Mouse.i().x - camX) / 40;
+				int destY = (Mouse.i().y - camY) / 40;
+				Path path;
+				for(Unit i : selectedUnits){
+					path = pg.getPath(i.x / 40, i.y / 40, 
+							destX, 
+							destY);
+					if(path != null){
+						directPathUnits.add(i);
+					}
+				}
+				
+				sndr.rcv(new commands.Command(Util.unitListToUIDArray(directPathUnits),
+						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
+				));
+			}
+		}
+	}
+
+
 	public void draw(Graphics g){
 		if(isDragging && selectBox != null){
 			g.draw(selectBox);

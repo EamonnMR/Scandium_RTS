@@ -14,12 +14,11 @@ import data.Sprite;
 
 public class Hud {
 	
-	Image background;
+	private Image background;
 	int xPos, yPos;
 	AbstractButton[] buttons;
 	Collection<Unit> selection;
 	protected CmdSender sender;
-	
 	
 	public Hud(Image background, int xPos, int yPos,CmdSender sender){
 		selection = null;
@@ -28,6 +27,17 @@ public class Hud {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.sender = sender;
+	}
+	
+	/**
+	 * Where's the bottom of the HUD?
+	 */
+	public int getMaxY(){
+		return yPos;
+	}
+	
+	public int getHeight(){
+		return background.getHeight();
 	}
 	
 	public void freeUpdate(Model m, int mouseX, int mouseY){

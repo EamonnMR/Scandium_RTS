@@ -31,6 +31,7 @@ public class PlayState extends BasicGameState{
 	private Reciever rcv;
 	int timer;
 	private Hud h;
+	private int bottom;
 	
 	protected PlayerMouse playerAgent;
 	
@@ -64,7 +65,6 @@ public class PlayState extends BasicGameState{
 		//Ok, so the button needs to *not* depend on the game I guess...
 		h.render(null, g);
 		playerAgent.draw(g);
-		
 	}
 
 
@@ -117,7 +117,7 @@ public class PlayState extends BasicGameState{
 		playerAgent = new PlayerMouse(0, //FIXME: During "send info" the player should be sent
 				screenX, screenY, mouseSpr,
 				(t.getWidth()  * -t.getTileWidth())  + screenX,
-				(t.getHeight() * -t.getTileHeight()) + screenY,
+				((t.getHeight() * -t.getTileHeight()) + screenY ) - h.getHeight(),
 				h);
 	}
 	
