@@ -30,7 +30,7 @@ public abstract class SpriteButton extends AbstractButton{
 	
 	private void draw(int mode, Graphics g){
 		sprite.draw(mode, (int)pos.getX(), (int)pos.getY());
-		g.draw(pos);
+		//g.draw(pos); //Debug
 	}
 
 }
