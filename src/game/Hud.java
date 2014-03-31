@@ -1,6 +1,7 @@
 package game;
 
 import interfaceSlk.AbstractButton;
+import interfaceSlk.SpriteButton;
 
 import java.util.Collection;
 
@@ -17,14 +18,16 @@ public class Hud {
 	int xPos, yPos;
 	AbstractButton[] buttons;
 	Collection<Unit> selection;
+	protected CmdSender sender;
 	
 	
-	public Hud(Image background, int xPos, int yPos){
+	public Hud(Image background, int xPos, int yPos,CmdSender sender){
 		selection = null;
 		buttons = new AbstractButton[9];
 		this.background = background;
 		this.xPos = xPos;
 		this.yPos = yPos;
+		this.sender = sender;
 	}
 	
 	public void freeUpdate(Model m, int mouseX, int mouseY){
@@ -44,10 +47,10 @@ public class Hud {
 			for(int i = 0; i < 9; i++){
 				for(Unit u : selection){
 					if(first){
-						buttons[i] = u.getButton(i);
+						buttons[i] = makeHudButton(i, u.getButton(i));
 						first = false;
 					} else {
-						if(buttons[i] != u.getButton(i)){
+						if(buttons[i] != makeHudButton(i, u.getButton(i))){
 							buttons[i] = null;
 							break;
 						}
@@ -68,6 +71,14 @@ public class Hud {
 		//FIXME: Somehow represent the set of selected units, draw a portrait, draw a minimap
 	}
 	
+	/**
+	 * This is the class that lets Command Cards indicate what each of the nine
+	 * potential command buttons should do and look like-the very reason that it's
+	 * called a command "card." I generally don't import the name down to just Button;
+	 * it's less ambiguous to call it a Hud.Button.
+	 * @author Eamonn
+	 *
+	 */
 	public abstract static class Button{
 		public Sprite spr; //The three-frame sprite to use for the button
 		
@@ -75,10 +86,50 @@ public class Hud {
 		 * Pressing a button alone is NOT allowed to affect the game model. It can only
 		 * change the GUI, change the mouse, or send a command.
 		 */
-		public abstract void pressed(Hud h, PlayerMouse p, CmdSender c);
+		public abstract void pressed(Hud h, CmdSender c);
 		
-		public Button(Sprite spr){
+		public Button(data.Sprite spr){
 			this.spr = spr;
 		}
+		
+		public void setSpr(Sprite spr){
+			this.spr = spr;
+		}
+		
+		public Button(){
+			//This constructor should not exist, but it needs to because of 
+			//anon class constraints.
+		}
+	}
+	
+	private class RealizedButton extends SpriteButton{
+		Button dat;
+		RealizedButton(int x, int y, Button dat){
+			super(x, y, dat.spr);
+			this.dat = dat;
+		}
+		@Override
+		protected void doAction() {
+			dat.pressed(Hud.this, sender);
+		}
+		
+	}
+	
+	public AbstractButton makeHudButton(int index, Button btn){
+		int x = 0, y = 0;
+		/* Decide where to put the button based on its index (this could be offloaded to JASON as 
+		   different games will probably have totally different HUDs) */
+		switch(index){
+		case 0:{
+			x = 658;
+			y = 11;
+			break;
+		}
+		}
+		return new RealizedButton(x, y, btn);
+	}
+	
+	public int[] getSelectedUnits() {
+		return Util.unitListToUIDArray(selection);
 	}
 }

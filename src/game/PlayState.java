@@ -32,7 +32,7 @@ public class PlayState extends BasicGameState{
 	int timer;
 	private Hud h;
 	
-	PlayerMouse playerAgent;
+	protected PlayerMouse playerAgent;
 	
 	
 	public PlayState(){

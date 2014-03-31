@@ -7,12 +7,25 @@ public class Sprite {
 	private int yOffset;
 	private Image[] frames;
 	private Image img;
+	private int width;
+	private int height;
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
 
 	public Sprite (Image srcimg, int xSize, int ySize, int xFrames, int yFrames, int xOffset, int yOffset, int downshift){
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
 		
 		img = srcimg;
+		
+		width = xSize;
+		height = ySize;
 		
 		frames = new Image[xFrames * yFrames];
 		for(int i = 0; i < yFrames; i++){

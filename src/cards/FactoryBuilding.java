@@ -9,6 +9,10 @@ import commands.RequisitionUnit;
 
 public class FactoryBuilding extends CommandCard{
 
+	public game.Hud.Button getButton(){
+		return data.Mgr.i().getButton(0);
+	}
+	
 	public boolean movesByPath() {
 		return false;
 	}
