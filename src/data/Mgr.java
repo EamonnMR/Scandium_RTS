@@ -2,6 +2,8 @@ package data;
 
 //Singleton that 
 
+import game.Unit;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,6 +16,7 @@ public class Mgr {
 	public Properties cfg, ports;
 	private UnitDat[] unitTypes;
 	private Sprite[][] sprites;
+	private UnitDat[] units;
 
 	public void loadInis() throws FileNotFoundException, IOException{
 		cfg = loadProps("prefs.ini");
@@ -45,18 +48,28 @@ public class Mgr {
 		return instance;
 	}
 	
-	public void makeUnit(int x, int y, int type, int side){
-		//Ok, I guess we need to add this hmm
+	public Unit getUnit(int x, int y, int facing, int type, int owner){
+		UnitDat d = units[type];
+		return new Unit(sprites[d.sprite][owner], facing, x, y, d.getCC());
 	}
 	
 	public void faux_load_data() throws SlickException{
 		sprites = new Sprite[2][];
+		
 		sprites[0] = loadMultiSpr(
 				"res/graphics/danC/tank.png",
 				48, 56, 8, 1, -24, -27, 3);
+		
 		sprites[1] = loadMultiSpr(
 				"res/graphics/danC/factory.png",
 				80, 82, 15, 1, -2, -4, 3);
+		
+		units = new UnitDat[2];
+		
+		units[0] = new UnitDat(
+				0, new cards.GroundCombatUnit());
+		units[1] = new UnitDat(
+				1, new cards.FactoryBuilding());
 	}
 	
 	public Sprite getSpr(int index, int sub){

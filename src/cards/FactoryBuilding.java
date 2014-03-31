@@ -7,7 +7,7 @@ import behavior.ProduceUnit;
 import commands.Instruction;
 import commands.RequisitionUnit;
 
-public class FactoryBuildingC {
+public class FactoryBuilding extends CommandCard{
 
 	public boolean movesByPath() {
 		return false;

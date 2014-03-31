@@ -8,7 +8,7 @@ import commands.Teleport;
 import game.Model;
 import game.Unit;
 
-public class GroundCombatUnitC extends CommandCard{
+public class GroundCombatUnit extends CommandCard{
 
 	@Override
 	public boolean movesByPath() {
