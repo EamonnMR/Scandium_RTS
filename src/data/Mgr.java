@@ -83,7 +83,6 @@ public class Mgr {
 		buttons = new Hud.Button[1];
 		
 		//This is a pain-I really need to figure out how to pass the sprite into that anonclass.
-		final Sprite btnspr = sprites[2][0];
 		
 		buttons[0] = new Hud.Button(){
 			/*
@@ -91,7 +90,7 @@ public class Mgr {
 			 */
 			@Override
 			public void pressed(Hud h, CmdSender c) {
-				// TODO Auto-generated method stub
+				// FIXME: Do stuff...
 				System.out.println("Button pressed");
 			}
 		};
@@ -119,7 +118,6 @@ public class Mgr {
 	}
 
 	public Hud.Button getButton(int index) {
-		// TODO Auto-generated method stub
 		return buttons[index];
 	}
 }

@@ -88,6 +88,7 @@ public class PlayState extends BasicGameState{
 			}
 			timer = 0;
 		}
+		h.freeUpdate(m, Mouse.i().x, Mouse.i().y);
 		playerAgent.freeUpdate(dt, camX, camY, m, pg, sndr, this);
 	}
 	
@@ -116,7 +117,8 @@ public class PlayState extends BasicGameState{
 		playerAgent = new PlayerMouse(0, //FIXME: During "send info" the player should be sent
 				screenX, screenY, mouseSpr,
 				(t.getWidth()  * -t.getTileWidth())  + screenX,
-				(t.getHeight() * -t.getTileHeight()) + screenY);
+				(t.getHeight() * -t.getTileHeight()) + screenY,
+				h);
 	}
 	
 	public void setScreenSize(int x, int y){
