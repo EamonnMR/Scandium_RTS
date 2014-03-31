@@ -41,7 +41,7 @@ public class CommandCard {
 		
 	}
 	
-	public AbstractButton getButton(int i){
+	public game.Hud.Button getButton(int i){
 		return null;
 	}
 }

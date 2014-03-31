@@ -87,7 +87,7 @@ public class PlayerMouse {
 					}
 				}
 				
-				sndr.rcv(new commands.Command(unitListToUIDArray(directPathUnits),
+				sndr.rcv(new commands.Command(Util.unitListToUIDArray(directPathUnits),
 						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
 				));
 			}
@@ -230,18 +230,5 @@ public class PlayerMouse {
 		} else {
 			return 12;
 		}
-	}
-	
-	/**
-	 * Turns a collection of Units into an array of those unit's UIDs.
-	 */
-	private int[] unitListToUIDArray(Collection<Unit> selectedUnits) {
-		int[] toSender = new int[selectedUnits.size()];
-		int i = 0;
-		for(Unit u : selectedUnits){
-			toSender[i] = u.getUid();
-			i++;
-		}
-		return toSender;
 	}
 }

@@ -1,7 +1,5 @@
 package game;
 
-import interfaceSlk.AbstractButton;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -77,7 +75,7 @@ public class Unit {
 		this.y = y;
 	}
 	
-	public AbstractButton getButton(int btn){
+	public Hud.Button getButton(int btn){
 		return cc.getButton(btn);
 	}
 	

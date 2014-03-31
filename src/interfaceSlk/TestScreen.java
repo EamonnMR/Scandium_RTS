@@ -4,7 +4,6 @@ import game.Hud;
 import game.LocalCmd;
 import game.LocalRcv;
 import game.PathGrid;
-import game.Unit;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,7 +12,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-import cards.GroundCombatUnit;
 import data.Sprite;
 
 public class TestScreen extends MenuState {
@@ -32,14 +30,15 @@ public class TestScreen extends MenuState {
 		PathGrid pg = new PathGrid(t);
 		game.Model m = new game.Model(t, pg, 2, 0);
 		LocalRcv dummyR = new LocalRcv();
+		LocalCmd dummyC = new LocalCmd(dummyR);
 		
 		data.Mgr.i().faux_load_data();
 		
 		game.PlayState.i().sendInfo(m, t, pg, new Sprite(
 				new Image("res/graphics/danC/mouse.png"),
 				40, 40, 14, 1, 0, 0, 0), 
-				new LocalCmd(dummyR), dummyR,
-				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540)
+				dummyC, dummyR,
+				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540, dummyC )
 				);
 		
 		m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 1, 1));

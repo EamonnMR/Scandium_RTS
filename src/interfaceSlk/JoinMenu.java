@@ -1,6 +1,14 @@
 package interfaceSlk;
 
-import game.Hud;
+/* FIXME: This class (and menu opton) is obsolete.
+ * 
+ * I'm not going to maintain two versions of the same class at once,
+ * so I'm going to get TestScreen working first, then once there's little
+ * to no code in it, move that code over to here.
+ * 
+ * The network code is broken anyway.
+ * 
+ */
 import game.PathGrid;
 import game.Unit;
 
@@ -96,7 +104,7 @@ public class JoinMenu extends MenuState {
 					new Image("res/graphics/danC/mouse.png"),
 					40, 40, 14, 1, 0, 0, 0), 
 					ct, ct,
-					new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540)
+					null
 					);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
