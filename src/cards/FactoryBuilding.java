@@ -18,11 +18,10 @@ public class FactoryBuilding extends CommandCard{
 	}
 	
 	public void actuate(Instruction cmd, Unit u, Model m) {
-		// TODO Auto-generated method stub
 		if(cmd.getClass() == RequisitionUnit.class){
 			u.addState(new ProduceUnit(
 					((RequisitionUnit) cmd).unitToProduce
-					)); //
+					)); 
 		}
 	}
 }

@@ -19,6 +19,7 @@ public class Unit {
 	UnitState state;
 	Queue<UnitState> stateQue;
 	private CommandCard cc;
+	public int owner;
 	
 	public void insert(int uid){
 		this.uid = uid;
@@ -43,7 +44,7 @@ public class Unit {
 		this.facing = facing;
 	}
 	
-	public Unit(Sprite s, int facing, int x, int y, CommandCard cc) {
+	public Unit(Sprite s, int facing, int x, int y, int owner, CommandCard cc) {
 		this.s = s;
 		this.facing = facing;
 		this.x = x;
@@ -51,6 +52,7 @@ public class Unit {
 		this.state = new behavior.Idle();
 		this.cc = cc;
 		stateQue = new LinkedList<UnitState>();
+		this.owner = owner;
 	}
 	public void updateTick(Model parent){
 		state.update(parent, this);

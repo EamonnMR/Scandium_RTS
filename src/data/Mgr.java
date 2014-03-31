@@ -55,7 +55,7 @@ public class Mgr {
 	
 	public Unit getUnit(int x, int y, int facing, int type, int owner){
 		UnitDat d = units[type];
-		return new Unit(sprites[d.sprite][owner], facing, x, y, d.getCC());
+		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.getCC());
 	}
 	
 	public void faux_load_data() throws SlickException{
@@ -90,13 +90,10 @@ public class Mgr {
 			 */
 			@Override
 			public void pressed(Hud h, CmdSender c) {
-				// FIXME: Do stuff...
-				System.out.println("Button pressed");
+				c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(1)));
 			}
 		};
-		//This constitutes the low down dirtiest, filthest, most awful hack in the entire project.
-		//I feel actual guilt.
-		//FIXME FIXME FIXME FIXME
+		//Ok maybe it's not so bad as long as it's standardized...
 		buttons[0].setSpr(getSpr(2));
 	}
 	

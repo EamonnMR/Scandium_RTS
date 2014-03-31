@@ -111,7 +111,7 @@ public class JoinMenu extends MenuState {
 			e.printStackTrace();
 		}
 		
-		m.addUnit(new Unit(
+		/*m.addUnit(new Unit(
 					new Sprite(
 					new Image("res/graphics/danC/tank.png"),
 					48, 56, 8, 1, -24, -27, 0)
@@ -119,7 +119,7 @@ public class JoinMenu extends MenuState {
 					new cards.CommandCard(){
 						
 					})
-				);
+				);*/
 		System.out.println("Map loaded successfully");
 	}
 		
