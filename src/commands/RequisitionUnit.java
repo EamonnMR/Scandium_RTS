@@ -17,7 +17,6 @@ public class RequisitionUnit extends Instruction{
 
 	@Override
 	String toCode() {
-		// TODO Auto-generated method stub
 		return 1 + ":" + unitToProduce;
 	}
 }

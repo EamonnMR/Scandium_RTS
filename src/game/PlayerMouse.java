@@ -30,12 +30,16 @@ public class PlayerMouse {
 
 	int maxCamX, maxCamY;
 	
-	public PlayerMouse(int player, int screenX, int screenY, Sprite mouseSpr, int maxCamX, int maxCamY) {
+	Hud hd;
+	
+	
+	public PlayerMouse(int player, int screenX, int screenY, Sprite mouseSpr, int maxCamX, int maxCamY, Hud hd) {
 		this.player = player;
 		this.screenX = screenX;
 		this.screenY = screenY;
 		this.maxCamX = maxCamX;
 		this.maxCamY = maxCamY;
+		this.hd = hd;
 
 		selectedUnits = new LinkedList<Unit>();
 
@@ -59,6 +63,7 @@ public class PlayerMouse {
 				
 				selectedUnits = m.areaQuerey(new Rectangle(selectBox.getX() - camX, selectBox.getY() - camY, selectBox.getWidth(), selectBox.getHeight()));
 				selectBox = null;
+				hd.changeSelection(selectedUnits);
 			}
 		} else if(Mouse.i().buttons[0] && !isDragging){
 			isDragging = true;

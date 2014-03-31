@@ -32,16 +32,18 @@ public class Hud {
 	
 	public void freeUpdate(Model m, int mouseX, int mouseY){
 		for(AbstractButton b : buttons){
-			b.update(new Point(Mouse.i().y,
-					Mouse.i().x),
-					Mouse.i().buttons[0]
-					);
+			if(b != null){
+				b.update(new Point(Mouse.i().y,
+						Mouse.i().x),
+						Mouse.i().buttons[0]
+						);
+			}
 		}
 	}
 	
 	public void changeSelection(Collection<Unit> selection){
 		this.selection = selection;
-		if(selection.size() > 0){
+		/*if(selection.size() > 0){
 			boolean first = true; //Jumping through hoops to use Collection;
 			//FIXME: This is kinda dumb
 			for(int i = 0; i < 9; i++){
@@ -58,7 +60,8 @@ public class Hud {
 				}
 			}
 		}
-		
+		*/
+		buttons[0] = makeHudButton(0,data.Mgr.i().getButton(0));
 	}
 	
 	public void render(GameContainer game, Graphics g){
@@ -89,7 +92,7 @@ public class Hud {
 		public abstract void pressed(Hud h, CmdSender c);
 		
 		public Button(data.Sprite spr){
-			this.spr = spr;
+			
 		}
 		
 		public void setSpr(Sprite spr){
@@ -99,6 +102,9 @@ public class Hud {
 		public Button(){
 			//This constructor should not exist, but it needs to because of 
 			//anon class constraints.
+			
+			//FIXME: Test
+			this.spr = data.Mgr.i().getSpr(2);
 		}
 	}
 	
@@ -126,7 +132,7 @@ public class Hud {
 			break;
 		}
 		}
-		return new RealizedButton(x, y, btn);
+		return new RealizedButton(x + xPos, y + yPos, btn);
 	}
 	
 	public int[] getSelectedUnits() {

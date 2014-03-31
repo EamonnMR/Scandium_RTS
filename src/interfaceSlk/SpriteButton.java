@@ -15,21 +15,22 @@ public abstract class SpriteButton extends AbstractButton{
 
 	@Override
 	protected void renderNormal(Graphics g) {
-		draw(0);
+		draw(0, g);
 	}
 
 	@Override
 	protected void renderMouseOver(Graphics g) {
-		draw(1);
+		draw(1, g);
 	}
 	
 	@Override
 	protected void renderMouseDown(Graphics g) {
-		draw(2);
+		draw(2, g);
 	}
 	
-	private void draw(int mode){
-		sprite.draw((int)pos.getX(), (int)pos.getY(), mode);
+	private void draw(int mode, Graphics g){
+		sprite.draw(mode, (int)pos.getX(), (int)pos.getY());
+		g.draw(pos);
 	}
 
 }
