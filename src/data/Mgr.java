@@ -90,7 +90,7 @@ public class Mgr {
 			 */
 			@Override
 			public void pressed(Hud h, CmdSender c) {
-				c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(1)));
+				c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(0)));
 			}
 		};
 		//Ok maybe it's not so bad as long as it's standardized...
