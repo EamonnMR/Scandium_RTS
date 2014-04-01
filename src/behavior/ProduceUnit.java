@@ -10,13 +10,11 @@ public class ProduceUnit extends UnitState{
 	}
 	@Override
 	public void update(Model m, Unit u) {
-		System.out.println("ProduceUnit update'd");
-		m.addUnit(data.Mgr.i().getUnit(u.x, u.y, 90, unitType, u.owner));
+		m.addUnit(data.Mgr.i().getUnit(u.x, u.y, 0, unitType, u.owner));
 		u.nextState();
 	}
 	@Override
 	public void updateInterm(Model m, Unit u, int dt) {
-		// TODO Auto-generated method stub
-		
+		//This'll come into play when we have a loading bar working.
 	}
 }

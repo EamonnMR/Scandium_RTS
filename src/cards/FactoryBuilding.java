@@ -19,7 +19,7 @@ public class FactoryBuilding extends CommandCard{
 	
 	public void actuate(Instruction cmd, Unit u, Model m) {
 		if(cmd.getClass() == RequisitionUnit.class){
-			u.addState(new ProduceUnit(
+			u.enterState(new ProduceUnit(
 					((RequisitionUnit) cmd).unitToProduce
 					)); 
 		}

@@ -3,8 +3,10 @@ package game;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -22,7 +24,7 @@ public class Model {
 	public Model(TiledMap m, PathGrid p, int numplayers, int currentPlayer) {
 		this.m = m;
 		this.p = p;
-		units = new HashMap<Integer, Unit>();
+		units = new ConcurrentHashMap<Integer, Unit>();
 		players = new Player[numplayers];
 		this.currentPlayer = currentPlayer;
 	}
@@ -32,18 +34,20 @@ public class Model {
 		units.put(uid, unit);
 		unit.insert(uid);
 		unitCap++;
+		System.out.println("New unit added " + uid + " at " + unit.x + "," + unit.y);
 		return uid;
 	}
 	public void tickUpdate(int dt, List<Command> cmds){
 		test_move_cmds(cmds);
-		for(Integer i : units.keySet()){
-			units.get(i).updateTick(this);
+		//Thanks for explaining this one StackOverflow...
+		for(Iterator<Unit> i = units.values().iterator(); i.hasNext();){
+			i.next().updateTick(this);
 		}
 	}
 
 	public void draw(int camX, int camY){
-		for(Integer i : units.keySet()){
-			units.get(i).draw(camX, camY);
+		for(Iterator<Unit> i = units.values().iterator(); i.hasNext();){
+			i.next().draw(camX, camY);
 		}
 	}
 	
