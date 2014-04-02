@@ -109,8 +109,14 @@ public class Hud {
 			
 		}
 		
-		public void setSpr(Sprite spr){
+		/*
+		 * This is a hack to avoid passing parameters to the constructor of an anon class.
+		 * In my defense, a similar technique is used in the C++ FAQ for chaining several
+		 * method calls together.
+		 */
+		public Button setSpr(Sprite spr){
 			this.spr = spr;
+			return this;
 		}
 		
 		public Button(){
