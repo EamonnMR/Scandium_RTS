@@ -34,12 +34,19 @@ public class DummyDataLoaderWithLiterals {
 				42, 42, 3, 1, 0, 0, 1),
 		
 				Mgr.i().loadMultiSpr(
-				"res/graphics/danC/button.png",
+				"res/graphics/danC/button2.png",
 				42, 42, 3, 1, 0, 0, 1),
 		
 				Mgr.i().loadMultiSpr(
-				"res/graphics/danC/button.png",
-				42, 42, 3, 1, 0, 0, 1)
+				"res/graphics/danC/button3.png",
+				42, 42, 3, 1, 0, 0, 1),
+				
+				Mgr.i().loadMultiSpr(
+				"res/graphics/danC/tank2.png",
+				40, 40, 8, 1, -20, -20, 3),
+				Mgr.i().loadMultiSpr(
+				"res/graphics/danC/artil.png",
+				40, 80, 8, 1, -20, -60, 3)
 		};
 		sprites = spritesd;
 		
@@ -54,7 +61,19 @@ public class DummyDataLoaderWithLiterals {
 					public void pressed(Hud h, CmdSender c) {
 						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(0)));
 					}
-				}).setSpr(sprites[2][0])
+					}).setSpr(sprites[2][0]),
+				(new Hud.Button(){
+					@Override
+					public void pressed(Hud h, CmdSender c) {
+						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(2)));
+					}
+					}).setSpr(sprites[3][0]),
+				(new Hud.Button(){
+					@Override
+					public void pressed(Hud h, CmdSender c) {
+						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(3)));
+					}
+					}).setSpr(sprites[4][0])
 		};
 		buttons = buttonsd;
 		
@@ -64,6 +83,10 @@ public class DummyDataLoaderWithLiterals {
 				0, new cards.GroundCombatUnit(buttons)),
 				new UnitDat(
 				1, new cards.FactoryBuilding(buttons)),
+				new UnitDat(
+				5, new cards.GroundCombatUnit(buttons)),
+				new UnitDat(
+				6, new cards.GroundCombatUnit(buttons)),
 		};
 		units = unitsd;
 		

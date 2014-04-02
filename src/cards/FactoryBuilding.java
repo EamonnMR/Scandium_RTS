@@ -12,6 +12,9 @@ public class FactoryBuilding extends CommandCard{
 	public FactoryBuilding(Hud.Button[] earlyAccessToButtons){
 		super(earlyAccessToButtons);
 		btns[0] = earlyAccessToButtons[0];
+		btns[1] = earlyAccessToButtons[1];
+		btns[2] = earlyAccessToButtons[2];
+		
 	}
 	
 	public boolean movesByPath() {
