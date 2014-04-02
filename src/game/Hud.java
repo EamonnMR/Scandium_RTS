@@ -54,25 +54,28 @@ public class Hud {
 	public void changeSelection(Collection<Unit> selection){
 		this.selection = selection;
 		//FIXME: This needs to be reworked until it actually works.
-		/*if(selection.size() > 0){
-			boolean first = true; //Jumping through hoops to use Collection;
-			//FIXME: This is kinda dumb
-			for(int i = 0; i < 9; i++){
+		if(selection != null && selection.size() > 0){
+			boolean first = true;
+			for(int i = 0; i < 9; i++){ //Only one button is implemented.
+				Button currentButton = null;
 				for(Unit u : selection){
 					if(first){
-						buttons[i] = makeHudButton(i, u.getButton(i));
+						currentButton =  u.getButton(i);
 						first = false;
 					} else {
-						if(buttons[i] != makeHudButton(i, u.getButton(i))){
-							buttons[i] = null;
+						if(currentButton != u.getButton(i)){
+							currentButton = null;
 							break;
 						}
 					}
 				}
+				buttons[i] =  makeHudButton(i, currentButton);
+			}
+		} else {
+			for(int i = 0; i < 9; i++){
+				buttons[i] = null;
 			}
 		}
-		*/
-		buttons[0] = makeHudButton(0,data.Mgr.i().getButton(0));
 	}
 	
 	public void render(GameContainer game, Graphics g){
@@ -116,7 +119,7 @@ public class Hud {
 	}
 	
 	private class RealizedButton extends SpriteButton{
-		Button dat;
+		public Button dat;
 		RealizedButton(int x, int y, Button dat){
 			super(x, y, dat.spr);
 			this.dat = dat;
@@ -128,18 +131,22 @@ public class Hud {
 		
 	}
 	
-	public AbstractButton makeHudButton(int index, Button btn){
+	public RealizedButton makeHudButton(int index, Button btn){
 		int x = 0, y = 0;
-		/* Decide where to put the button based on its index (this could be offloaded to JASON as 
-		   different games will probably have totally different HUDs) */
-		switch(index){
-		case 0:{
-			x = 658;
-			y = 11;
-			break;
+		if(btn == null){
+			return null;
+		} else {
+			/* Decide where to put the button based on its index (this could be offloaded to JASON as 
+			   different games will probably have totally different HUDs) */
+			switch(index){
+			case 0:{
+				x = 658;
+				y = 11;
+				break;
+			}
+			}
+			return new RealizedButton(x + xPos, y + yPos, btn);
 		}
-		}
-		return new RealizedButton(x + xPos, y + yPos, btn);
 	}
 	
 	public int[] getSelectedUnits() {

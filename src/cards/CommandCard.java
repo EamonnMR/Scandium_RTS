@@ -1,6 +1,7 @@
 package cards;
 
-import interfaceSlk.AbstractButton;
+import game.Hud;
+import game.Hud.Button;
 import game.Model;
 import game.Unit;
 
@@ -14,7 +15,16 @@ import game.Unit;
  * @author Eamonn
  *
  */
-public class CommandCard {
+public abstract class CommandCard {
+	
+	Hud.Button[] btns;
+	
+	//This is so subclasses can use buttons;
+	//this merely initializes the (optional) buttons array.
+	public CommandCard(Button[] earlyAccessToButtons){
+		btns = new Hud.Button[9];
+	}
+	
 	public boolean movesByPath(){
 		return false;
 	}
@@ -42,6 +52,6 @@ public class CommandCard {
 	}
 	
 	public game.Hud.Button getButton(int i){
-		return null;
+		return btns[i];
 	}
 }
