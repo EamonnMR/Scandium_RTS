@@ -1,16 +1,17 @@
 package cards;
 
+import game.Hud;
 import game.Model;
 import game.Unit;
-
 import behavior.ProduceUnit;
 import commands.Instruction;
 import commands.RequisitionUnit;
 
 public class FactoryBuilding extends CommandCard{
-
-	public game.Hud.Button getButton(){
-		return data.Mgr.i().getButton(0);
+	
+	public FactoryBuilding(Hud.Button[] earlyAccessToButtons){
+		super(earlyAccessToButtons);
+		btns[0] = earlyAccessToButtons[0];
 	}
 	
 	public boolean movesByPath() {

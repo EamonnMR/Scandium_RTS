@@ -42,6 +42,7 @@ public class TestScreen extends MenuState {
 				);
 		
 		m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 1, 0));
+		m.addUnit(data.Mgr.i().getUnit(1000, 300, 0, 1, 0));
 		System.out.println("Map loaded successfully");
 		arg1.enterState(6);
 	}

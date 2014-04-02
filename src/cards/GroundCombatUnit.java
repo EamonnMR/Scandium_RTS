@@ -4,11 +4,16 @@ import org.newdawn.slick.util.pathfinding.Path;
 
 import commands.Instruction;
 import commands.Teleport;
-
+import game.Hud.Button;
 import game.Model;
 import game.Unit;
 
 public class GroundCombatUnit extends CommandCard{
+
+	public GroundCombatUnit(Button[] earlyAccessToButtons) {
+		super(earlyAccessToButtons);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public boolean movesByPath() {

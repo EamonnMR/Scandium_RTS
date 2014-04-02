@@ -27,13 +27,6 @@ public class DummyDataLoaderWithLiterals {
 				"res/graphics/danC/button.png",
 				42, 42, 3, 1, 0, 0, 1);
 		
-		units = new UnitDat[2];
-		
-		units[0] = new UnitDat(
-				0, new cards.GroundCombatUnit());
-		units[1] = new UnitDat(
-				1, new cards.FactoryBuilding());
-		
 		buttons = new Hud.Button[1];
 		
 		//This is a pain-I really need to figure out how to pass the sprite into that anonclass.
@@ -50,5 +43,14 @@ public class DummyDataLoaderWithLiterals {
 		//Ok maybe it's not so bad as long as it's standardized...
 		buttons[0].setSpr(sprites[2][0]);
 	
+		
+		
+		units = new UnitDat[2];
+		
+		units[0] = new UnitDat(
+				0, new cards.GroundCombatUnit(buttons));
+		units[1] = new UnitDat(
+				1, new cards.FactoryBuilding(buttons));
+		
 	}
 }
