@@ -55,9 +55,9 @@ public class Hud {
 		this.selection = selection;
 		//FIXME: This needs to be reworked until it actually works.
 		if(selection != null && selection.size() > 0){
-			boolean first = true;
 			for(int i = 0; i < 9; i++){ //Only one button is implemented.
 				Button currentButton = null;
+				boolean first = true;
 				for(Unit u : selection){
 					if(first){
 						currentButton =  u.getButton(i);
@@ -65,7 +65,6 @@ public class Hud {
 					} else {
 						if(currentButton != u.getButton(i)){
 							currentButton = null;
-							break;
 						}
 					}
 				}
@@ -144,10 +143,59 @@ public class Hud {
 		} else {
 			/* Decide where to put the button based on its index (this could be offloaded to JASON as 
 			   different games will probably have totally different HUDs) */
+			//Battleship rows and columns
+			final int ColA = 658;
+			final int ColB = 704;
+			final int ColC = 750;
+			
+			final int Row1 = 10;
+			final int Row2 = 56;
+			final int Row3 = 102;
+			//Yet another switch table!
 			switch(index){
 			case 0:{
-				x = 658;
-				y = 11;
+				x = ColA;
+				y = Row1;
+				break;
+			}
+			case 1:{
+				x = ColB;
+				y = Row1;
+				break;
+			}
+			case 2:{
+				x = ColC;
+				y = Row1;
+				break;
+			}
+			case 3:{
+				x = ColA;
+				y = Row2;
+				break;
+			}
+			case 4:{
+				x = ColB;
+				y = Row2;
+				break;
+			}
+			case 5:{
+				x = ColC;
+				y = Row2;
+				break;
+			}
+			case 6:{
+				x = ColA;
+				y = Row3;
+				break;
+			}
+			case 7:{
+				x = ColB;
+				y = Row3;
+				break;
+			}
+			case 8:{
+				x = ColC;
+				y = Row3;
 				break;
 			}
 			}
