@@ -34,7 +34,6 @@ public class Model {
 		units.put(uid, unit);
 		unit.insert(uid);
 		unitCap++;
-		System.out.println("New unit added " + uid + " at " + unit.x + "," + unit.y);
 		return uid;
 	}
 	public void tickUpdate(int dt, List<Command> cmds){

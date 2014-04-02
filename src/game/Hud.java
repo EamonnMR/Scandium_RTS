@@ -111,11 +111,7 @@ public class Hud {
 		}
 		
 		public Button(){
-			//This constructor should not exist, but it needs to because of 
-			//anon class constraints.
-			
-			//FIXME: Test
-			this.spr = data.Mgr.i().getSpr(2);
+			//I'd rather put the sprite in through a constructor, but that might not be possible.
 		}
 	}
 	
