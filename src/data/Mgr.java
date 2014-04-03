@@ -2,9 +2,7 @@ package data;
 
 //Singleton that 
 
-import game.CmdSender;
 import game.Hud;
-import game.PlayerMouse;
 import game.Unit;
 
 import java.io.FileInputStream;
@@ -15,7 +13,6 @@ import java.util.Properties;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import commands.Command;
 
 public class Mgr {
 	public Properties cfg, ports;

@@ -57,7 +57,14 @@ public class DummyDataLoaderWithLiterals {
 				
 				loadButtonSpr(
 				"res/graphics/danC/buttons/moveBtn.png"
-				)
+				),
+				loadButtonSpr(
+				"res/graphics/danC/buttons/worker.png"
+				),
+				//10
+				Mgr.i().loadMultiSpr(
+				"res/graphics/danC/worker.png",
+				38, 38, 8, 1, -19, -19, 3),
 		};
 		sprites = spritesd;
 		
@@ -96,8 +103,14 @@ public class DummyDataLoaderWithLiterals {
 					public void pressed(Hud h, CmdSender c) {
 						//set mouse mode to select a thing to move to
 					}
-					}).setSpr(sprites[8][0])
+					}).setSpr(sprites[8][0]),
 				//5
+				(new Hud.Button(){
+					@Override
+					public void pressed(Hud h, CmdSender c) {
+						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(4)));
+					}
+					}).setSpr(sprites[9][0]),
 		};
 		buttons = buttonsd;
 		
@@ -111,6 +124,8 @@ public class DummyDataLoaderWithLiterals {
 				5, new cards.GroundCombatUnit(buttons)),
 				new UnitDat(
 				6, new cards.GroundCombatUnit(buttons)),
+				new UnitDat(
+				10, new cards.Worker(buttons)),
 		};
 		units = unitsd;
 		

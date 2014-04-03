@@ -2,27 +2,21 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.newdawn.slick.tiled.TiledMap;
-
 import commands.Command;
 
 public class Model {
 
-	private TiledMap m;
 	public PathGrid p;
 	private Map<Integer, Unit> units;
 	int unitCap = 0;
 	Player[] players;
 	int currentPlayer;
 	
-	public Model(TiledMap m, PathGrid p, int numplayers, int currentPlayer) {
-		this.m = m;
+	public Model(PathGrid p, int numplayers, int currentPlayer) {
 		this.p = p;
 		units = new ConcurrentHashMap<Integer, Unit>();
 		players = new Player[numplayers];

@@ -9,25 +9,15 @@ package interfaceSlk;
  * The network code is broken anyway.
  * 
  */
-import game.PathGrid;
-import game.Unit;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
+
 import java.util.Properties;
 
-import net.ClientTransciever;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
-
-import data.Sprite;
-
 public class JoinMenu extends MenuState {
 
 	@Override
@@ -69,7 +59,7 @@ public class JoinMenu extends MenuState {
 		//I'll go back and clean up the exceptions at a later date...
 		//probably when I refactor the entire thing to use the dataman to load things.
 		
-		
+		/*
 		Socket sock = null;
 		try {
 			sock = new Socket(host, port);
@@ -79,7 +69,6 @@ public class JoinMenu extends MenuState {
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		
 		ClientTransciever ct = null;
 		try {
 			ct = new ClientTransciever(sock);
@@ -89,6 +78,7 @@ public class JoinMenu extends MenuState {
 		}
 		
 		TiledMap t = null;
+
 		try {
 			t = new TiledMap("res/RageValley.tmx");
 		} catch (SlickException e) {
@@ -110,7 +100,7 @@ public class JoinMenu extends MenuState {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		/*m.addUnit(new Unit(
 					new Sprite(
 					new Image("res/graphics/danC/tank.png"),
