@@ -14,7 +14,7 @@ public class FollowPath extends UnitState{
 	float curDist;
 	
 	private static final float TILE_DIST = 40;
-	private static final float DIAGONAL_DIST = 28.284f;//56.5685f;
+	private static final float DIAGONAL_DIST = 56.5685f;
 	
 	/*
 	 * Vectors that point in different directions.
@@ -27,15 +27,15 @@ public class FollowPath extends UnitState{
 	 * 
 	 */
 
-	private static final float SQRT2 = 1.414f;
+	private static final float DIAG = .7071068f; //Sin( pi / 4 )
 	private static final Vector2f RIGHT = new Vector2f(1, 0);
-	private static final Vector2f DOWN_RIGHT = new Vector2f(SQRT2, SQRT2);
+	private static final Vector2f DOWN_RIGHT = new Vector2f(DIAG, DIAG);
 	private static final Vector2f DOWN = new Vector2f(0, 1);
-	private static final Vector2f DOWN_LEFT = new Vector2f(-SQRT2, SQRT2);
+	private static final Vector2f DOWN_LEFT = new Vector2f(-DIAG, DIAG);
 	private static final Vector2f LEFT = new Vector2f(-1, 0);
-	private static final Vector2f UP_LEFT = new Vector2f(-SQRT2, -SQRT2);
+	private static final Vector2f UP_LEFT = new Vector2f(-DIAG, -DIAG);
 	private static final Vector2f UP = new Vector2f(0,-1);
-	private static final Vector2f UP_RIGHT = new Vector2f(SQRT2,-SQRT2);
+	private static final Vector2f UP_RIGHT = new Vector2f(DIAG,-DIAG);
 	
 	public FollowPath(Path p, float speed, float progress){
 		this.p = p;
