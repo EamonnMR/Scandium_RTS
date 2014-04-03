@@ -1,5 +1,7 @@
 package game;
 
+import gui.Hud;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

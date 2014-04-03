@@ -1,8 +1,8 @@
 package cards;
 
-import game.Hud;
 import game.Model;
 import game.Unit;
+import gui.Hud;
 import behavior.ProduceUnit;
 import commands.Instruction;
 import commands.RequisitionUnit;

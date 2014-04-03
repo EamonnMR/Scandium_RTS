@@ -1,9 +1,9 @@
 package cards;
 
-import game.Hud;
-import game.Hud.Button;
 import game.Model;
 import game.Unit;
+import gui.Hud;
+import gui.Hud.Button;
 
 
 /**
@@ -54,7 +54,7 @@ public abstract class CommandCard {
 		
 	}
 	
-	public game.Hud.Button getButton(int i){
+	public gui.Hud.Button getButton(int i){
 		return btns[i];
 	}
 }

@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 
 import commands.Command;
 import game.CmdSender;
-import game.Hud;
+import gui.Hud;
 
 /**
  * This class stores most of the game data (I haven't parameterized CommandCards yet,
