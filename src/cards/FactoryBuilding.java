@@ -14,7 +14,7 @@ public class FactoryBuilding extends CommandCard{
 		btns[0] = earlyAccessToButtons[0];
 		btns[1] = earlyAccessToButtons[1];
 		btns[2] = earlyAccessToButtons[2];
-		
+		btns[3] = earlyAccessToButtons[5];
 	}
 	
 	public boolean movesByPath() {

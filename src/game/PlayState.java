@@ -31,7 +31,6 @@ public class PlayState extends BasicGameState{
 	private Reciever rcv;
 	int timer;
 	private Hud h;
-	private int bottom;
 	
 	protected PlayerMouse playerAgent;
 	

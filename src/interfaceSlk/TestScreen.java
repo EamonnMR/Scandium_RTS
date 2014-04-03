@@ -28,7 +28,7 @@ public class TestScreen extends MenuState {
 		// TODO Auto-generated method stub
 		TiledMap t = new TiledMap("res/RageValley.tmx");
 		PathGrid pg = new PathGrid(t);
-		game.Model m = new game.Model(t, pg, 2, 0);
+		game.Model m = new game.Model(pg, 2, 0);
 		LocalRcv dummyR = new LocalRcv();
 		LocalCmd dummyC = new LocalCmd(dummyR);
 		
