@@ -2,8 +2,8 @@ package data;
 
 //Singleton that 
 
-import game.Hud;
 import game.Unit;
+import gui.Hud;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

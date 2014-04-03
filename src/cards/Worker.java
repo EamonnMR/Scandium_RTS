@@ -4,9 +4,9 @@ import org.newdawn.slick.util.pathfinding.Path;
 
 import commands.Instruction;
 import commands.Teleport;
-import game.Hud.Button;
 import game.Model;
 import game.Unit;
+import gui.Hud.Button;
 
 public class Worker extends CommandCard{
 

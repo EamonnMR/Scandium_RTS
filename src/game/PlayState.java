@@ -1,5 +1,9 @@
 package game;
 
+import gui.Hud;
+import gui.Mouse;
+import gui.PlayerMouse;
+
 import java.io.IOException;
 
 import org.newdawn.slick.GameContainer;
@@ -87,7 +91,7 @@ public class PlayState extends BasicGameState{
 			}
 			timer = 0;
 		}
-		h.freeUpdate(m, Mouse.i().x, Mouse.i().y);
+		h.freeUpdate(m);
 		playerAgent.freeUpdate(dt, camX, camY, m, pg, sndr, this);
 	}
 	
