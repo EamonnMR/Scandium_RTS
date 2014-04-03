@@ -12,7 +12,8 @@ public class GroundCombatUnit extends CommandCard{
 
 	public GroundCombatUnit(Button[] earlyAccessToButtons) {
 		super(earlyAccessToButtons);
-		// TODO Auto-generated constructor stub
+		btns[0] = earlyAccessToButtons[4];
+		btns[1] = earlyAccessToButtons[3];
 	}
 
 	@Override

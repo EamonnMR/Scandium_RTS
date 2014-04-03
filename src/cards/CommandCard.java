@@ -7,7 +7,10 @@ import game.Unit;
 
 
 /**
- * Class representing the set of buttons a unit offers on an interface.
+ * Class representing the set of buttons a unit offers on an interface,
+ * how the unit reacts to incoming instructions, and what actions (such
+ * as clicking, hotkeys (not yet implemented) cause the unit to be sent
+ * commands.
  * 
  * This version is the template with no responses to anything.
  * It's not abstract because not everthing needs to be filled out;
