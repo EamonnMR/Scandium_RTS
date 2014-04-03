@@ -30,20 +30,21 @@ public class DummyDataLoaderWithLiterals {
 				80, 82, 15, 1, -2, -4, 3),
 		
 				Mgr.i().loadMultiSpr(
-				"res/graphics/danC/button.png",
+				"res/graphics/danC/buttons/tank.png",
 				42, 42, 3, 1, 0, 0, 1),
 		
 				Mgr.i().loadMultiSpr(
-				"res/graphics/danC/button2.png",
+				"res/graphics/danC/buttons/tank2.png",
 				42, 42, 3, 1, 0, 0, 1),
 		
 				Mgr.i().loadMultiSpr(
-				"res/graphics/danC/button3.png",
+				"res/graphics/danC/buttons/artil.png",
 				42, 42, 3, 1, 0, 0, 1),
 				
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/tank2.png",
 				40, 40, 8, 1, -20, -20, 3),
+				
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/artil.png",
 				40, 80, 8, 1, -20, -60, 3)
