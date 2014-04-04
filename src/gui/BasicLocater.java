@@ -32,12 +32,16 @@ public abstract class BasicLocater extends PlayerMouse.Mode{
 
 	@Override
 	public void update(int dt, int camX, int camY, Model m, PathGrid pg,
-			CmdSender sndr, Hud hd) {
+			CmdSender sndr, Hud hd, PlayerMouse pm) {
 		
 		state = evaluate(Mouse.i().x - camX, Mouse.i().y - camY, m, pg);
 		
 		if(Mouse.i().buttons[0]){
-			execute(Mouse.i().x + camX, camY + Mouse.i().x, sndr, hd.getSelectedUnits(), m);
+			execute(Mouse.i().x - camX,Mouse.i().y - camY, sndr, hd.getSelectedUnits(), m);
+			pm.defaultMode();
+		}
+		if(Mouse.i().buttons[1]){
+			pm.defaultMode();
 		}
 	}
 

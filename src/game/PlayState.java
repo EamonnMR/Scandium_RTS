@@ -123,6 +123,7 @@ public class PlayState extends BasicGameState{
 				(t.getWidth()  * -t.getTileWidth())  + screenX,
 				((t.getHeight() * -t.getTileHeight()) + screenY ) - h.getHeight(),
 				h);
+		h.setMouse(playerAgent);
 	}
 	
 	public void setScreenSize(int x, int y){

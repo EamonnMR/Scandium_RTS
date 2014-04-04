@@ -1,18 +1,13 @@
 package gui;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.util.pathfinding.Path;
 
 import data.Sprite;
 import game.CmdSender;
 import game.Model;
 import game.PathGrid;
-import game.Unit;
 import game.Util;
 
 public class DefaultMM extends PlayerMouse.Mode{
@@ -38,7 +33,7 @@ public class DefaultMM extends PlayerMouse.Mode{
 
 	@Override
 	public void update(int dt, int camX, int camY, Model m, PathGrid pg,
-			CmdSender sndr, Hud hd) {
+			CmdSender sndr, Hud hd, PlayerMouse pm) {
 		if(Mouse.i().y <= hd.getMaxY()){
 			if(isDragging){
 				Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
@@ -66,27 +61,7 @@ public class DefaultMM extends PlayerMouse.Mode{
 				mouseRight = Mouse.i().buttons[1];
 			} else if(Mouse.i().buttons[1]){
 				mouseRight = true;
-				int[] sel = hd.getSelectedUnits();
-				if(sel.length > 0){
-					
-					List<Unit> directPathUnits = new LinkedList<Unit>();
-					int destX = (Mouse.i().x - camX) / 40;
-					int destY = (Mouse.i().y - camY) / 40;
-					Path path;
-					for(int i : sel){
-						Unit u = m.getUnit(i);
-						path = pg.getPath(u.x / 40, u.y / 40, 
-								destX, 
-								destY);
-						if(path != null){
-							directPathUnits.add(u);
-						}
-					}
-					
-					sndr.rcv(new commands.Command(Util.unitListToUIDArray(directPathUnits),
-							new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
-					));
-				}
+				Util.issueMoveCmd(Mouse.i().x - camX, Mouse.i().y - camY, m, pg,  hd.getSelectedUnits(), sndr);
 			}
 		} else {
 			isDragging = false;

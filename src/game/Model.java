@@ -75,4 +75,8 @@ public class Model {
 	public Unit getUnit(int i){
 		return units.get(i);
 	}
+	
+	public PathGrid getPg(){
+		return p;
+	}
 }
