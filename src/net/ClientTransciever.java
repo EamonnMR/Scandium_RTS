@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import commands.Command;
 
-public class ClientTransciever extends game.CmdSender implements game.Reciever{
+public class ClientTransciever extends net.CmdSender implements net.Reciever{
 
 	Scanner getter;
 	OutputStream giver;

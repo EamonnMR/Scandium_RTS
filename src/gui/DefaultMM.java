@@ -2,12 +2,13 @@ package gui;
 
 import java.util.Collection;
 
+import net.CmdSender;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 
 import data.Sprite;
-import game.CmdSender;
 import game.Model;
 import game.PathGrid;
 import game.Unit;

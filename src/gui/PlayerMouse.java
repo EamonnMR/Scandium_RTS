@@ -1,10 +1,12 @@
 package gui;
 
-import game.CmdSender;
 import game.Model;
 import game.PathGrid;
 import game.PlayState;
+import net.CmdSender;
+
 import org.newdawn.slick.Graphics;
+
 import data.Sprite;
 
 public class PlayerMouse {
