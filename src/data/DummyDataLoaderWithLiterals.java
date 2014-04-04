@@ -31,7 +31,7 @@ public class DummyDataLoaderWithLiterals {
 		
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/factory.png",
-				80, 82, 15, 1, -2, -4, 3),
+				80, 82, 15, 1, -40, -37, 3),
 		
 				loadButtonSpr(
 				"res/graphics/danC/buttons/tank.png"

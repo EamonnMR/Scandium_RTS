@@ -82,5 +82,9 @@ public class Unit {
 	public Hud.Button getButton(int btn){
 		return cc.getButton(btn);
 	}
+
+	public float getRadius() {
+		return 1 + (s.getWidth() / 2);
+	}
 	
 }

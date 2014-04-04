@@ -91,7 +91,7 @@ public class Hud {
 	public void render(GameContainer game, Graphics g, int camX, int camY){
 		if(selection != null){
 			for(Unit i : selection){
-				g.draw(new Circle(i.x + camX, i.y + camY, 20));
+				g.draw(new Circle(i.x + camX, i.y + camY, i.getRadius()));
 			}
 		}
 		background.draw(xPos, yPos);
