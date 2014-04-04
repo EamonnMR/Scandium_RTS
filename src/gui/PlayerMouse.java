@@ -4,33 +4,15 @@ import game.CmdSender;
 import game.Model;
 import game.PathGrid;
 import game.PlayState;
-import game.Unit;
-import game.Util;
-
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Circle;
-import org.newdawn.slick.geom.Line;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.util.pathfinding.Path;
-
 import data.Sprite;
 
 public class PlayerMouse {
 	int player;
 	private Sprite mouseSpr;
 	int mouseState;
-	int selectionX, selectionY;
-	boolean isDragging;
-	Rectangle selectBox;
-
-	private Collection<Unit> selectedUnits;
-	int screenX, screenY;
 	
-	boolean mouseRight;
+	int screenX, screenY;
 
 	private final double SCROLL_SPEED = 1;
 	private final double SCROLL_SPEED_CORNER = Math.sqrt(2) * SCROLL_SPEED;
@@ -49,14 +31,19 @@ public class PlayerMouse {
 		this.maxCamX = maxCamX;
 		this.maxCamY = maxCamY;
 		this.hd = hd;
-
-		selectedUnits = new LinkedList<Unit>();
-
 		this.mouseSpr = mouseSpr;
 		
-		this.mode = new DefaultMM();
+		defaultMode();
 	}
 	
+
+	public void defaultMode(){
+		this.mode = new DefaultMM(mouseSpr);
+	}
+
+	public void setMode(Mode mode){
+		this.mode = mode;
+	}
 
 	/**
 	 * This is the closest thing we have to a main method in this class.
@@ -65,13 +52,7 @@ public class PlayerMouse {
 
 		//Handle mouse box dragging
 		
-		mode.update(dt, camX, camY, m, pg, sndr);
-		
-		if(Mouse.i().y <= hd.getMaxY()){
-			handleMouseOnGameScreen(m, camX, camY, pg, sndr);
-		} else {
-			isDragging = false;
-		}
+		mode.update(dt, camX, camY, m, pg, sndr, hd);
 
 		//What edges the mouse is (or is not) touching.
 		boolean l, r, t, b;
@@ -89,16 +70,23 @@ public class PlayerMouse {
 			b = true;
 		}
 		//Logic to implement the scrolling.
-		if(!isDragging){
-			if(l || r){
-				camX += (int) (r ? -1 : 1) * Math.round(dt * ((t || b) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
-			}
-			if(t || b){
-				camY += (int) (b ? -1 : 1) * Math.round(dt * ((l || r) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+		if(mode.unlocked()){
+			
+			if(l || r || t || b){
+				mode.hide();
+				if(l || r){
+					camX += (int) (r ? -1 : 1) * Math.round(dt * ((t || b) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+				}
+				if(t || b){
+					camY += (int) (b ? -1 : 1) * Math.round(dt * ((l || r) ? SCROLL_SPEED_CORNER : SCROLL_SPEED));
+				}
+			} else {
+				mode.show();
 			}
 		}
 		
 		/* Independant (similar) logic to determine what mouse sprite to use */
+		
 		mouseState = calcMouseState(l,r,t,b);
 		
 		//Limit the camera to the edges of the map
@@ -117,61 +105,9 @@ public class PlayerMouse {
 		pls.setCam(camX, camY);
 	}
 
-	
-	private void handleMouseOnGameScreen(Model m, int camX, int camY, PathGrid pg, CmdSender sndr) {
-		if(isDragging){
-			Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
-			selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
-			if(!Mouse.i().buttons[0]){
-			//FIXME: Mouse released from selection: querey the model for units inside the selection box
-				isDragging = false;
-				
-				
-				selectedUnits = m.areaQuerey(new Rectangle(selectBox.getX() - camX, selectBox.getY() - camY, selectBox.getWidth(), selectBox.getHeight()));
-				selectBox = null;
-				hd.changeSelection(selectedUnits);
-			}
-		} else if(Mouse.i().buttons[0] && !isDragging){
-			isDragging = true;
-			selectionX = Mouse.i().x;
-			selectionY = Mouse.i().y;
-		} 
-		
-		//Handle right click
-		if(mouseRight){
-			mouseRight = Mouse.i().buttons[1];
-		} else if(Mouse.i().buttons[1]){
-			mouseRight = true;
-			if(!selectedUnits.isEmpty()){
-				//FIXME: Hack (the for loop at least)
-				
-				List<Unit> directPathUnits = new LinkedList<Unit>();
-				int destX = (Mouse.i().x - camX) / 40;
-				int destY = (Mouse.i().y - camY) / 40;
-				Path path;
-				for(Unit i : selectedUnits){
-					path = pg.getPath(i.x / 40, i.y / 40, 
-							destX, 
-							destY);
-					if(path != null){
-						directPathUnits.add(i);
-					}
-				}
-				
-				sndr.rcv(new commands.Command(Util.unitListToUIDArray(directPathUnits),
-						new commands.Teleport(Mouse.i().x - camX , Mouse.i().y - camY)
-				));
-			}
-		}
-	}
-
 
 	public void drawGameMouse(Graphics g, int camX, int camY, Model m){
 		mode.draw(g, camX, camY,m);
-		
-		if(isDragging && selectBox != null){
-			g.draw(selectBox);
-		}
 	}
 	
 	public void draw(Graphics g){
@@ -179,8 +115,16 @@ public class PlayerMouse {
 	}
 
 	public static abstract class Mode{
-		abstract void draw(Graphics g, int camX, int camY, Model m);
-		abstract void update(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr);
+		boolean hidden;
+		public abstract void draw(Graphics g, int camX, int camY, Model m);
+		public void show() {
+			hidden = false;
+		}
+		public void hide() {
+			hidden = true;
+		}
+		public abstract boolean unlocked();
+		public abstract void update(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr, Hud hd);
 	}
 	
 	private void drawMouse(Graphics g) {
@@ -219,19 +163,6 @@ public class PlayerMouse {
 		}
 		}
 		mouseSpr.draw(mouseState, x, y);
-	}
-
-	/**
-	 * Draw the hilights around selected things...
-	 * @param g
-	 * @param camX
-	 * @param camY
-	 */
-	
-	public void drawHilights(Graphics g, int camX, int camY) {
-		for(Unit i : selectedUnits){
-			g.draw(new Circle(i.x + camX, i.y + camY, 20));
-		}
 	}
 
 	/**

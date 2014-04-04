@@ -13,6 +13,7 @@ import menus.SpriteButton;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Point;
 
 import data.Sprite;
@@ -82,7 +83,12 @@ public class Hud {
 		}
 	}
 	
-	public void render(GameContainer game, Graphics g){
+	public void render(GameContainer game, Graphics g, int camX, int camY){
+		if(selection != null){
+			for(Unit i : selection){
+				g.draw(new Circle(i.x + camX, i.y + camY, 20));
+			}
+		}
 		background.draw(xPos, yPos);
 		for(AbstractButton button : buttons){
 			if(button != null){

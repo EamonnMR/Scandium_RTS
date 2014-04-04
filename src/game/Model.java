@@ -39,6 +39,7 @@ public class Model {
 	}
 
 	public void draw(int camX, int camY){
+		//FIXME: This should draw units in Y-order.
 		for(Iterator<Unit> i = units.values().iterator(); i.hasNext();){
 			i.next().draw(camX, camY);
 		}
@@ -69,5 +70,9 @@ public class Model {
 				}
 			}
 		}
+	}
+	
+	public Unit getUnit(int i){
+		return units.get(i);
 	}
 }

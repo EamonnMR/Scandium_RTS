@@ -63,11 +63,10 @@ public class PlayState extends BasicGameState{
 			throws SlickException {
 		g.setLineWidth(2);
 		map.render(camX, camY);
-		playerAgent.drawHilights(g, camX, camY);
 		m.draw(camX, camY);
 		playerAgent.drawGameMouse(g, camX, camY, m);
 		//Ok, so the button needs to *not* depend on the game I guess...
-		h.render(null, g);
+		h.render(null, g, camX, camY);
 		playerAgent.draw(g);
 	}
 
