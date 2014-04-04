@@ -39,6 +39,8 @@ public class PlayerMouse {
 	
 	Hud hd;
 	
+	private Mode mode;
+	
 	
 	public PlayerMouse(int player, int screenX, int screenY, Sprite mouseSpr, int maxCamX, int maxCamY, Hud hd) {
 		this.player = player;
@@ -51,6 +53,8 @@ public class PlayerMouse {
 		selectedUnits = new LinkedList<Unit>();
 
 		this.mouseSpr = mouseSpr;
+		
+		this.mode = new DefaultMM();
 	}
 	
 
@@ -60,6 +64,8 @@ public class PlayerMouse {
 	public void freeUpdate(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr, PlayState pls){
 
 		//Handle mouse box dragging
+		
+		mode.update(dt, camX, camY, m, pg, sndr);
 		
 		if(Mouse.i().y <= hd.getMaxY()){
 			handleMouseOnGameScreen(m, camX, camY, pg, sndr);
@@ -160,16 +166,21 @@ public class PlayerMouse {
 	}
 
 
-	public void draw(Graphics g){
+	public void drawGameMouse(Graphics g, int camX, int camY, Model m){
+		mode.draw(g, camX, camY,m);
+		
 		if(isDragging && selectBox != null){
 			g.draw(selectBox);
 		}
+	}
+	
+	public void draw(Graphics g){
 		drawMouse(g);
 	}
 
 	public static abstract class Mode{
-		abstract void draw(int x, int y, Model m);
-		abstract void update(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr, PlayState pls);
+		abstract void draw(Graphics g, int camX, int camY, Model m);
+		abstract void update(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr);
 	}
 	
 	private void drawMouse(Graphics g) {

@@ -65,6 +65,7 @@ public class PlayState extends BasicGameState{
 		map.render(camX, camY);
 		playerAgent.drawHilights(g, camX, camY);
 		m.draw(camX, camY);
+		playerAgent.drawGameMouse(g, camX, camY, m);
 		//Ok, so the button needs to *not* depend on the game I guess...
 		h.render(null, g);
 		playerAgent.draw(g);
@@ -90,6 +91,7 @@ public class PlayState extends BasicGameState{
 				e.printStackTrace();
 			}
 			timer = 0;
+			h.freeUpdate(m); //Make sure at least one freeUpdate happens per update.
 		}
 		h.freeUpdate(m);
 		playerAgent.freeUpdate(dt, camX, camY, m, pg, sndr, this);
