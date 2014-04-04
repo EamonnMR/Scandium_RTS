@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Collection;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
@@ -8,6 +10,7 @@ import data.Sprite;
 import game.CmdSender;
 import game.Model;
 import game.PathGrid;
+import game.Unit;
 import game.Util;
 
 public class DefaultMM extends PlayerMouse.Mode{
@@ -42,12 +45,15 @@ public class DefaultMM extends PlayerMouse.Mode{
 				//FIXME: Mouse released from selection: querey the model for units inside the selection box
 					isDragging = false;
 					
-					hd.changeSelection(m.areaQuerey(
+					Collection<Unit> newCol = m.areaQuerey(
 							new Rectangle(selectBox.getX() - camX, 
 							selectBox.getY() - camY,
 							selectBox.getWidth(),
-							selectBox.getHeight())));
+							selectBox.getHeight()));
 					
+					if(newCol.size() > 0){
+						hd.changeSelection( newCol );
+					}
 					selectBox = null;
 				}
 			} else if(Mouse.i().buttons[0] && !isDragging){
