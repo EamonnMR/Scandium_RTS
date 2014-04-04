@@ -4,6 +4,9 @@ import org.newdawn.slick.SlickException;
 
 import commands.Command;
 import game.CmdSender;
+import game.Model;
+import game.PathGrid;
+import game.Util;
 import gui.Hud;
 
 /**
@@ -65,6 +68,10 @@ public class DummyDataLoaderWithLiterals {
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/worker.png",
 				38, 38, 8, 1, -19, -19, 3),
+				
+				Mgr.i().loadMultiSpr(
+				"res/graphics/danC/moveCursor.png",
+				30,30,3,1,-14,-14,1)
 		};
 		sprites = spritesd;
 		
@@ -76,38 +83,55 @@ public class DummyDataLoaderWithLiterals {
 		Hud.Button[] buttonsd = {
 				(new Hud.Button(){
 					@Override
-					public void pressed(Hud h, CmdSender c) {
+					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
 						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(0)));
 					}
 					}).setSpr(sprites[2][0]),
 				(new Hud.Button(){
 					@Override
-					public void pressed(Hud h, CmdSender c) {
+					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
 						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(2)));
 					}
 					}).setSpr(sprites[3][0]),
 				(new Hud.Button(){
 					@Override
-					public void pressed(Hud h, CmdSender c) {
+					public void pressed(Hud h, CmdSender c,gui.PlayerMouse ms) {
 						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(3)));
 					}
 					}).setSpr(sprites[4][0]),
 				(new Hud.Button(){
 					@Override
-					public void pressed(Hud h, CmdSender c) {
+					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
 						//Set mouse mode to select a thing to attack
 					}
 					}).setSpr(sprites[7][0]),
 				(new Hud.Button(){
 					@Override
-					public void pressed(Hud h, CmdSender c) {
-						//set mouse mode to select a thing to move to
+					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
+						ms.setMode(
+								new gui.BasicLocater(){
+
+									@Override
+									public void execute(int x, int y,
+											CmdSender sndr, int[] sel, Model m) {
+										Util.issueMoveCmd(x, y, m, m.getPg(), sel, sndr);
+									}
+
+									@Override
+									public int evaluate(int x, int y, Model m,
+											PathGrid pg) {
+										//FIXME: This should look at the pathgrid and establish
+										//if it's pathable.
+										return 0;
+									}
+							
+						}.setSpr(sprites[11][0]));
 					}
 					}).setSpr(sprites[8][0]),
 				//5
 				(new Hud.Button(){
 					@Override
-					public void pressed(Hud h, CmdSender c) {
+					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
 						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(4)));
 					}
 					}).setSpr(sprites[9][0]),

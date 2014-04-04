@@ -52,7 +52,7 @@ public class PlayerMouse {
 
 		//Handle mouse box dragging
 		
-		mode.update(dt, camX, camY, m, pg, sndr, hd);
+		mode.update(dt, camX, camY, m, pg, sndr, hd, this);
 
 		//What edges the mouse is (or is not) touching.
 		boolean l, r, t, b;
@@ -124,7 +124,7 @@ public class PlayerMouse {
 			hidden = true;
 		}
 		public abstract boolean unlocked();
-		public abstract void update(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr, Hud hd);
+		public abstract void update(int dt, int camX, int camY, Model m, PathGrid pg, CmdSender sndr, Hud hd, PlayerMouse pm);
 	}
 	
 	private void drawMouse(Graphics g) {

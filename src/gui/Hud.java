@@ -25,14 +25,19 @@ public class Hud {
 	AbstractButton[] buttons;
 	Collection<Unit> selection;
 	protected CmdSender sender;
+	private PlayerMouse ms;
 	
-	public Hud(Image background, int xPos, int yPos,CmdSender sender){
+	public Hud(Image background, int xPos, int yPos, CmdSender sender){
 		selection = null;
 		buttons = new AbstractButton[9];
 		this.background = background;
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.sender = sender;
+	}
+	
+	public void setMouse(PlayerMouse ms){
+		this.ms = ms;
 	}
 	
 	/**
@@ -113,7 +118,7 @@ public class Hud {
 		 * Pressing a button alone is NOT allowed to affect the game model. It can only
 		 * change the GUI, change the mouse, or send a command.
 		 */
-		public abstract void pressed(Hud h, CmdSender c);
+		public abstract void pressed(Hud h, CmdSender c, PlayerMouse m);
 		
 		public Button(data.Sprite spr){
 			
@@ -142,7 +147,7 @@ public class Hud {
 		}
 		@Override
 		protected void doAction() {
-			dat.pressed(Hud.this, sender);
+			dat.pressed(Hud.this, sender, ms);
 		}
 		
 	}
