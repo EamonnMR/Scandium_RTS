@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-//Simple client to test the server, approptiated from the java tutorials as a test...
+//Simple client to test the server, appropriated from the java tutorials as a test...
 
 public class EchoClient {
 	
