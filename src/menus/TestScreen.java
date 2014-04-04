@@ -1,9 +1,9 @@
 package menus;
 
-import game.LocalCmd;
-import game.LocalRcv;
 import game.PathGrid;
 import gui.Hud;
+import net.LocalCmd;
+import net.LocalRcv;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

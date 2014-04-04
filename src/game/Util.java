@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import net.CmdSender;
+
 import org.newdawn.slick.util.pathfinding.Path;
 
 public class Util {

@@ -1,8 +1,8 @@
 package gui;
 
-import game.CmdSender;
 import game.Model;
 import game.PathGrid;
+import net.CmdSender;
 
 import org.newdawn.slick.Graphics;
 

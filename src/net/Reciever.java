@@ -1,4 +1,4 @@
-package game;
+package net;
 
 import java.util.List;
 

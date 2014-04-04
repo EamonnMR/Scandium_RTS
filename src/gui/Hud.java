@@ -1,6 +1,5 @@
 package gui;
 
-import game.CmdSender;
 import game.Model;
 import game.Unit;
 import game.Util;
@@ -9,6 +8,7 @@ import java.util.Collection;
 
 import menus.AbstractButton;
 import menus.SpriteButton;
+import net.CmdSender;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

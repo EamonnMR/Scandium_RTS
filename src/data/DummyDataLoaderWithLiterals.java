@@ -1,9 +1,10 @@
 package data;
 
+import net.CmdSender;
+
 import org.newdawn.slick.SlickException;
 
 import commands.Command;
-import game.CmdSender;
 import game.Model;
 import game.PathGrid;
 import game.Util;

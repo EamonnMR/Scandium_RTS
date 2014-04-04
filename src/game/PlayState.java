@@ -6,6 +6,9 @@ import gui.PlayerMouse;
 
 import java.io.IOException;
 
+import net.CmdSender;
+import net.Reciever;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
