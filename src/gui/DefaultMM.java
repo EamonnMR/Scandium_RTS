@@ -41,7 +41,11 @@ public class DefaultMM extends PlayerMouse.Mode{
 		if(Mouse.i().y <= hd.getMaxY()){
 			if(isDragging){
 				Line selln = new org.newdawn.slick.geom.Line(Mouse.i().x, Mouse.i().y, selectionX, selectionY);
-				selectBox = new Rectangle(selln.getMinX(), selln.getMinY(), Math.abs(selln.getDX()), Math.abs(selln.getDY()));
+				selectBox = new Rectangle(
+						selln.getMinX(),
+						selln.getMinY(),
+						Math.abs(selln.getDX()),
+						Math.abs(selln.getDY()));
 				if(!Mouse.i().buttons[0]){
 				//FIXME: Mouse released from selection: querey the model for units inside the selection box
 					isDragging = false;
