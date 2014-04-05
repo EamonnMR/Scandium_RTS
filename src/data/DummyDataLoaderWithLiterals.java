@@ -69,10 +69,12 @@ public class DummyDataLoaderWithLiterals {
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/worker.png",
 				38, 38, 8, 1, -19, -19, 3),
-				
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/moveCursor.png",
-				30,30,3,1,-14,-14,1)
+				30,30,3,1,-14,-14,1),
+				Mgr.i().loadMultiSpr(
+				"res/graphics/danC/wellhead.png",
+				80, 148, 6, 1, 0, -54, 3),
 		};
 		sprites = spritesd;
 		
