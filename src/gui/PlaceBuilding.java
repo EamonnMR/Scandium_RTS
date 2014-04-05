@@ -17,7 +17,7 @@ public abstract class PlaceBuilding extends Mode {
 
 	public abstract int[] getBuildingSize();
 	
-	public abstract void placeBuilding(CmdSender sndr);
+	public abstract void placeBuilding(CmdSender sndr, int[] is);
 	
 	@Override
 	public void draw(Graphics g, int camX, int camY, Model m) {
@@ -79,7 +79,7 @@ public abstract class PlaceBuilding extends Mode {
 		}
 		
 		if(Mouse.i().buttons[0] && evaluatePlacement()){
-			placeBuilding(sndr);
+			placeBuilding(sndr, hd.getSelectedUnits());
 			pm.defaultMode();
 		}
 	}

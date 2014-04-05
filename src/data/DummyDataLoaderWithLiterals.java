@@ -75,6 +75,10 @@ public class DummyDataLoaderWithLiterals {
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/wellhead.png",
 				80, 148, 6, 1, 0, -54, 3),
+				loadButtonSpr(
+				"res/graphics/danC/buttons/factory.png"
+				),
+				
 		};
 		sprites = spritesd;
 		
@@ -138,6 +142,25 @@ public class DummyDataLoaderWithLiterals {
 						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(4)));
 					}
 					}).setSpr(sprites[9][0]),
+				(new Hud.Button(){
+					@Override
+					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
+						ms.setMode(
+									new gui.PlaceBuilding(){
+
+										@Override
+										public int[] getBuildingSize() {
+											int[] size = {2,2};
+											return size;
+										}
+
+										@Override
+										public void placeBuilding(CmdSender sndr, int[] units) {
+											sndr.rcv(new Command( units, new commands.RequisitionUnit(1) ));
+										}
+									}.setSpr(sprites[11][0]));
+						}
+						}).setSpr(sprites[13][0]),
 		};
 		buttons = buttonsd;
 		

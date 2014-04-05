@@ -13,6 +13,7 @@ public class Worker extends CommandCard{
 	public Worker(Button[] earlyAccessToButtons) {
 		super(earlyAccessToButtons);
 		btns[0] = earlyAccessToButtons[4];
+		btns[1] = earlyAccessToButtons[6];
 	}
 
 	@Override
