@@ -21,10 +21,11 @@ public abstract class PlaceBuilding extends Mode {
 	
 	@Override
 	public void draw(Graphics g, int camX, int camY, Model m) {
+		spr.draw(0, (tx * 40) - camX, (ty * 40) - camY);
 		for(int i = 0; i < placement.length; i++){
 			for(int j = 0; j < placement[0].length; j++){
 				if(!placement[i][j]){
-					g.drawRect(tx + 10 + camX, ty + 10 + camX, 20, 20);
+					g.drawRect(((tx + i) * 40) + 10 - camX, ((ty + j) * 40) + 10 - camY, 20, 20);
 				}
 			}
 		}
@@ -35,7 +36,7 @@ public abstract class PlaceBuilding extends Mode {
 		boolean[][] toSender = new boolean[size[0]][size[1]];
 		for(int i = 0; i < size[0]; i++){
 			for(int j = 0; j < size[1]; j++){
-				toSender[i][j] = pg.b[i + tx][j + tx];
+				toSender[i][j] = pg.b[i + tx][j + ty];
 			}
 		}
 		return toSender;
@@ -56,7 +57,7 @@ public abstract class PlaceBuilding extends Mode {
 	
 	@Override
 	public boolean unlocked() {
-		return false;
+		return true;
 	}
 	
 	public PlayerMouse.Mode setSpr(Sprite spr){
@@ -68,8 +69,18 @@ public abstract class PlaceBuilding extends Mode {
 	public void update(int dt, int camX, int camY, Model m, PathGrid pg,
 			CmdSender sndr, Hud hd, PlayerMouse pm) {
 		
-		tx = (int) Math.round( Mouse.i().x / 40.0 );
-		ty = (int) Math.round( Mouse.i().x / 40.0 );
+		tx =  (int) ((int) (Mouse.i().x + camX) / 40.0) ;
+		ty =  (int) ((int) (Mouse.i().y + camY) / 40.0) ;
+		if(tx < 0){
+			tx = 0;
+		} if (tx + getBuildingSize()[0] >= pg.b.length){
+			tx = pg.b.length - getBuildingSize()[0];
+		}
+		if(ty < 0){
+			ty = 0;
+		} if (ty + getBuildingSize()[1] >= pg.b.length){
+			ty = pg.b[0].length - getBuildingSize()[1];
+		}
 		
 		placement = getPlacement(tx, ty, m, pg);
 		
@@ -80,6 +91,9 @@ public abstract class PlaceBuilding extends Mode {
 		
 		if(Mouse.i().buttons[0] && evaluatePlacement()){
 			placeBuilding(sndr, hd.getSelectedUnits());
+			//If I don't clear the button press here,
+			//it will start dragging once the mouse is down.
+			Mouse.i().buttons[0] = false;
 			pm.defaultMode();
 		}
 	}
