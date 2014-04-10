@@ -23,6 +23,7 @@ public class Unit {
 	private CommandCard cc;
 	public int owner;
 	private float speed;
+	public int hitPoints;
 	
 	public void insert(int uid){
 		this.uid = uid;
@@ -47,12 +48,12 @@ public class Unit {
 		this.facing = facing;
 	}
 	
-	public Unit(Sprite s, int facing, int x, int y, int owner, float speed, CommandCard cc) {
+	public Unit(Sprite s, int facing, int x, int y, int owner, float speed, CommandCard cc, UnitState initialState) {
 		this.s = s;
 		this.facing = facing;
 		this.x = x;
 		this.y = y;
-		this.state = new behavior.Idle();
+		this.state = initialState;
 		this.cc = cc;
 		stateQue = new LinkedList<UnitState>();
 		this.owner = owner;

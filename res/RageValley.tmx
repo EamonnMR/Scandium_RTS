@@ -6,8 +6,8 @@
    H4sIAAAAAAAAC9WaXU4UQRCAZxr1CqiRmBCWK8DiXzQLVxCMPvjDGWSNvLEH8Cx6AhMPYPQuwCJKdZjO1hZV3dUz3T3jw5eQYXamvqmqrpndGVVVNfIwA/aA9R7YCMSmJdbh2FTVU4HPJt5jApx0iH23gTr44rQ8A+4KPAl8VnKNdZkJseP4fXGmALtip5j62uwxfsnJuUyaaxzKC9cHxz3Fz+XH+WygeKnTUB243DiPTabWYh1OgTPEeSGXNbOorz3GA8cf6gXrsL+yvO1gZdmL8lHw5/BdE9wv68w65rY/DFwPzkHDFrANjBX73gsc3+fi88DXsI1DLCEPyWU34LFaIHZfjUp1tmZuzogheWjzo/Vw9VSilnJ5tO3n3HWGa0zj0XctaXLzP3vY3LiclPSY11V14eFP3T4ndO1N7YFjPzD+e9NXJt5LU1sxHtK1DsXe1SuVxzxBvFoeROaDPpNKHvNC8bf1oPtKHvcVDp9gn0eRTJnj2uM8JuefQlzjTB40bnpuDTuMG3ccOts5jyNzfW9tkWa59nw5OK2Xc8F52Ng1zwZ9sspsC9XVEEntkWNGc8ekx9F4nNULzgNxhNYsOss0cGs5XXPtszF9pvLlYwt66cgzBzVrr5Zv4PCl4WsdNzs0deWb5yk9fkPsPxt+BTzo7Mjl4eYIN9NSzHLuuTClh4vfzZEdhY9m5tO5hD0uIXd/gdcdPOgslOYgNzO7zE7NfS79jO317UC/l6aNhyYvQ/SwtfaPmRtD8Jg2teG7z8W8MTddXH1hctfalJxvrOhvSuh76tw54mYEhubhFnAbMRSP0HfU2MM6fCDrua+2KDnXMsmDqyfud8/Y2sI+HNiR1rsPqaa4eqK5GDW1dQflRFq/tOybxf3zy445umT62vcb9CFyiclLTrAD7mkuF5JLirykdKCxv4P/nwBva11eNL2f04GrI+swA77D3+8FD+dCe6akC+1r6nEIsfyowh6cTykXTV+/gH0mDc8VHg733onrmZxQB2mNbQP3/kwpYt7zuQKGga6nECcAAA==
   </data>
  </layer>
- <objectgroup name="Object Layer 1" width="50" height="50">
-  <object name="Player 0 Start" x="1030" y="197" width="79" height="53"/>
-  <object name="Player 1 Start" x="863" y="1774" width="110" height="77"/>
+ <objectgroup name="preplaced" width="50" height="50">
+  <object name="Player 0 Start" type="startloc" x="997" y="166" width="79" height="53"/>
+  <object name="Player 1 Start" type="startloc" x="829" y="1781" width="110" height="77"/>
  </objectgroup>
 </map>

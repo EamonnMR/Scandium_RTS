@@ -13,6 +13,8 @@ import java.util.Properties;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import behavior.UnitState;
+
 
 public class Mgr {
 	public Properties cfg, ports;
@@ -50,9 +52,9 @@ public class Mgr {
 		return instance;
 	}
 	
-	public Unit getUnit(int x, int y, int facing, int type, int owner){
+	public Unit getUnit(int x, int y, int facing, int type, int owner, UnitState state){
 		UnitDat d = units[type];
-		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.speed, d.getCC());
+		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.speed, d.getCC(), state);
 	}
 	
 	public void faux_load_data() throws SlickException{
