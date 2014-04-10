@@ -82,6 +82,9 @@ public class DummyDataLoaderWithLiterals {
 				"res/graphics/danC/mcv.png",
 				78, 78, 8, 1, -39, -39, 3),
 				//15
+				loadButtonSpr(
+				"res/graphics/danC/buttons/mcv.png"
+				),
 				
 		};
 		sprites = spritesd;
@@ -165,13 +168,20 @@ public class DummyDataLoaderWithLiterals {
 									}.setSpr(sprites[11][0]));
 						}
 						}).setSpr(sprites[13][0]),
+					(new Hud.Button(){
+						@Override
+						public void pressed(Hud h, CmdSender c,gui.PlayerMouse ms) {
+							c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(5)));
+						}
+						}).setSpr(sprites[15][0]),
+				
 		};
 		buttons = buttonsd;
 		
 		
 		UnitDat[] unitsd = {
 				new UnitDat(
-				0, 3, new cards.GroundCombatUnit(buttons)),
+				0, 4, new cards.GroundCombatUnit(buttons)),
 				new UnitDat(
 				1, 0, new cards.FactoryBuilding(buttons)),
 				new UnitDat(

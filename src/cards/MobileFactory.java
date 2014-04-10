@@ -19,6 +19,7 @@ public class MobileFactory extends CommandCard {
 		btns[3] = earlyAccessToButtons[0];
 		btns[4] = earlyAccessToButtons[1];
 		btns[5] = earlyAccessToButtons[2];
+		btns[6] = earlyAccessToButtons[7];
 	}
 	
 	public boolean movesByPath() {
