@@ -54,7 +54,7 @@ public class Mgr {
 	
 	public Unit getUnit(int x, int y, int facing, int type, int owner, UnitState state){
 		UnitDat d = units[type];
-		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.speed, d.getCC(), state);
+		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.speed, d.getCC(), state, d.canGather);
 	}
 	
 	public void faux_load_data() throws SlickException{

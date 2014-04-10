@@ -1,6 +1,7 @@
 package gui;
 
 import game.Model;
+import game.Player;
 import game.Unit;
 import game.Util;
 
@@ -26,14 +27,16 @@ public class Hud {
 	Collection<Unit> selection;
 	protected CmdSender sender;
 	private PlayerMouse ms;
+	private Player plr;
 	
-	public Hud(Image background, int xPos, int yPos, CmdSender sender){
+	public Hud(Image background, int xPos, int yPos, CmdSender sender, Player plr){
 		selection = null;
 		buttons = new AbstractButton[9];
 		this.background = background;
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.sender = sender;
+		this.plr = plr;
 	}
 	
 	public void setMouse(PlayerMouse ms){
@@ -100,6 +103,7 @@ public class Hud {
 				button.render(game, g);
 			}
 		}
+		g.drawString("Oil : " + Integer.toString(plr.oil), xPos + 2, yPos + 2);
 		//FIXME: Somehow represent the set of selected units, draw a portrait, draw a minimap
 	}
 	

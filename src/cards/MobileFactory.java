@@ -8,7 +8,6 @@ import commands.RequisitionUnit;
 import commands.Teleport;
 import game.Model;
 import game.Unit;
-import gui.Hud;
 import gui.Hud.Button;
 
 public class MobileFactory extends CommandCard {
