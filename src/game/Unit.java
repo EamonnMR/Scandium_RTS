@@ -22,6 +22,7 @@ public class Unit {
 	Queue<UnitState> stateQue;
 	private CommandCard cc;
 	public int owner;
+	private float speed;
 	
 	public void insert(int uid){
 		this.uid = uid;
@@ -46,7 +47,7 @@ public class Unit {
 		this.facing = facing;
 	}
 	
-	public Unit(Sprite s, int facing, int x, int y, int owner, CommandCard cc) {
+	public Unit(Sprite s, int facing, int x, int y, int owner, float speed, CommandCard cc) {
 		this.s = s;
 		this.facing = facing;
 		this.x = x;
@@ -85,6 +86,10 @@ public class Unit {
 
 	public float getRadius() {
 		return 1 + (s.getWidth() / 2);
+	}
+
+	public float getSpeed() {
+		return speed;
 	}
 	
 }

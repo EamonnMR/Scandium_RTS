@@ -78,6 +78,10 @@ public class DummyDataLoaderWithLiterals {
 				loadButtonSpr(
 				"res/graphics/danC/buttons/factory.png"
 				),
+				Mgr.i().loadMultiSpr(
+				"res/graphics/danC/mcv.png",
+				78, 78, 8, 1, -39, -39, 3),
+				//15
 				
 		};
 		sprites = spritesd;
@@ -167,15 +171,18 @@ public class DummyDataLoaderWithLiterals {
 		
 		UnitDat[] unitsd = {
 				new UnitDat(
-				0, new cards.GroundCombatUnit(buttons)),
+				0, 3, new cards.GroundCombatUnit(buttons)),
 				new UnitDat(
-				1, new cards.FactoryBuilding(buttons)),
+				1, 0, new cards.FactoryBuilding(buttons)),
 				new UnitDat(
-				5, new cards.GroundCombatUnit(buttons)),
+				5, 2, new cards.GroundCombatUnit(buttons)),
 				new UnitDat(
-				6, new cards.GroundCombatUnit(buttons)),
+				6, 2, new cards.GroundCombatUnit(buttons)),
 				new UnitDat(
-				10, new cards.Worker(buttons)),
+				10, 2, new cards.Worker(buttons)),
+				//5
+				new UnitDat(
+				14, 2, new cards.MobileFactory(buttons)),
 		};
 		units = unitsd;
 		
