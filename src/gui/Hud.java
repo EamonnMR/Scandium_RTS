@@ -64,7 +64,6 @@ public class Hud {
 	
 	public void changeSelection(Collection<Unit> selection){
 		this.selection = selection;
-		//FIXME: This needs to be reworked until it actually works.
 		if(selection != null && selection.size() > 0){
 			for(int i = 0; i < 9; i++){ //Only one button is implemented.
 				Button currentButton = null;
@@ -92,6 +91,7 @@ public class Hud {
 		if(selection != null){
 			for(Unit i : selection){
 				g.draw(new Circle(i.x + camX, i.y + camY, i.getRadius()));
+				g.drawString(Integer.toString(i.hitPoints), i.x + camX, i.y + camY + i.getRadius());
 			}
 		}
 		background.draw(xPos, yPos);

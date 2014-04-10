@@ -10,7 +10,7 @@ public class ProduceUnit extends UnitState{
 	}
 	@Override
 	public void update(Model m, Unit u) {
-		m.addUnit(data.Mgr.i().getUnit(u.x, u.y, 0, unitType, u.owner));
+		m.addUnit(data.Mgr.i().getUnit(u.x, u.y, 0, unitType, u.owner, new behavior.Idle()));
 		u.nextState();
 	}
 	@Override

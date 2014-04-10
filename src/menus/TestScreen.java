@@ -1,6 +1,7 @@
 package menus;
 
 import game.PathGrid;
+import game.Unit;
 import gui.Hud;
 import net.LocalCmd;
 import net.LocalRcv;
@@ -41,7 +42,21 @@ public class TestScreen extends MenuState {
 				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540, dummyC )
 				);
 		
-		m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 5, 0));
+		//m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 5, 0, new behavior.Idle()));
+	
+		for(int i = 0; i < t.getObjectCount(0); i++){
+			//Preplace starting objects
+			
+			//Place the starting stuff at the start locations
+			if(t.getObjectType(0, i).equals("startloc")){
+				m.addUnit( data.Mgr.i().getUnit(
+						t.getObjectX(0, i),
+						t.getObjectY(0, i),
+						0, 5, 0, 
+						new behavior.Idle()));
+			}
+		}
+		
 		System.out.println("Map loaded successfully");
 		arg1.enterState(6);
 	}

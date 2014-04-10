@@ -74,7 +74,7 @@ public class DummyDataLoaderWithLiterals {
 				30,30,3,1,-14,-14,1),
 				Mgr.i().loadMultiSpr(
 				"res/graphics/danC/wellhead.png",
-				80, 148, 6, 1, 0, -54, 3),
+				80, 148, 6, 1, 0, -68, 3),
 				loadButtonSpr(
 				"res/graphics/danC/buttons/factory.png"
 				),
