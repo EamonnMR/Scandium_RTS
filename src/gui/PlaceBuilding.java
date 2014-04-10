@@ -29,6 +29,7 @@ public abstract class PlaceBuilding extends Mode {
 				}
 			}
 		}
+		g.drawString(tx + "," + ty, Mouse.i().x, Mouse.i().y);
 	}
 
 	public boolean[][] getPlacement(int tx, int ty, Model m, PathGrid pg){
@@ -69,20 +70,7 @@ public abstract class PlaceBuilding extends Mode {
 	public void update(int dt, int camX, int camY, Model m, PathGrid pg,
 			CmdSender sndr, Hud hd, PlayerMouse pm) {
 		
-		tx =  (int) ((int) (Mouse.i().x + camX) / 40.0) ;
-		ty =  (int) ((int) (Mouse.i().y + camY) / 40.0) ;
-		if(tx < 0){
-			tx = 0;
-		} if (tx + getBuildingSize()[0] >= pg.b.length){
-			tx = pg.b.length - getBuildingSize()[0];
-		}
-		if(ty < 0){
-			ty = 0;
-		} if (ty + getBuildingSize()[1] >= pg.b.length){
-			ty = pg.b[0].length - getBuildingSize()[1];
-		}
-		
-		placement = getPlacement(tx, ty, m, pg);
+		getTilePos(camX,camY, pg, m);
 		
 		if(Mouse.i().buttons[1]){
 			pm.defaultMode();
@@ -96,5 +84,22 @@ public abstract class PlaceBuilding extends Mode {
 			Mouse.i().buttons[0] = false;
 			pm.defaultMode();
 		}
+	}
+	
+	private void getTilePos(int camX, int camY, PathGrid pg, Model m){
+		tx =   ((int) (Mouse.i().x + camX) / 40);
+		ty =   ((int) (Mouse.i().y + camY) / 40);
+		
+		if(tx < 0){
+			tx = 0;
+		} else if (tx + getBuildingSize()[0] >= pg.b.length){
+			tx = pg.b.length - getBuildingSize()[0];
+		}
+		if(ty < 0){
+			ty = 0;
+		} else if (ty + getBuildingSize()[1] >= pg.b.length){
+			ty = pg.b[0].length - getBuildingSize()[1];
+		}
+		placement = getPlacement(tx, ty, m, pg);
 	}
 }
