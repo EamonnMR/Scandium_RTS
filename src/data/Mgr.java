@@ -52,7 +52,7 @@ public class Mgr {
 	
 	public Unit getUnit(int x, int y, int facing, int type, int owner){
 		UnitDat d = units[type];
-		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.getCC());
+		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.speed, d.getCC());
 	}
 	
 	public void faux_load_data() throws SlickException{

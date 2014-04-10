@@ -41,8 +41,7 @@ public class TestScreen extends MenuState {
 				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540, dummyC )
 				);
 		
-		m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 1, 0));
-		m.addUnit(data.Mgr.i().getUnit(1000, 300, 0, 1, 0));
+		m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 5, 0));
 		System.out.println("Map loaded successfully");
 		arg1.enterState(6);
 	}
