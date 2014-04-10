@@ -1,5 +1,7 @@
 package gui;
 
+/* Class abandoned. */
+
 import net.CmdSender;
 
 import org.newdawn.slick.Graphics;
