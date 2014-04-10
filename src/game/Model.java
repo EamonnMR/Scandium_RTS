@@ -14,13 +14,14 @@ public class Model {
 	private Map<Integer, Unit> units;
 	int unitCap = 0;
 	Player[] players;
-	int currentPlayer;
 	
-	public Model(PathGrid p, int numplayers, int currentPlayer) {
+	public Model(PathGrid p, int numplayers) {
 		this.p = p;
 		units = new ConcurrentHashMap<Integer, Unit>();
 		players = new Player[numplayers];
-		this.currentPlayer = currentPlayer;
+		for(int i = 0; i < numplayers; i++){
+			players[i] = new Player();
+		}
 	}
 
 	public int addUnit(Unit unit) {
@@ -78,5 +79,13 @@ public class Model {
 	
 	public PathGrid getPg(){
 		return p;
+	}
+
+	public void incrResource(int owner, int i) {
+		players[owner].oil += i;
+	}
+
+	public Player getPlayer(int i) {
+		return players[i];
 	}
 }

@@ -9,5 +9,16 @@
  <objectgroup name="preplaced" width="50" height="50">
   <object name="Player 0 Start" type="startloc" x="997" y="166" width="79" height="53"/>
   <object name="Player 1 Start" type="startloc" x="829" y="1781" width="110" height="77"/>
+  <object name="o1" type="wellhead" x="650" y="1806" width="37" height="32"/>
+  <object name="o2" type="wellhead" x="1086" y="1802" width="29" height="32"/>
+  <object name="o3" type="wellhead" x="818" y="154" width="36" height="39"/>
+  <object name="o4" type="wellhead" x="1189" y="155" width="63" height="35"/>
+  <object name="o5" type="wellhead" x="843" y="1002" width="30" height="29"/>
+  <object name="o6" type="wellhead" x="1033" y="996" width="38" height="32"/>
+  <object name="o7" type="wellhead" x="1217" y="1005" width="52" height="35"/>
+  <object name="O8" type="wellhead" x="171" y="1605" width="40" height="33"/>
+  <object name="O9" type="wellhead" x="1485" y="1603" width="40" height="33"/>
+  <object name="o10" type="wellhead" x="1644" y="357" width="52" height="42"/>
+  <object name="o11" type="wellhead" x="146" y="287" width="44" height="55"/>
  </objectgroup>
 </map>

@@ -18,7 +18,7 @@ import gui.Hud.Button;
  * @author Eamonn
  *
  */
-public abstract class CommandCard {
+public class CommandCard {
 	
 	Hud.Button[] btns;
 	

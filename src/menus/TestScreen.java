@@ -1,7 +1,6 @@
 package menus;
 
 import game.PathGrid;
-import game.Unit;
 import gui.Hud;
 import net.LocalCmd;
 import net.LocalRcv;
@@ -29,7 +28,7 @@ public class TestScreen extends MenuState {
 		// TODO Auto-generated method stub
 		TiledMap t = new TiledMap("res/RageValley.tmx");
 		PathGrid pg = new PathGrid(t);
-		game.Model m = new game.Model(pg, 2, 0);
+		game.Model m = new game.Model(pg, 2);
 		LocalRcv dummyR = new LocalRcv();
 		LocalCmd dummyC = new LocalCmd(dummyR);
 		
@@ -39,7 +38,7 @@ public class TestScreen extends MenuState {
 				new Image("res/graphics/danC/mouse.png"),
 				40, 40, 14, 1, 0, 0, 0), 
 				dummyC, dummyR,
-				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540, dummyC )
+				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540, dummyC, m.getPlayer(0))
 				);
 		
 		//m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 5, 0, new behavior.Idle()));
@@ -48,12 +47,26 @@ public class TestScreen extends MenuState {
 			//Preplace starting objects
 			
 			//Place the starting stuff at the start locations
-			if(t.getObjectType(0, i).equals("startloc")){
+			String type = t.getObjectType(0, i);
+			if(type.equals("startloc")){
 				m.addUnit( data.Mgr.i().getUnit(
 						t.getObjectX(0, i),
 						t.getObjectY(0, i),
 						0, 5, 0, 
 						new behavior.Idle()));
+			} else if(type.equals("wellhead")){
+				int tx =(int) (t.getObjectX(0, i) / 40);
+				int ty =(int) (t.getObjectY(0, i) / 40);
+				pg.p[tx][ty] = false;
+				pg.p[tx][ty+1] = false;
+				pg.p[tx+1][ty] = false;
+				pg.p[tx+1][ty+1] = false;
+				
+				m.addUnit( data.Mgr.i().getUnit(
+						tx * 40,
+						ty * 40,
+						0, 6, 0, 
+						new behavior.Extractor()));
 			}
 		}
 		

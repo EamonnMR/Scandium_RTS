@@ -24,6 +24,7 @@ public class Unit {
 	public int owner;
 	private float speed;
 	public int hitPoints;
+	public boolean canGather;
 	
 	public void insert(int uid){
 		this.uid = uid;
@@ -48,7 +49,7 @@ public class Unit {
 		this.facing = facing;
 	}
 	
-	public Unit(Sprite s, int facing, int x, int y, int owner, float speed, CommandCard cc, UnitState initialState) {
+	public Unit(Sprite s, int facing, int x, int y, int owner, float speed, CommandCard cc, UnitState initialState, boolean canGather) {
 		this.s = s;
 		this.facing = facing;
 		this.x = x;
