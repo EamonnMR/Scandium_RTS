@@ -162,6 +162,10 @@ public class PlayerMouse {
 			x = screenX - 40;
 			y = 0;
 			break;
+		}case(12):{
+			if(y < hd.getMaxY()){
+				return;
+			}
 		}
 		}
 		mouseSpr.draw(mouseState, x, y);
