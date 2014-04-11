@@ -1,25 +1,32 @@
 package behavior;
 
-import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Rectangle;
 
 import game.Model;
 import game.Unit;
 
 public class Extractor extends UnitState {
 
-	int animationTimer = 0;
-	int animationTick = 10;
+	int animationTimer;
+	final int animationTick = 200;
 	boolean gathering = false;
-	int animationState = 0;
-	int maxAnimState = 4;
+	int animationState;
+	final int maxAnimState = 9;
+	
+	public Extractor(){
+		animationTimer = 0;
+		animationState = 0;
+	}
+	
 	
 	@Override
 	public void update(Model m, Unit u) {
-		for(Unit uni : m.areaQuerey(new Circle(u.x, u.y,100000))){
+		//Note that the circle center constants are heresy.
+		for(Unit uni : m.areaQuerey(new Rectangle(u.x - 40, u.y - 40,160, 160))){
 			if(uni.canGather){
 				m.incrResource(u.owner, 1);
 				gathering = true;
-				break;
+				return;
 				//This needs to be set up so that two gatherers of opposing players cancel eachother out.
 			}
 		}
@@ -36,7 +43,13 @@ public class Extractor extends UnitState {
 				if(animationState >= maxAnimState){
 					animationState = 0;
 				}
-				u.setFacing(animationState);
+				//Make the animation play back and fourth-hacky
+				//but it's the only animation in the game, so ...
+				if(animationState > 4){
+					u.setFacing(9 - animationState);
+				} else {
+					u.setFacing(animationState);
+				}
 			}
 		}
 	}
