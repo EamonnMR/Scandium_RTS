@@ -94,9 +94,11 @@ public class PlayState extends BasicGameState{
 			}
 			timer = 0;
 			h.freeUpdate(m); //Make sure at least one freeUpdate happens per update.
+			m.freeUpdate(dt);
 		}
 		h.freeUpdate(m);
 		playerAgent.freeUpdate(dt, camX, camY, m, pg, sndr, this);
+		m.freeUpdate(dt);
 	}
 	
 

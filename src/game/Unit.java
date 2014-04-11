@@ -58,6 +58,7 @@ public class Unit {
 		this.cc = cc;
 		stateQue = new LinkedList<UnitState>();
 		this.owner = owner;
+		this.canGather = canGather;
 	}
 	public void updateTick(Model parent){
 		state.update(parent, this);

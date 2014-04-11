@@ -32,7 +32,7 @@ public class Model {
 		return uid;
 	}
 	public void tickUpdate(int dt, List<Command> cmds){
-		test_move_cmds(cmds);
+		dispatchCmds(cmds);
 		//Thanks for explaining this one StackOverflow...
 		for(Iterator<Unit> i = units.values().iterator(); i.hasNext();){
 			i.next().updateTick(this);
@@ -60,7 +60,7 @@ public class Model {
 	}
 	
 
-	private void test_move_cmds(List<Command> cmds) {
+	private void dispatchCmds(List<Command> cmds) {
 		if(cmds != null){
 			for(Command cmd : cmds){
 				int[] unitz = cmd.getUnits();
@@ -87,5 +87,12 @@ public class Model {
 
 	public Player getPlayer(int i) {
 		return players[i];
+	}
+	
+	public void freeUpdate(int dt){
+		//Thanks for explaining this one StackOverflow...
+		for(Iterator<Unit> i = units.values().iterator(); i.hasNext();){
+			i.next().updateIntermediate(this, dt);
+		}
 	}
 }
