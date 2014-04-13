@@ -98,19 +98,19 @@ public class DummyDataLoaderWithLiterals {
 				(new Hud.Button(){
 					@Override
 					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
-						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(0)));
+						tryRequisition(h, c, 0);
 					}
 					}).setSpr(sprites[2][0]),
 				(new Hud.Button(){
 					@Override
 					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
-						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(2)));
+						tryRequisition(h, c, 2);
 					}
 					}).setSpr(sprites[3][0]),
 				(new Hud.Button(){
 					@Override
 					public void pressed(Hud h, CmdSender c,gui.PlayerMouse ms) {
-						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(3)));
+						tryRequisition(h, c, 3);
 					}
 					}).setSpr(sprites[4][0]),
 				(new Hud.Button(){
@@ -146,7 +146,7 @@ public class DummyDataLoaderWithLiterals {
 				(new Hud.Button(){
 					@Override
 					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
-						c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(4)));
+						tryRequisition(h, c, 4);
 					}
 					}).setSpr(sprites[9][0]),
 				(new Hud.Button(){
@@ -171,31 +171,30 @@ public class DummyDataLoaderWithLiterals {
 					(new Hud.Button(){
 						@Override
 						public void pressed(Hud h, CmdSender c,gui.PlayerMouse ms) {
-							c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(5)));
+							tryRequisition(h, c, 5);
 						}
 						}).setSpr(sprites[15][0]),
 				
 		};
 		buttons = buttonsd;
 		
-		
 		UnitDat[] unitsd = {
 				new UnitDat(
-				0, 4, new cards.GroundCombatUnit(buttons), false),
+				0, 4, new cards.GroundCombatUnit(buttons), false, 100),
 				new UnitDat(
-				1, 0, new cards.FactoryBuilding(buttons), false),
+				1, 0, new cards.FactoryBuilding(buttons), false, 0),
 				new UnitDat(
-				5, 2, new cards.GroundCombatUnit(buttons), false),
+				5, 2, new cards.GroundCombatUnit(buttons), false, 200),
 				new UnitDat(
-				6, 2, new cards.GroundCombatUnit(buttons), false),
+				6, 2, new cards.GroundCombatUnit(buttons), false, 250),
 				new UnitDat(
-				10, 2, new cards.Worker(buttons), false),
+				10, 2, new cards.Worker(buttons), false, 0),
 				//5
 				new UnitDat(
-				14, 2, new cards.MobileFactory(buttons), true),
+				14, 2, new cards.MobileFactory(buttons), true, 1000),
 				
 				new UnitDat(
-				12, 0, new cards.CommandCard(buttons), false)
+				12, 0, new cards.CommandCard(buttons), false, 0)
 		};
 		units = unitsd;
 		
@@ -205,5 +204,13 @@ public class DummyDataLoaderWithLiterals {
 		return Mgr.i().loadMultiSpr(
 				buttonFile,
 				42, 42, 3, 1, 0, 0, 1);
+	}
+	
+	public static void tryRequisition(Hud h, CmdSender c, int reqUnit){
+		if(h.plr.oil >= Mgr.i().units[reqUnit].price){
+			c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(reqUnit)));
+		} else {
+			//Play the "not enough oil" sound
+		}
 	}
 }

@@ -9,6 +9,7 @@ import cards.CommandCard;
 import commands.Instruction;
 import behavior.UnitState;
 import data.Sprite;
+import data.UnitDat;
 
 public class Unit {
 	Sprite s;
@@ -25,6 +26,7 @@ public class Unit {
 	private float speed;
 	public int hitPoints;
 	public boolean canGather;
+	public UnitDat dat;
 	
 	public void insert(int uid){
 		this.uid = uid;
@@ -49,7 +51,7 @@ public class Unit {
 		this.facing = facing;
 	}
 	
-	public Unit(Sprite s, int facing, int x, int y, int owner, float speed, CommandCard cc, UnitState initialState, boolean canGather) {
+	public Unit(Sprite s, int facing, int x, int y, int owner, float speed, CommandCard cc, UnitState initialState, boolean canGather, UnitDat dat) {
 		this.s = s;
 		this.facing = facing;
 		this.x = x;
@@ -59,6 +61,7 @@ public class Unit {
 		stateQue = new LinkedList<UnitState>();
 		this.owner = owner;
 		this.canGather = canGather;
+		this.dat = dat;
 	}
 	public void updateTick(Model parent){
 		state.update(parent, this);
