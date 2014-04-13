@@ -27,7 +27,7 @@ public class Hud {
 	Collection<Unit> selection;
 	protected CmdSender sender;
 	private PlayerMouse ms;
-	private Player plr;
+	public Player plr;
 	
 	public Hud(Image background, int xPos, int yPos, CmdSender sender, Player plr){
 		selection = null;

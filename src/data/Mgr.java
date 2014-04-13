@@ -19,7 +19,7 @@ import behavior.UnitState;
 public class Mgr {
 	public Properties cfg, ports;
 	private Sprite[][] sprites;
-	private UnitDat[] units;
+	public UnitDat[] units;
 	private Hud.Button[] buttons;
 
 	public void loadInis() throws FileNotFoundException, IOException{
@@ -54,7 +54,7 @@ public class Mgr {
 	
 	public Unit getUnit(int x, int y, int facing, int type, int owner, UnitState state){
 		UnitDat d = units[type];
-		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.speed, d.getCC(), state, d.canGather);
+		return new Unit(sprites[d.sprite][owner], facing, x, y, owner, d.speed, d.getCC(), state, d.canGather, d);
 	}
 	
 	public void faux_load_data() throws SlickException{
