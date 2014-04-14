@@ -6,6 +6,7 @@ import game.Unit;
 import game.Util;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import menus.AbstractButton;
 import menus.SpriteButton;
@@ -30,7 +31,7 @@ public class Hud {
 	public Player plr;
 	
 	public Hud(Image background, int xPos, int yPos, CmdSender sender, Player plr){
-		selection = null;
+		selection = new LinkedList<Unit>();
 		buttons = new AbstractButton[9];
 		this.background = background;
 		this.xPos = xPos;
@@ -65,28 +66,53 @@ public class Hud {
 		}
 	}
 	
-	public void changeSelection(Collection<Unit> selection){
-		this.selection = selection;
-		if(selection != null && selection.size() > 0){
-			for(int i = 0; i < 9; i++){ //Only one button is implemented.
-				Button currentButton = null;
-				boolean first = true;
-				for(Unit u : selection){
-					if(first){
-						currentButton =  u.getButton(i);
-						first = false;
-					} else {
-						if(currentButton != u.getButton(i)){
-							currentButton = null;
-						}
+	public void changeSelection(Collection<Unit> trySelection){
+		
+		if(trySelection.size() == 1){ //Player selected exactly one unit
+			for(Unit i : trySelection){
+				this.selection = trySelection;
+				if(i.owner == plr.getIndex()){ //Different owner
+					setupButtons();
+				} else {
+					clearButtons();
+				}
+			}
+		} else { //Player has selected multiple units; ignore enemey units in selection.
+			this.selection = new LinkedList<Unit>();
+			for(Unit i : trySelection){
+				if(i.owner == plr.getIndex()){ //Different owner
+					this.selection.add(i);
+				}
+			}
+			if(selection.size() > 0){
+				setupButtons();
+			} else {
+				clearButtons();
+			}
+		}
+	}
+	
+	public void setupButtons(){
+		for(int i = 0; i < 9; i++){ 
+			Button currentButton = null;
+			boolean first = true;
+			for(Unit u : selection){
+				if(first){
+					currentButton =  u.getButton(i);
+					first = false;
+				} else {
+					if(currentButton != u.getButton(i)){
+						currentButton = null;
 					}
 				}
-				buttons[i] =  makeHudButton(i, currentButton);
 			}
-		} else {
-			for(int i = 0; i < 9; i++){
-				buttons[i] = null;
-			}
+			buttons[i] =  makeHudButton(i, currentButton);
+		}
+	}
+	
+	public void clearButtons(){
+		for(int i = 0; i < 9; i++){
+			buttons[i] = null;
 		}
 	}
 	
