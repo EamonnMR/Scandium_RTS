@@ -20,7 +20,7 @@ public class Model {
 		units = new ConcurrentHashMap<Integer, Unit>();
 		players = new Player[numplayers];
 		for(int i = 0; i < numplayers; i++){
-			players[i] = new Player();
+			players[i] = new Player(i);
 		}
 	}
 

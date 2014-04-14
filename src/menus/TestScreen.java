@@ -28,7 +28,7 @@ public class TestScreen extends MenuState {
 		// TODO Auto-generated method stub
 		TiledMap t = new TiledMap("res/RageValley.tmx");
 		PathGrid pg = new PathGrid(t);
-		game.Model m = new game.Model(pg, 2);
+		game.Model m = new game.Model(pg, 3);
 		LocalRcv dummyR = new LocalRcv();
 		LocalCmd dummyC = new LocalCmd(dummyR);
 		
@@ -38,21 +38,25 @@ public class TestScreen extends MenuState {
 				new Image("res/graphics/danC/mouse.png"),
 				40, 40, 14, 1, 0, 0, 0), 
 				dummyC, dummyR,
-				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540, dummyC, m.getPlayer(0))
+				new Hud(new Image("res/graphics/danC/GUI.png"), 0, 540, dummyC, m.getPlayer(1))
 				);
+	
 		
 		//m.addUnit(data.Mgr.i().getUnit(1000, 160, 0, 5, 0, new behavior.Idle()));
 	
+		int playerNum = 0;
+		
 		for(int i = 0; i < t.getObjectCount(0); i++){
 			//Preplace starting objects
 			
 			//Place the starting stuff at the start locations
 			String type = t.getObjectType(0, i);
 			if(type.equals("startloc")){
+				playerNum ++;
 				m.addUnit( data.Mgr.i().getUnit(
 						t.getObjectX(0, i),
 						t.getObjectY(0, i),
-						0, 5, 0, 
+						0, 5, playerNum, 
 						new behavior.Idle()));
 			} else if(type.equals("wellhead")){
 				int tx =(int) (t.getObjectX(0, i) / 40);

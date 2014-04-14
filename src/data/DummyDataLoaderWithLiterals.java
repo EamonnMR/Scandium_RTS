@@ -174,7 +174,6 @@ public class DummyDataLoaderWithLiterals {
 							tryRequisition(h, c, 5);
 						}
 						}).setSpr(sprites[15][0]),
-				
 		};
 		buttons = buttonsd;
 		
