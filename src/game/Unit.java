@@ -63,7 +63,7 @@ public class Unit {
 		this.canGather = canGather;
 		this.dat = dat;
 	}
-	public void updateTick(Model parent){
+	strictfp public void updateTick (Model parent){
 		state.update(parent, this);
 	}
 	public void updateIntermediate(Model parent, int dt){
