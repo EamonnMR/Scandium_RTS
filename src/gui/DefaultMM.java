@@ -72,7 +72,9 @@ public class DefaultMM extends PlayerMouse.Mode{
 				mouseRight = Mouse.i().buttons[1];
 			} else if(Mouse.i().buttons[1]){
 				mouseRight = true;
-				Util.issueMoveCmd(Mouse.i().x - camX, Mouse.i().y - camY, m, pg,  hd.getSelectedUnits(), sndr);
+				if(hd.isSelectionOwned()){
+					Util.issueMoveCmd(Mouse.i().x - camX, Mouse.i().y - camY, m, pg,  hd.getSelectedUnits(), sndr);
+				}
 			}
 		} else {
 			isDragging = false;

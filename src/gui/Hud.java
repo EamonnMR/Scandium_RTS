@@ -29,6 +29,7 @@ public class Hud {
 	protected CmdSender sender;
 	private PlayerMouse ms;
 	public Player plr;
+	private boolean ownership;
 	
 	public Hud(Image background, int xPos, int yPos, CmdSender sender, Player plr){
 		selection = new LinkedList<Unit>();
@@ -38,6 +39,7 @@ public class Hud {
 		this.yPos = yPos;
 		this.sender = sender;
 		this.plr = plr;
+		ownership = false;
 	}
 	
 	public void setMouse(PlayerMouse ms){
@@ -71,23 +73,27 @@ public class Hud {
 		if(trySelection.size() == 1){ //Player selected exactly one unit
 			for(Unit i : trySelection){
 				this.selection = trySelection;
-				if(i.owner == plr.getIndex()){ //Different owner
+				if(i.owner == plr.getIndex()){
 					setupButtons();
+					ownership = true;
 				} else {
 					clearButtons();
+					ownership = false;
 				}
 			}
 		} else { //Player has selected multiple units; ignore enemey units in selection.
 			this.selection = new LinkedList<Unit>();
 			for(Unit i : trySelection){
-				if(i.owner == plr.getIndex()){ //Different owner
+				if(i.owner == plr.getIndex()){
 					this.selection.add(i);
 				}
 			}
 			if(selection.size() > 0){
 				setupButtons();
+				ownership = true;
 			} else {
 				clearButtons();
+				ownership = false;
 			}
 		}
 	}
@@ -180,6 +186,10 @@ public class Hud {
 			dat.pressed(Hud.this, sender, ms);
 		}
 		
+	}
+
+	public boolean isSelectionOwned(){
+		return ownership;
 	}
 	
 	public RealizedButton makeHudButton(int index, Button btn){
