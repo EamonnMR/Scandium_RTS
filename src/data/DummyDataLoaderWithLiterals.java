@@ -209,7 +209,7 @@ public class DummyDataLoaderWithLiterals {
 		if(h.plr.oil >= Mgr.i().units[reqUnit].price){
 			c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(reqUnit)));
 		} else {
-			//Play the "not enough oil" sound
+			System.out.println("Not enough oil");
 		}
 	}
 }

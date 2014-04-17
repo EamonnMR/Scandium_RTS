@@ -21,10 +21,9 @@ public class Extractor extends UnitState {
 	
 	@Override
 	public void update(Model m, Unit u) {
-		//Note that the circle center constants are heresy.
 		for(Unit uni : m.areaQuerey(new Rectangle(u.x - 40, u.y - 40,160, 160))){
 			if(uni.canGather){
-				m.incrResource(u.owner, 1);
+				m.incrResource(uni.owner, 1);
 				gathering = true;
 				return;
 				//This needs to be set up so that two gatherers of opposing players cancel eachother out.
@@ -35,6 +34,9 @@ public class Extractor extends UnitState {
 
 	@Override
 	public void updateInterm(Model m, Unit u, int dt) {
+		/*
+		 * This animates the unit.
+		 */
 		if(gathering){
 			animationTimer += dt;
 			while(animationTimer >= animationTick){
