@@ -41,7 +41,7 @@ public class Util {
 			}
 			
 			sndr.rcv(new commands.Command(Util.unitListToUIDArray(directPathUnits),
-					new commands.Teleport(x , y)
+					new commands.Relocate(x , y)
 			));
 		}
 	}

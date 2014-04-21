@@ -5,7 +5,7 @@ import org.newdawn.slick.util.pathfinding.Path;
 import behavior.ProduceUnit;
 import commands.Instruction;
 import commands.RequisitionUnit;
-import commands.Teleport;
+import commands.Relocate;
 import game.Model;
 import game.Unit;
 import gui.Hud.Button;
@@ -27,8 +27,8 @@ public class MobileFactory extends CommandCard {
 
 	@Override
 public void actuate(Instruction cmd, Unit u, Model m) {
-		if(cmd.getClass() == Teleport.class){
-			Teleport move = (Teleport) cmd;
+		if(cmd.getClass() == Relocate.class){
+			Relocate move = (Relocate) cmd;
 			Path path = m.p.getPath(Math.round((u.x) / 40), Math.round((u.y)/40), Math.round(move.getX() / 40), Math.round(move.getY()/40));
 			if( path == null ){
 				System.out.println("path was null");
