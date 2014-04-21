@@ -1,15 +1,15 @@
 package commands;
 
-public class Teleport extends Instruction {
+public class Relocate extends Instruction {
 
 	int x, y;
 	
-	public Teleport(int x, int y) {
+	public Relocate(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 	
-	public Teleport(String code){
+	public Relocate(String code){
 		String c = "";
 		String num = "";
 		while(!c.equals(",")){

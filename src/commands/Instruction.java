@@ -10,11 +10,12 @@ public abstract class Instruction {
 	public static Instruction fromCode(String code) {
 		switch(Integer.parseInt(code.substring(0,3))){
 		case 0:{
-			return new Teleport(code.substring(3));
+			return new Relocate(code.substring(3));
 		}
 		case 1:{
 			return new RequisitionUnit(code.substring(3));
 		}
+		case 2:
 		default:
 			System.out.println("Passed bad instr" + code.substring(0,3));
 			return null;
