@@ -11,30 +11,7 @@ public class Relocate extends Instruction {
 		this.x = x;
 		this.y = y;
 	}
-	
-	public Relocate(String code){
-		String c = "";
-		String num = "";
-		while(!c.equals(",")){
-			num += c;
-			c = code.substring(0,1);
-			code = code.substring(1);
-		}
-		c = "";
-		x = Integer.parseInt(num);
-		num = "";
-		while(!c.equals(";")){
-			num += c;
-			c = code.substring(0,1);
-			code = code.substring(1);
-		}
-		y = Integer.parseInt(num);
-	}
 
-	@Override
-	String toCode() {
-		return 0 + ":" + x + "," +  y; //Should I add a ';' at the end of this?
-	}
 
 	public int getX() {
 		return x;
