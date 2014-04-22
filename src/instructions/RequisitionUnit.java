@@ -1,5 +1,8 @@
 package instructions;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 public class RequisitionUnit extends Instruction{
 	public int unitToProduce;
 
@@ -22,5 +25,12 @@ public class RequisitionUnit extends Instruction{
 	@Override
 	String toCode() {
 		return 1 + ":" + unitToProduce;
+	}
+	
+	public Collection<? extends Integer> toInts() {
+		LinkedList<Integer> toSender = new LinkedList<Integer>();
+		toSender.add(2);
+		toSender.add(unitToProduce);
+		return toSender;
 	}
 }
