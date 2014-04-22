@@ -1,11 +1,12 @@
 package cards;
 
+import instructions.Instruction;
+import instructions.Relocate;
+import instructions.RequisitionUnit;
+
 import org.newdawn.slick.util.pathfinding.Path;
 
 import behavior.ProduceUnit;
-import commands.Instruction;
-import commands.RequisitionUnit;
-import commands.Relocate;
 import game.Model;
 import game.Unit;
 import gui.Hud.Button;

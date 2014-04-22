@@ -1,4 +1,4 @@
-package commands;
+package instructions;
 
 public class Relocate extends Instruction {
 

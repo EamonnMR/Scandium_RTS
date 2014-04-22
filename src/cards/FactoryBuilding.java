@@ -1,11 +1,11 @@
 package cards;
 
+import instructions.Instruction;
+import instructions.RequisitionUnit;
 import game.Model;
 import game.Unit;
 import gui.Hud;
 import behavior.ProduceUnit;
-import commands.Instruction;
-import commands.RequisitionUnit;
 
 public class FactoryBuilding extends CommandCard{
 	

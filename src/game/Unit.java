@@ -1,12 +1,12 @@
 package game;
 
 import gui.Hud;
+import instructions.Instruction;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import cards.CommandCard;
-import commands.Instruction;
 import behavior.UnitState;
 import data.Sprite;
 import data.UnitDat;

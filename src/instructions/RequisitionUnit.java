@@ -1,4 +1,4 @@
-package commands;
+package instructions;
 
 public class RequisitionUnit extends Instruction{
 	public int unitToProduce;

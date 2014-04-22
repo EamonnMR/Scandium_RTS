@@ -1,10 +1,10 @@
 package data;
 
+import instructions.Command;
 import net.CmdSender;
 
 import org.newdawn.slick.SlickException;
 
-import commands.Command;
 import game.Model;
 import game.PathGrid;
 import game.Util;
@@ -163,7 +163,7 @@ public class DummyDataLoaderWithLiterals {
 
 										@Override
 										public void placeBuilding(CmdSender sndr, int[] units) {
-											sndr.rcv(new Command( units, new commands.RequisitionUnit(1) ));
+											sndr.rcv(new Command( units, new instructions.RequisitionUnit(1) ));
 										}
 									}.setSpr(sprites[11][0]));
 						}
@@ -207,7 +207,7 @@ public class DummyDataLoaderWithLiterals {
 	
 	public static void tryRequisition(Hud h, CmdSender c, int reqUnit){
 		if(h.plr.oil >= Mgr.i().units[reqUnit].price){
-			c.rcv(new Command(h.getSelectedUnits(), new commands.RequisitionUnit(reqUnit)));
+			c.rcv(new Command(h.getSelectedUnits(), new instructions.RequisitionUnit(reqUnit)));
 		} else {
 			System.out.println("Not enough oil");
 		}

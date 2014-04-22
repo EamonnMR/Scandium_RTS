@@ -1,13 +1,13 @@
 package net;
 
+import instructions.Command;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import commands.Command;
 
 public class ClientTransciever extends net.CmdSender implements net.Reciever{
 

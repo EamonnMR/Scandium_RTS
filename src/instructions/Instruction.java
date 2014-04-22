@@ -1,4 +1,4 @@
-package commands;
+package instructions;
 
 /**
  * This class has two distinct functions: one is to act as a base class
