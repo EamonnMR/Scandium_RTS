@@ -9,21 +9,7 @@ import java.util.List;
  */
 
 public abstract class Instruction {
-	abstract String toCode();
-	public static Instruction fromCode(String code) {
-		switch(Integer.parseInt(code.substring(0,3))){
-		case 0:{
-			return new Relocate(code.substring(3));
-		}
-		case 1:{
-			return new RequisitionUnit(code.substring(3));
-		}
-		case 2:
-		default:
-			System.out.println("Passed bad instr" + code.substring(0,3));
-			return null;
-		}
-	}
+
 	public static Instruction fromInts(List<Integer> inp) {
 		int opcode = inp.remove(0);
 		switch(opcode){
