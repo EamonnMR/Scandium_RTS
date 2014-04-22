@@ -1,8 +1,8 @@
 package net;
 
-import java.util.List;
+import instructions.Command;
 
-import commands.Command;
+import java.util.List;
 
 /**
  * In this very simple class, we fake an outgoing stream of net information, 

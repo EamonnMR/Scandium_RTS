@@ -1,10 +1,10 @@
 package net;
 
+import instructions.Command;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
-import commands.Command;
 
 /**
  * This is where commands are sent to be transmitted to the server.

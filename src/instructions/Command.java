@@ -1,4 +1,4 @@
-package commands;
+package instructions;
 
 import java.util.LinkedList;
 

@@ -50,7 +50,7 @@ public class CommandCard {
 		return 0;
 	}
 	
-	public void actuate(commands.Instruction cmd, Unit u, Model m){
+	public void actuate(instructions.Instruction cmd, Unit u, Model m){
 		
 	}
 	

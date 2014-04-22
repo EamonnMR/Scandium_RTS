@@ -40,8 +40,8 @@ public class Util {
 				}
 			}
 			
-			sndr.rcv(new commands.Command(Util.unitListToUIDArray(directPathUnits),
-					new commands.Relocate(x , y)
+			sndr.rcv(new instructions.Command(Util.unitListToUIDArray(directPathUnits),
+					new instructions.Relocate(x , y)
 			));
 		}
 	}

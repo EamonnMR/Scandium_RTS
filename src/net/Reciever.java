@@ -9,5 +9,5 @@ import java.util.List;
  *
  */
 public interface Reciever {
-	public abstract List<commands.Command>getLatestCommands();
+	public abstract List<instructions.Command>getLatestCommands();
 }
