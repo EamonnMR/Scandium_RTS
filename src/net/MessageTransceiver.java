@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class MessageTransceiver {
 		os = new DataOutputStream(sock.getOutputStream());
 	}
 	
-	public void transMsg(List<Integer> msg) throws IOException{
+	public void transMsg(Collection<Integer> msg) throws IOException{
 		os.writeInt(msg.size());
 		for(Integer i : msg){
 			os.writeInt(i);
