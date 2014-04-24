@@ -17,12 +17,14 @@ import java.util.List;
  * @author Eamonn
  *
  */
-public class MessageTransceiver {
+public class MessageTransceiver implements java.lang.AutoCloseable{
 	DataInputStream is;
 	DataOutputStream os;
+	Socket sock;
 	public MessageTransceiver(Socket sock) throws IOException{
 		is = new DataInputStream(sock.getInputStream());
 		os = new DataOutputStream(sock.getOutputStream());
+		this.sock = sock;
 	}
 	
 	public void transMsg(Collection<Integer> msg) throws IOException{
@@ -39,6 +41,11 @@ public class MessageTransceiver {
 			toSender.add(is.readInt());
 		}
 		return toSender;
+	}
+
+	@Override
+	public void close() throws Exception {
+		sock.close();
 	}
 	
 }
