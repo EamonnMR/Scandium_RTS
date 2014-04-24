@@ -20,6 +20,7 @@ public class ServerCore {
 	public synchronized void submit(Collection<Integer> c){
 		fullMessage.addAll(c);
 		nSub++;
+		System.out.println("Message Submitted; nSub = " + nSub);
 		if(nSub == total){
 			nSub = 0;
 			state = false;
@@ -33,6 +34,7 @@ public class ServerCore {
 	public synchronized Collection<Integer> getFullMsg(){
 		Collection<Integer> toSender = fullMessage;
 		nGot++;
+		System.out.println("Got message; nGot = " + nGot);
 		if(nGot == total){
 			nGot = 0;
 			state = true;

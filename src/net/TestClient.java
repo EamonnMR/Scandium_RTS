@@ -30,18 +30,19 @@ public class TestClient {
 	 */
 	private static void sunsUglyTestCode(String hostName, int portNumber) {
 		try (
-	              /*Socket echoSocket = new Socket(hostName, portNumber);
+	              Socket echoSocket = new Socket(hostName, portNumber);
 	    		  MessageTransceiver transcv = 
-	    			  new MessageTransceiver( new Socket(hostName, portNumber) );*/
+	    			  new MessageTransceiver( new Socket(hostName, portNumber) );
 	              BufferedReader stdIn =
 	                  new BufferedReader(
 	                      new InputStreamReader(System.in))
 	          ) {
 	              String userInput;
-	              while ((userInput = stdIn.readLine()) != null) {
-	                  //transcv.transMsg(fmtIn(userInput));
-	                  //System.out.println(fmtOut(transcv.rcvMsg()));
-	            	  System.out.println(fmtOut(fmtIn(userInput)));
+	              while ((userInput = stdIn.readLine()) != null){
+	            	  System.out.println("Sending message:" +  fmtOut(fmtIn(userInput)));
+	                  transcv.transMsg(fmtIn(userInput));
+	                  System.out.println(fmtOut(transcv.rcvMsg()));
+	            	  //System.out.println(fmtOut(fmtIn(userInput)));
 	              }
 	          } catch (UnknownHostException e) {
 	              System.err.println("Don't know about host " + hostName);
@@ -56,7 +57,7 @@ public class TestClient {
 	        	System.exit(1);
 		} 
 	}
-	private static String fmtOut(Collection<Integer> collection) {
+	public static String fmtOut(Collection<Integer> collection) {
 		String toSender = "(" + collection.size() + ") ";
 		for(int i : collection){
 			toSender += i;
