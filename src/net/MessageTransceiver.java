@@ -36,11 +36,20 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 	}
 	
 	public List<Integer> rcvMsg() throws IOException{
-		List<Integer> toSender = new LinkedList<Integer>();
+		/*List<Integer> toSender = new LinkedList<Integer>();
 		for(int i = 0; i < is.readInt(); i++){
 			toSender.add(is.readInt());
 		}
+		return toSender;*/
+		
+		List<Integer> toSender = new LinkedList<Integer>();
+		int msgSize = is.readInt();
+		System.out.println("Reading message: Size = " + msgSize);
+		for(int i = 0; i < msgSize; i++){
+			toSender.add(is.readInt());
+		}
 		return toSender;
+		
 	}
 
 	@Override

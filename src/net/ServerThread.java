@@ -16,6 +16,7 @@ public class ServerThread implements Runnable{
 	
 	@Override
 	public void run() {
+		System.out.println("Running server thread");
 		while(true){
 			recieve();
 			waitForOthers();
@@ -26,6 +27,7 @@ public class ServerThread implements Runnable{
 	private void waitForOthers() {
 		while(core.waiting()){
 			try {
+				System.out.println("Thread sleeping");
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -42,12 +44,15 @@ public class ServerThread implements Runnable{
 		*/
 		Collection<Integer> msg;
 		try {
+			System.out.println("Awaiting message");
 			msg = trans.rcvMsg();
+			System.out.println("Recieved msg: " + TestClient.fmtOut(msg));
 			core.submit(msg);
 		} catch (IOException e) {
 			// If msg.rcvMsg fails to return,
 			// all might be lost. Treat any info
 			// sent as lost.
+			System.out.println("Skipped message");
 			e.printStackTrace();
 			core.submit(new ArrayList<Integer>());
 		}
