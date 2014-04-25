@@ -29,10 +29,11 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 	
 	public void transMsg(Collection<Integer> msg) throws IOException{
 		os.writeInt(msg.size());
+		System.out.println("Sending message....");
 		for(Integer i : msg){
 			os.writeInt(i);
 		}
-		os.flush(); //Just in case
+		//os.flush(); //Just in case
 	}
 	
 	public List<Integer> rcvMsg() throws IOException{
@@ -43,6 +44,7 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 		return toSender;*/
 		
 		List<Integer> toSender = new LinkedList<Integer>();
+		System.out.println("Awaiting message");
 		int msgSize = is.readInt();
 		System.out.println("Reading message: Size = " + msgSize);
 		for(int i = 0; i < msgSize; i++){
@@ -54,6 +56,7 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 
 	@Override
 	public void close() throws Exception {
+		System.out.println("Socket closed");
 		sock.close();
 	}
 	
