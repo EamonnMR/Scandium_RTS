@@ -40,20 +40,22 @@ public class ThreadlessServer {
 				System.out.println("Cannot connect to client on port " + ports.get(Integer.toString(i)));
 			}
 		}
+		/*
 		//FIXME: Does this un-screwup the code?
-		
 		List<Integer> lst = new LinkedList<Integer>();
 		lst.add(0);
 		for(Connection i: con){
 			i.sendMsgs(lst);
-		}
+		}*/
 		
 		while(true){
 			msg =  new LinkedList<Integer>();
 			for(Connection i : con){
+				System.out.println("Calling getMsg");
 				processMsg(i.getMsg(), i);
 			}
 			//Now that processing is complete...
+			
 			for(Connection i: con){
 				i.sendMsgs(msg);
 			}			
@@ -95,6 +97,5 @@ public class ThreadlessServer {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 }
