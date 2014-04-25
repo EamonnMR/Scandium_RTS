@@ -1,7 +1,6 @@
 package net;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class ServerThread implements Runnable{
@@ -44,7 +43,6 @@ public class ServerThread implements Runnable{
 		*/
 		Collection<Integer> msg;
 		try {
-			System.out.println("Awaiting message");
 			msg = trans.rcvMsg();
 			System.out.println("Recieved msg: " + TestClient.fmtOut(msg));
 			core.submit(msg);
@@ -52,9 +50,12 @@ public class ServerThread implements Runnable{
 			// If msg.rcvMsg fails to return,
 			// all might be lost. Treat any info
 			// sent as lost.
-			System.out.println("Skipped message");
+			/*System.out.println("Skipped message");
 			e.printStackTrace();
-			core.submit(new ArrayList<Integer>());
+			core.submit(new ArrayList<Integer>());*/
+			
+			//Disconnect-game over ?
+			System.exit(1);
 		}
 	}
 	

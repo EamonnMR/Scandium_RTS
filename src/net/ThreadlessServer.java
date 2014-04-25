@@ -1,12 +1,10 @@
 package net;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
-import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 /*
@@ -17,7 +15,7 @@ import java.util.Properties;
 
 public class ThreadlessServer {
 	
-	private static String msg;
+	private static List<Integer> msg;
 
 	public static void main(String[] args){
 		try {
@@ -43,12 +41,15 @@ public class ThreadlessServer {
 			}
 		}
 		//FIXME: Does this un-screwup the code?
+		
+		List<Integer> lst = new LinkedList<Integer>();
+		lst.add(0);
 		for(Connection i: con){
-			i.sendMsgs("");
+			i.sendMsgs(lst);
 		}
 		
 		while(true){
-			msg = "";
+			msg =  new LinkedList<Integer>();
 			for(Connection i : con){
 				processMsg(i.getMsg(), i);
 			}
@@ -59,27 +60,25 @@ public class ThreadlessServer {
 		}
 	}
 	
-	private static void processMsg(String inp, Connection i) {
-		msg += inp;
+	private static void processMsg(List<Integer> list, Connection i) {
+		msg.addAll(list);
 	}
 
 	private static class Connection{
-		Socket sock;
-		public int port;
-		PrintWriter out;
-		BufferedReader in; 
+		
+		MessageTransceiver con;
+		int port;
+		
 		@SuppressWarnings("resource")
 		public Connection(int port) throws IOException{
 			//FIXME: Put this into a thread
 			this.port = port;
-			sock = new ServerSocket(port).accept();
-			out = new PrintWriter( sock.getOutputStream(), true);
-			in = new BufferedReader( new InputStreamReader( sock.getInputStream()));
+			con = new MessageTransceiver( new ServerSocket(port).accept());
 		}
 		
-		public String getMsg(){
+		public List<Integer> getMsg(){
 			try {
-				return in.readLine();
+				return con.rcvMsg();
 			} catch (IOException e) {
 				System.out.println("Failed to read from " + port);
 				System.exit(-1);
@@ -88,10 +87,14 @@ public class ThreadlessServer {
 			return null;
 		}
 		
-		public void sendMsgs(String msg){
-			out.println(msg);
+		public void sendMsgs(List<Integer> msg){
+			try {
+				con.transMsg(msg);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
-	
 }
