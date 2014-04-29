@@ -44,7 +44,7 @@ public class Server implements Runnable{
 		while(slot < nConnections){
 			try {
 				new Thread( new ServerThread(
-						new MessageTransceiver(sock.accept()), core))
+						new StringTrnscv(sock.accept()), core))
 						.run();
 				slot ++;
 			} catch (IOException e) {

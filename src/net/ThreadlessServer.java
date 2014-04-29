@@ -68,14 +68,14 @@ public class ThreadlessServer {
 
 	private static class Connection{
 		
-		MessageTransceiver con;
+		MsgTrnscv con;
 		int port;
 		
 		@SuppressWarnings("resource")
 		public Connection(int port) throws IOException{
 			//FIXME: Put this into a thread
 			this.port = port;
-			con = new MessageTransceiver( new ServerSocket(port).accept());
+			con = new StringTrnscv( new ServerSocket(port).accept());
 		}
 		
 		public List<Integer> getMsg(){

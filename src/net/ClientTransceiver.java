@@ -9,10 +9,10 @@ import java.util.List;
 
 public class ClientTransceiver extends CmdSender implements Reciever{
 
-	MessageTransceiver trns;
+	MsgTrnscv trns;
 	
 	public ClientTransceiver (Socket sock) throws IOException{
-		trns = new MessageTransceiver(sock);
+		trns = new StringTrnscv(sock);
 	}
 	
 	@Override
