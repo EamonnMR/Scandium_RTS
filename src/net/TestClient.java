@@ -31,8 +31,8 @@ public class TestClient {
 	private static void sunsUglyTestCode(String hostName, int portNumber) {
 		try (
 	              Socket echoSocket = new Socket(hostName, portNumber);
-	    		  MessageTransceiver transcv = 
-	    			  new MessageTransceiver( new Socket(hostName, portNumber) );
+	    		  MsgTrnscv transcv = 
+	    			  new StringTrnscv( new Socket(hostName, portNumber) );
 	              BufferedReader stdIn =
 	                  new BufferedReader(
 	                      new InputStreamReader(System.in))

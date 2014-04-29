@@ -5,10 +5,10 @@ import java.util.Collection;
 
 public class ServerThread implements Runnable{
 
-	MessageTransceiver trans;
+	MsgTrnscv trans;
 	ServerCore core;
 	
-	public ServerThread(MessageTransceiver trans, ServerCore core){
+	public ServerThread(MsgTrnscv trans, ServerCore core){
 		this.trans = trans;
 		this.core = core;
 	}
