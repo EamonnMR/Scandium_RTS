@@ -20,7 +20,6 @@ public class DataStreamTrnscv extends MsgTrnscv{
 	DataInputStream is;
 	DataOutputStream os;
 	
-	Socket sock;
 	public DataStreamTrnscv(Socket sock) throws IOException{
 		is = new DataInputStream(sock.getInputStream());
 		os = new DataOutputStream(sock.getOutputStream());

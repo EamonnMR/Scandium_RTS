@@ -11,7 +11,6 @@ public class StringTrnscv extends MsgTrnscv{
 	Scanner is;
 	PrintWriter os;
 	
-	Socket sock;
 	public StringTrnscv(Socket sock) throws IOException{
 		
 		os = new PrintWriter ( sock.getOutputStream() );
