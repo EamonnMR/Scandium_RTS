@@ -42,7 +42,6 @@ public class TestClient {
 	            	  System.out.println("Sending message:" +  fmtOut(fmtIn(userInput)));
 	                  transcv.transMsg(fmtIn(userInput));
 	                  System.out.println(fmtOut(transcv.rcvMsg()));
-	            	  //System.out.println(fmtOut(fmtIn(userInput)));
 	              }
 	          } catch (UnknownHostException e) {
 	              System.err.println("Don't know about host " + hostName);
@@ -66,7 +65,7 @@ public class TestClient {
 		return toSender;
 	}
 
-	private static Collection<Integer> fmtIn(String userInput) {
+	private static List<Integer> fmtIn(String userInput) {
 		List<Integer> toSender = new LinkedList<Integer>();
 		Scanner scanline = new Scanner(userInput);
 		while(scanline.hasNextInt()){

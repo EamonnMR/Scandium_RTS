@@ -41,7 +41,7 @@ public class ThreadlessServer {
 			}
 		}
 		/*
-		//FIXME: Does this un-screwup the code?
+		//FIXME: Does this un-bork the code?
 		List<Integer> lst = new LinkedList<Integer>();
 		lst.add(0);
 		for(Connection i: con){
