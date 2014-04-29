@@ -5,7 +5,6 @@ package net;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -51,12 +50,6 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 	/*
 	 * This version uses ReadInt
 	  public List<Integer> rcvMsg() throws IOException{
-	 
-		//List<Integer> toSender = new LinkedList<Integer>();
-		//for(int i = 0; i < is.readInt(); i++){
-		//	toSender.add(is.readInt());
-		//}
-		//return toSender;
 		
 		List<Integer> toSender = new LinkedList<Integer>();
 		System.out.println("Awaiting message");
@@ -71,7 +64,7 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 	
 	//Ugly but currently needed hack-trying to make the thing actually transmit and rcv.
 	
-	public void transMsg(Collection<Integer> msg) throws IOException{
+	public void transMsg(List<Integer> msg) throws IOException{
 		System.out.println("Sending...");
 		writeLine(msg.size());
 		for(int i : msg){
@@ -84,7 +77,7 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 		
 		List<Integer> toSender = new LinkedList<Integer>();
 		System.out.println("Awaiting message");
-		int msgSize = readLine();
+		int msgSize = readLine(); //The problem appears to be here: it never reads a line.
 		System.out.println("Reading message: Size = " + msgSize);
 		for(int i = 0; i < msgSize; i++){
 			toSender.add(readLine());
@@ -94,6 +87,7 @@ public class MessageTransceiver implements java.lang.AutoCloseable{
 	}
 	
 	private void writeLine(int i){
+		System.out.println(i);
 		os.println(i);
 	}
 	

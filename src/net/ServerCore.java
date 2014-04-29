@@ -31,8 +31,8 @@ public class ServerCore {
 		return state;
 	}
 	
-	public synchronized Collection<Integer> getFullMsg(){
-		Collection<Integer> toSender = fullMessage;
+	public synchronized List<Integer> getFullMsg(){
+		List<Integer> toSender = fullMessage;
 		nGot++;
 		System.out.println("Got message; nGot = " + nGot);
 		if(nGot == total){
