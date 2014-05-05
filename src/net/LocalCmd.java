@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * In this very simple class, we fake an outgoing stream of net information, 
- * looping it back to local reciever.
+ * looping it back to local receiver.
  * @author Eamonn
  *
  */

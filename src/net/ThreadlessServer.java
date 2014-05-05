@@ -40,13 +40,6 @@ public class ThreadlessServer {
 				System.out.println("Cannot connect to client on port " + ports.get(Integer.toString(i)));
 			}
 		}
-		/*
-		//FIXME: Does this un-bork the code?
-		List<Integer> lst = new LinkedList<Integer>();
-		lst.add(0);
-		for(Connection i: con){
-			i.sendMsgs(lst);
-		}*/
 		
 		while(true){
 			msg =  new LinkedList<Integer>();
@@ -75,7 +68,7 @@ public class ThreadlessServer {
 		public Connection(int port) throws IOException{
 			//FIXME: Put this into a thread
 			this.port = port;
-			con = new StringTrnscv( new ServerSocket(port).accept());
+			con = new DataStreamTrnscv( new ServerSocket(port).accept());
 		}
 		
 		public List<Integer> getMsg(){

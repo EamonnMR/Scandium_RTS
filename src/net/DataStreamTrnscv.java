@@ -14,6 +14,8 @@ import java.util.List;
  * so if your message is 3,4,5,6, it'll be sent as 4,3,4,5,6. An empty message will be
  * sent simply as 0.
  * @author Eamonn
+ * 
+ * Tested with Prof. Chung's code and demonstrated to be working correctly.
  *
  */
 public class DataStreamTrnscv extends MsgTrnscv{
@@ -32,7 +34,7 @@ public class DataStreamTrnscv extends MsgTrnscv{
 		for(Integer i : msg){
 			os.writeInt(i);
 		}
-		//os.flush(); //Is this needed?
+		os.flush(); //Is this needed?
 	}
 	
 	public List<Integer> rcvMsg() throws IOException{
