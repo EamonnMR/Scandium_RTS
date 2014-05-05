@@ -11,8 +11,21 @@ package menus;
  */
 
 
+import java.util.List;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.Properties;
 
+
+
+
+
+
+
+
+import net.ClientTransceiver;
+import net.DataStreamTrnscv;
+import net.MsgTrnscv;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -28,6 +41,7 @@ public class JoinPortSelect extends MenuState {
 			throws SlickException {
 		Properties ports = data.Mgr.i().ports;
 		interactives = new Interactive[ports.size() + 1];
+		
 		interactives[ports.size()] = new TextButton(new Rectangle(200, 100, 50, 20), "Cancel" ){
 			protected void doAction() {
 				game.enterState(0);
@@ -45,9 +59,13 @@ public class JoinPortSelect extends MenuState {
 					try {
 						startClientCon(port);
 					} catch (SlickException e) {
-						System.out.println("Can't establish connection");
-						System.exit(1);
 						e.printStackTrace();
+						System.out.println("Slick exception thrown");
+						System.exit(1);
+					} catch (IOException e) {
+						e.printStackTrace();
+						System.out.println("Fatal I/O error");
+						System.exit(1);
 					}
 					game.enterState(6);
 				}
@@ -55,13 +73,16 @@ public class JoinPortSelect extends MenuState {
 		}
 	}
 
-	private void startClientCon(int port) throws SlickException{
-		
+	private void startClientCon(int port) throws SlickException, IOException{
+		MsgTrnscv mtr = new DataStreamTrnscv(new Socket(host, port));
+		List<Integer> theInitialCommand = mtr.rcvMsg();
+		int player = theInitialCommand.get(0);
+		ClientTransceiver ctr = new ClientTransceiver(mtr);
+		game.Setup.setup("res/RageValley.tmx",ctr, ctr, player);
 	}
 		
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 

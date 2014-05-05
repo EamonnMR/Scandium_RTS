@@ -1,4 +1,4 @@
-package net;
+package test;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,6 +9,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+
+import net.DataStreamTrnscv;
+import net.MsgTrnscv;
 
 //Simple client to test the server, appropriated from the java tutorials as a test...
 
