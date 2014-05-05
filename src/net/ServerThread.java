@@ -18,7 +18,7 @@ public class ServerThread implements Runnable{
 	
 	@Override
 	public void run() {
-		System.out.println("Running server thread");
+		report("Running server thread");
 		sendInitialMsg();
 		while(true){
 			recieve();
@@ -28,7 +28,9 @@ public class ServerThread implements Runnable{
 	}
 
 	private void sendInitialMsg() {
+		report("Sending initial command");
 		List<Integer> theInitialCommand = new LinkedList<Integer>();
+		theInitialCommand.add(id);
 		try {
 			trans.transMsg(theInitialCommand);
 		} catch (IOException e) {

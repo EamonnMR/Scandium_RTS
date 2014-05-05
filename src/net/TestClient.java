@@ -18,10 +18,6 @@ public class TestClient {
 		data.Mgr.i().loadInis();
 		int portNumber = Integer.parseInt((String) data.Mgr.i().ports.get("0"));
 		String hostName = "localhost";
-		
-		
-		//This is mostly ripped from the Java Tutorials, from Sun.
-		
 		runtest(hostName, portNumber);
 	}
 	
@@ -34,12 +30,15 @@ public class TestClient {
 	                      new InputStreamReader(System.in));
 	              String userInput;
 	              List<Integer> ints;
+	              System.out.println("Awaiting initial command...");
+                  ints = transcv.rcvMsg();
+                  System.out.println(fmtOut(ints));
 	              while ((userInput = stdIn.readLine()) != null){
-	                  ints = transcv.rcvMsg();
-	                  System.out.println(fmtOut(ints));
 	            	  ints = fmtIn(userInput);
 	            	  System.out.println("Sending message:" +  fmtOut(ints));
 	                  transcv.transMsg(ints);
+	                  ints = transcv.rcvMsg();
+	                  System.out.println(fmtOut(ints));
 	              }
 	}
 	public static String fmtOut(Collection<Integer> collection) {

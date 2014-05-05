@@ -17,7 +17,7 @@ public abstract class AbstractButton extends Interactive{
 	 * state:
 	 * 0: No hover
 	 * 1: Held-into (holding mouse down before moving into button)
-	 * 2: 
+	 * 2: Pressed
 	 */
 	private int state;
 	
