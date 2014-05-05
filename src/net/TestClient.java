@@ -28,33 +28,22 @@ public class TestClient {
 	
 	/* The last remains of the Echo Client code have been... swept away.
 	 */
-	private static void sunsUglyTestCode(String hostName, int portNumber) {
-		try (
-	              Socket echoSocket = new Socket(hostName, portNumber);
+	@SuppressWarnings("resource")
+	private static void sunsUglyTestCode(String hostName, int portNumber) throws IOException {
 	    		  MsgTrnscv transcv = 
 	    			  new DataStreamTrnscv( new Socket(hostName, portNumber) );
 	              BufferedReader stdIn =
 	                  new BufferedReader(
-	                      new InputStreamReader(System.in))
-	          ) {
+	                      new InputStreamReader(System.in));
 	              String userInput;
+	              List<Integer> ints;
 	              while ((userInput = stdIn.readLine()) != null){
-	            	  System.out.println("Sending message:" +  fmtOut(fmtIn(userInput)));
-	                  transcv.transMsg(fmtIn(userInput));
-	                  System.out.println(fmtOut(transcv.rcvMsg()));
+	            	  ints = fmtIn(userInput);
+	            	  System.out.println("Sending message:" +  fmtOut(ints));
+	                  transcv.transMsg(ints);
+	                  ints = transcv.rcvMsg();
+	                  System.out.println(fmtOut(ints));
 	              }
-	          } catch (UnknownHostException e) {
-	              System.err.println("Don't know about host " + hostName);
-	              System.exit(1);
-	          } catch (IOException e) {
-	              System.err.println("Couldn't get I/O for the connection to " +
-	                  hostName);
-	              e.printStackTrace();
-	              System.exit(1);
-	        } catch (Exception e) {
-	        	e.printStackTrace();
-	        	System.exit(1);
-		} 
 	}
 	public static String fmtOut(Collection<Integer> collection) {
 		String toSender = "(" + collection.size() + ") ";
@@ -71,7 +60,7 @@ public class TestClient {
 		while(scanline.hasNextInt()){
 			toSender.add(scanline.nextInt());
 		}
-		scanline.close();
+		//scanline.close();
 		return toSender;
 	}
 }

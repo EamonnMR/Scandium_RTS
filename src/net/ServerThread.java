@@ -1,7 +1,7 @@
 package net;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 public class ServerThread implements Runnable{
 
@@ -41,7 +41,7 @@ public class ServerThread implements Runnable{
 		as it wants) and that's the whole 
 		purpose of the threaded server.
 		*/
-		Collection<Integer> msg;
+		List<Integer> msg;
 		try {
 			msg = trans.rcvMsg();
 			System.out.println("Recieved msg: " + TestClient.fmtOut(msg));
