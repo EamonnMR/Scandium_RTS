@@ -32,7 +32,7 @@ public class TestClient {
 		try (
 	              Socket echoSocket = new Socket(hostName, portNumber);
 	    		  MsgTrnscv transcv = 
-	    			  new StringTrnscv( new Socket(hostName, portNumber) );
+	    			  new DataStreamTrnscv( new Socket(hostName, portNumber) );
 	              BufferedReader stdIn =
 	                  new BufferedReader(
 	                      new InputStreamReader(System.in))

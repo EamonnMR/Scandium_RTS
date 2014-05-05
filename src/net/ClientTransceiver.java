@@ -12,7 +12,7 @@ public class ClientTransceiver extends CmdSender implements Reciever{
 	MsgTrnscv trns;
 	
 	public ClientTransceiver (Socket sock) throws IOException{
-		trns = new StringTrnscv(sock);
+		trns = new DataStreamTrnscv(sock);
 	}
 	
 	@Override
