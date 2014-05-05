@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import test.TestClient;
+
 public class ServerThread implements Runnable{
 
 	MsgTrnscv trans;
@@ -18,19 +20,19 @@ public class ServerThread implements Runnable{
 	
 	@Override
 	public void run() {
-		report("Running server thread");
+		//report("Running server thread");
 		sendInitialMsg();
 		while(true){
+			transmit();
 			recieve();
 			waitForOthers();
-			transmit();
 		}
 	}
 
 	private void sendInitialMsg() {
-		report("Sending initial command");
+		//report("Sending initial command");
 		List<Integer> theInitialCommand = new LinkedList<Integer>();
-		theInitialCommand.add(id);
+		theInitialCommand.add(id + 1);
 		try {
 			trans.transMsg(theInitialCommand);
 		} catch (IOException e) {
@@ -40,7 +42,7 @@ public class ServerThread implements Runnable{
 	}
 
 	private void waitForOthers() {
-		report("Waiting...");
+		//report("Waiting...");
 		while(core.waiting()){
 			try {
 				Thread.sleep(100);
@@ -51,7 +53,7 @@ public class ServerThread implements Runnable{
 	}
 
 	private void recieve() {
-		report("Recieving");
+		//report("Recieving");
 		/*These are seperate because
 		submit is synchronzed and rcvMsg can
 		take a long time to return (as long
@@ -61,7 +63,9 @@ public class ServerThread implements Runnable{
 		List<Integer> msg;
 		try {
 			msg = trans.rcvMsg();
-			System.out.println("Recieved msg: " + TestClient.fmtOut(msg));
+			if(msg.size() > 0){
+				report("Recieved msg: " + TestClient.fmtOut(msg));
+			}
 			core.submit(msg);
 		} catch (IOException e) {
 			// If msg.rcvMsg fails to return,
@@ -70,14 +74,13 @@ public class ServerThread implements Runnable{
 			/*System.out.println("Skipped message");
 			e.printStackTrace();
 			core.submit(new ArrayList<Integer>());*/
-			
 			//Disconnect-game over ?
 			System.exit(1);
 		}
 	}
 	
 	private void transmit() {
-		report("transmitting");
+		//report("transmitting");
 		try {
 			trans.transMsg(core.getFullMsg());
 		} catch (IOException e) {

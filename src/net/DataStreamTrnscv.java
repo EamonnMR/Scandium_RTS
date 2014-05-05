@@ -30,7 +30,7 @@ public class DataStreamTrnscv extends MsgTrnscv{
 	
 	public void transMsg(List<Integer> msg) throws IOException{
 		os.writeInt(msg.size());
-		System.out.println("Sending message....");
+		//System.out.println("Sending message....");
 		for(Integer i : msg){
 			os.writeInt(i);
 		}
@@ -39,9 +39,9 @@ public class DataStreamTrnscv extends MsgTrnscv{
 	
 	public List<Integer> rcvMsg() throws IOException{
 		List<Integer> toSender = new LinkedList<Integer>();
-		System.out.println("Awaiting message");
+		//System.out.println("Awaiting message");
 		int msgSize = is.readInt();
-		System.out.println("Reading message: Size = " + msgSize);
+		//System.out.println("Reading message: Size = " + msgSize);
 		for(int i = 0; i < msgSize; i++){
 			toSender.add(is.readInt());
 		}
