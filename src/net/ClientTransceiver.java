@@ -3,7 +3,6 @@ package net;
 import instructions.Command;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,8 +10,8 @@ public class ClientTransceiver extends CmdSender implements Reciever{
 
 	MsgTrnscv trns;
 	
-	public ClientTransceiver (Socket sock) throws IOException{
-		trns = new DataStreamTrnscv(sock);
+	public ClientTransceiver (MsgTrnscv trns) throws IOException{
+		this.trns = trns;
 	}
 	
 	@Override

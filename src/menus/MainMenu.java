@@ -18,7 +18,7 @@ public class MainMenu extends MenuState{
 			},
 			new TextButton(new Rectangle(200, 300, 50, 20), "Join" ){
 				protected void doAction() {
-					game.enterState(2);
+					game.enterState(4);
 				}
 			},
 			new TextButton(new Rectangle(200, 400, 50, 20), "Test" ){
