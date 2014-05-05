@@ -1,8 +1,10 @@
-package net;
+package test;
 
 import instructions.Command;
 
 import java.util.List;
+
+import net.CmdSender;
 
 /**
  * In this very simple class, we fake an outgoing stream of net information, 

@@ -153,7 +153,7 @@ public class DummyDataLoaderWithLiterals {
 					@Override
 					public void pressed(Hud h, CmdSender c, gui.PlayerMouse ms) {
 						ms.setMode(
-									new gui.PlaceBuilding(){
+									new test.PlaceBuilding(){
 
 										@Override
 										public int[] getBuildingSize() {

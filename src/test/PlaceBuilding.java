@@ -1,4 +1,4 @@
-package gui;
+package test;
 
 /* Class abandoned. */
 
@@ -9,6 +9,9 @@ import org.newdawn.slick.Graphics;
 import data.Sprite;
 import game.Model;
 import game.PathGrid;
+import gui.Hud;
+import gui.Mouse;
+import gui.PlayerMouse;
 import gui.PlayerMouse.Mode;
 
 public abstract class PlaceBuilding extends Mode {

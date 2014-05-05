@@ -1,8 +1,11 @@
-package net;
+package test;
 
 import instructions.Command;
+
 import java.util.LinkedList;
 import java.util.List;
+
+import net.Reciever;
 
 public class LocalRcv implements Reciever {
 

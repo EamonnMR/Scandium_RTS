@@ -8,8 +8,14 @@ package gui;
 public class Mouse {
 	static int NUM_MOUSE_BUTTONS = 5; //FIXME: What's this actual number?!!?
 	
-	int x, y, maxX, maxY;
-	boolean[] buttons;
+	public int x;
+
+	public int y;
+
+	int maxX;
+
+	int maxY;
+	public boolean[] buttons;
 	private static Mouse instance;
 	
 	private Mouse(){

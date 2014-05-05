@@ -6,6 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import test.TestScreen;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
