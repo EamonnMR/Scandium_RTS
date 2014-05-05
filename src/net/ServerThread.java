@@ -1,21 +1,25 @@
 package net;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ServerThread implements Runnable{
 
 	MsgTrnscv trans;
 	ServerCore core;
+	int id;
 	
-	public ServerThread(MsgTrnscv trans, ServerCore core){
+	public ServerThread(MsgTrnscv trans, ServerCore core, int id){
 		this.trans = trans;
 		this.core = core;
+		this.id = id;
 	}
 	
 	@Override
 	public void run() {
 		System.out.println("Running server thread");
+		sendInitialMsg();
 		while(true){
 			recieve();
 			waitForOthers();
@@ -23,10 +27,20 @@ public class ServerThread implements Runnable{
 		}
 	}
 
+	private void sendInitialMsg() {
+		List<Integer> theInitialCommand = new LinkedList<Integer>();
+		try {
+			trans.transMsg(theInitialCommand);
+		} catch (IOException e) {
+			report("Connection failed at sending initial command");
+			System.exit(1);
+		}
+	}
+
 	private void waitForOthers() {
+		report("Waiting...");
 		while(core.waiting()){
 			try {
-				System.out.println("Thread sleeping");
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -35,6 +49,7 @@ public class ServerThread implements Runnable{
 	}
 
 	private void recieve() {
+		report("Recieving");
 		/*These are seperate because
 		submit is synchronzed and rcvMsg can
 		take a long time to return (as long
@@ -60,10 +75,15 @@ public class ServerThread implements Runnable{
 	}
 	
 	private void transmit() {
+		report("transmitting");
 		try {
 			trans.transMsg(core.getFullMsg());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void report(String rprt){
+		System.out.println(id + ": " + rprt);
 	}
 }

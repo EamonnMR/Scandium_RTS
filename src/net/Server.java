@@ -20,7 +20,7 @@ public class Server implements Runnable{
 			System.exit(-1);
 		}
 	
-		Thread t = new Thread(new Server(1, Integer.parseInt( (String) data.Mgr.i().ports.get("0"))));
+		Thread t = new Thread(new Server(2, Integer.parseInt( (String) data.Mgr.i().ports.get("0"))));
 		t.run();
 	}
 		
@@ -43,10 +43,12 @@ public class Server implements Runnable{
 		int slot = 0;
 		while(slot < nConnections){
 			try {
+				System.out.println("Awaiting next connection...");
 				new Thread( new ServerThread(
-						new DataStreamTrnscv(sock.accept()), core))
-						.run();
+						new DataStreamTrnscv(sock.accept()), core, slot))
+						.start();
 				slot ++;
+				System.out.println("Connection made...");
 			} catch (IOException e) {
 				System.out.println("I/O error while waiting on socket");
 				System.exit(1);

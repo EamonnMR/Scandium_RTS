@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,13 +22,11 @@ public class TestClient {
 		
 		//This is mostly ripped from the Java Tutorials, from Sun.
 		
-		sunsUglyTestCode(hostName, portNumber);
+		runtest(hostName, portNumber);
 	}
 	
-	/* The last remains of the Echo Client code have been... swept away.
-	 */
 	@SuppressWarnings("resource")
-	private static void sunsUglyTestCode(String hostName, int portNumber) throws IOException {
+	private static void runtest(String hostName, int portNumber) throws IOException {
 	    		  MsgTrnscv transcv = 
 	    			  new DataStreamTrnscv( new Socket(hostName, portNumber) );
 	              BufferedReader stdIn =
@@ -38,11 +35,11 @@ public class TestClient {
 	              String userInput;
 	              List<Integer> ints;
 	              while ((userInput = stdIn.readLine()) != null){
+	                  ints = transcv.rcvMsg();
+	                  System.out.println(fmtOut(ints));
 	            	  ints = fmtIn(userInput);
 	            	  System.out.println("Sending message:" +  fmtOut(ints));
 	                  transcv.transMsg(ints);
-	                  ints = transcv.rcvMsg();
-	                  System.out.println(fmtOut(ints));
 	              }
 	}
 	public static String fmtOut(Collection<Integer> collection) {
@@ -60,7 +57,7 @@ public class TestClient {
 		while(scanline.hasNextInt()){
 			toSender.add(scanline.nextInt());
 		}
-		//scanline.close();
+		scanline.close();
 		return toSender;
 	}
 }

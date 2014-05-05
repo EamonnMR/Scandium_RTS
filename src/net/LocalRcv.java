@@ -1,7 +1,6 @@
 package net;
 
 import instructions.Command;
-
 import java.util.LinkedList;
 import java.util.List;
 

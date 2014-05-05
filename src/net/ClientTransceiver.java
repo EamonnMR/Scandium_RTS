@@ -27,15 +27,17 @@ public class ClientTransceiver extends CmdSender implements Reciever{
 			return toSender;
 		} catch (IOException e) {
 			System.out.println("Error reading from MsgTrnscv");
+			System.exit(1);
 		}
 		return null;
 	}
 
 	@Override
 	public void pushToServer(List<Command> cmds) throws IOException {
-		List<Integer> code = new LinkedList<Integer>();
+		List<Integer> msg = new LinkedList<Integer>();
 		for(Command c : cmds){
-			code.addAll(c.toInts());
+			msg.addAll(c.toInts());
 		}
+		trns.transMsg(msg);
 	}
 }
