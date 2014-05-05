@@ -49,9 +49,9 @@ class Main extends StateBasedGame{
 		for(BasicGameState state : new BasicGameState[]{
 				new MainMenu(),
 				new HostMenu(),
-				new JoinMenu(),
+				new JoinPortSelect(),
 				new HostLobby(),
-				new JoinLobby(),
+				new JoinHostSelect(),
 				new TestScreen(),
 				game.PlayState.i()
 		}){

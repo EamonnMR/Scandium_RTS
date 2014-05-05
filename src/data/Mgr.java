@@ -17,7 +17,7 @@ import behavior.UnitState;
 
 
 public class Mgr {
-	public Properties cfg, ports;
+	public Properties cfg, ports, hosts;
 	private Sprite[][] sprites;
 	public UnitDat[] units;
 	private Hud.Button[] buttons;
@@ -25,6 +25,7 @@ public class Mgr {
 	public void loadInis() throws FileNotFoundException, IOException{
 		cfg = loadProps("prefs.ini");
 		ports = loadProps("ports.ini");
+		hosts = loadProps("hosts.ini");
 	}
 	
 	private static Properties loadProps(String loc) throws FileNotFoundException, IOException {
