@@ -1,8 +1,7 @@
-package menus;
+package test;
 
 import game.Setup;
-import net.LocalCmd;
-import net.LocalRcv;
+import menus.MenuState;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

@@ -1,4 +1,6 @@
-package menus;
+package test;
+
+import menus.Interactive;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
