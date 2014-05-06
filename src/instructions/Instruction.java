@@ -12,6 +12,7 @@ public abstract class Instruction {
 
 	public static Instruction fromInts(List<Integer> inp) {
 		int opcode = inp.remove(0);
+		System.out.println("Opcode = " + opcode);
 		switch(opcode){
 		case 0:{
 			return new Relocate(inp.remove(0), inp.remove(0));

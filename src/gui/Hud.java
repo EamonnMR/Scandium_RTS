@@ -126,7 +126,8 @@ public class Hud {
 		if(selection != null){
 			for(Unit i : selection){
 				g.draw(new Circle(i.x + camX, i.y + camY, i.getRadius()));
-				g.drawString(Integer.toString(i.hitPoints), i.x + camX, i.y + camY + i.getRadius());
+				//Combat isn't implemented yet
+				//g.drawString(Integer.toString(i.hitPoints), i.x + camX, i.y + camY + i.getRadius());
 			}
 		}
 		background.draw(xPos, yPos);
