@@ -12,7 +12,7 @@ public class RequisitionUnit extends Instruction{
 	
 	public Collection<? extends Integer> toInts() {
 		LinkedList<Integer> toSender = new LinkedList<Integer>();
-		toSender.add(2);
+		toSender.add(1);
 		toSender.add(unitToProduce);
 		return toSender;
 	}
