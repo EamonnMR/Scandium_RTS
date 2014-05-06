@@ -78,7 +78,9 @@ public class JoinPortSelect extends MenuState {
 		List<Integer> theInitialCommand = mtr.rcvMsg();
 		int player = theInitialCommand.get(0);
 		ClientTransceiver ctr = new ClientTransceiver(mtr);
-		game.Setup.setup("res/RageValley.tmx",ctr, ctr, player);
+		game.Setup.setup(data.Mgr.i().mapTable.getProperty("0") //FIXME: That should be in
+				//the initial command.
+				,ctr, ctr, player);
 	}
 		
 	@Override
