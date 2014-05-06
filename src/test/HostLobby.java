@@ -1,4 +1,6 @@
-package menus;
+package test;
+
+import menus.MenuState;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;

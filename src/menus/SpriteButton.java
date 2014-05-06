@@ -4,6 +4,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
 import data.Sprite;
 
+/**
+ * A button with that uses a sprite; it cycles through different
+ * frames for different states (similar to a text button)
+ * 
+ */
+
 public abstract class SpriteButton extends AbstractButton{
 
 	Sprite sprite;

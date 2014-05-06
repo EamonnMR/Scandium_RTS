@@ -21,7 +21,7 @@ public class TestScreen extends MenuState {
 			throws SlickException{
 		LocalRcv dummyR = new LocalRcv();
 		LocalCmd dummyC = new LocalCmd(dummyR);
-		Setup.setup("res/RageValley.tmx", dummyR, dummyC, 1);
+		Setup.setup("res/RageValley.tmx", dummyR, dummyC, 2);
 		arg1.enterState(6);
 	}
 

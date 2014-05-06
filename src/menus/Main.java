@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import test.HostLobby;
 import test.TestScreen;
 
 import java.io.FileNotFoundException;
@@ -17,8 +18,7 @@ import gui.Mouse;
 class Main extends StateBasedGame{
 
 	public Main() {
-		super("Scandium");
-		// TODO Auto-generated constructor stub
+		super("Scandium - Eamonn's Senior project");
 	}
 	
 	
