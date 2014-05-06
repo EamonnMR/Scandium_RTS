@@ -1,6 +1,9 @@
 package data;
 
-//Singleton that 
+/*
+ * Singleton that houses all of the game's data that does not change
+ * over the course of a game.
+ */
 
 import game.Unit;
 import gui.Hud;
@@ -17,7 +20,7 @@ import behavior.UnitState;
 
 
 public class Mgr {
-	public Properties cfg, ports, hosts;
+	public Properties cfg, ports, hosts, mapTable;
 	private Sprite[][] sprites;
 	public UnitDat[] units;
 	private Hud.Button[] buttons;
@@ -26,6 +29,7 @@ public class Mgr {
 		cfg = loadProps("prefs.ini");
 		ports = loadProps("ports.ini");
 		hosts = loadProps("hosts.ini");
+		mapTable = loadProps("maps.ini");
 	}
 	
 	private static Properties loadProps(String loc) throws FileNotFoundException, IOException {

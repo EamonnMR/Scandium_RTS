@@ -1,5 +1,8 @@
 package test;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import game.Setup;
 import menus.MenuState;
 
@@ -21,7 +24,14 @@ public class TestScreen extends MenuState {
 			throws SlickException{
 		LocalRcv dummyR = new LocalRcv();
 		LocalCmd dummyC = new LocalCmd(dummyR);
-		Setup.setup("res/RageValley.tmx", dummyR, dummyC, 2);
+		try {
+			data.Mgr.i().loadInis();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Setup.setup(data.Mgr.i().mapTable.getProperty("0"), dummyR, dummyC, 2);
 		arg1.enterState(6);
 	}
 
