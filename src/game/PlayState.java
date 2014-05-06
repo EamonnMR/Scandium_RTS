@@ -131,6 +131,7 @@ public class PlayState extends BasicGameState{
 		h.setMouse(playerAgent);
 	}
 	
+	
 	public void setScreenSize(int x, int y){
 		this.screenX = x;
 		this.screenY = y;

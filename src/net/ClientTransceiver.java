@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This handles both sending and recieving messages for the client.
+ * It's a thin layer over MsgTrnscv
+ * @author Eamonn
+ *
+ */
+
 public class ClientTransceiver extends CmdSender implements Reciever{
 
 	MsgTrnscv trns;

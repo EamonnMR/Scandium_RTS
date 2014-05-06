@@ -4,6 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+/**
+ * 
+ * @author Eamonn
+ *
+ */
+
 public class Server implements Runnable{
 	
 	int port, nConnections;
@@ -20,7 +26,7 @@ public class Server implements Runnable{
 			System.exit(-1);
 		}
 	
-		Thread t = new Thread(new Server(1, Integer.parseInt( (String) data.Mgr.i().ports.get("0"))));
+		Thread t = new Thread(new Server(2, Integer.parseInt( (String) data.Mgr.i().ports.get("0"))));
 		t.run();
 	}
 		

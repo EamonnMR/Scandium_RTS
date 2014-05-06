@@ -5,11 +5,9 @@ import java.net.Socket;
 import java.util.List;
 
 /**
- * This handles message sending and receiving.
+ * Uses a socket to send and recieve messages that are composed
+ * of Lists of Integers.
  * 
- * The first int of a message is always the number of (remaining) ints in the message-
- * so if your message is 3,4,5,6, it'll be sent as 4,3,4,5,6. An empty message will be
- * sent simply as 0.
  * @author Eamonn
  *
  */
