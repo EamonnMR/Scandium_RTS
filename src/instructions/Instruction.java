@@ -4,8 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This class has two distinct functions: one is to act as a base class
- * for Instructions, and the other is to 
+ * Base class for Instructions
  */
 
 public abstract class Instruction {
